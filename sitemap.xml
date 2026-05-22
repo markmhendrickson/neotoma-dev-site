@@ -10,6 +10,7 @@
   <url><loc>https://neotoma.io/sandbox</loc></url>
   <url><loc>https://neotoma.io/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/hosted</loc></url>
+  <url><loc>https://neotoma.io/integrations</loc></url>
   <url><loc>https://neotoma.io/connect</loc></url>
   <url><loc>https://neotoma.io/docs</loc></url>
   <url><loc>https://neotoma.io/terminology</loc></url>
@@ -21,6 +22,14 @@
   <url><loc>https://neotoma.io/mcp</loc></url>
   <url><loc>https://neotoma.io/cli</loc></url>
   <url><loc>https://neotoma.io/aauth</loc></url>
+  <url><loc>https://neotoma.io/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/inspector</loc></url>
   <url><loc>https://neotoma.io/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/inspector/entities</loc></url>
@@ -30,12 +39,12 @@
   <url><loc>https://neotoma.io/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/inspector/search</loc></url>
   <url><loc>https://neotoma.io/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/aauth/cli-keys</loc></url>
@@ -61,11 +70,17 @@
   <url><loc>https://neotoma.io/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/versioned-history</loc></url>
   <url><loc>https://neotoma.io/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/conflicting-facts-risk</loc></url>
@@ -80,6 +95,17 @@
   <url><loc>https://neotoma.io/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/database-memory</loc></url>
   <url><loc>https://neotoma.io/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/skills</loc></url>
+  <url><loc>https://neotoma.io/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/troubleshooting</loc></url>
@@ -116,10 +142,12 @@
   <url><loc>https://neotoma.io/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/walkthrough</loc></url>
   <url><loc>https://neotoma.io/schema-management</loc></url>
+  <url><loc>https://neotoma.io/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/changelog</loc></url>
   <url><loc>https://neotoma.io/memory-models</loc></url>
   <url><loc>https://neotoma.io/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/foundations</loc></url>
+  <url><loc>https://neotoma.io/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/privacy-first</loc></url>
   <url><loc>https://neotoma.io/cross-platform</loc></url>
   <url><loc>https://neotoma.io/memory-vendors</loc></url>
@@ -133,6 +161,7 @@
   <url><loc>https://neotoma.io/es/sandbox</loc></url>
   <url><loc>https://neotoma.io/es/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/es/hosted</loc></url>
+  <url><loc>https://neotoma.io/es/integrations</loc></url>
   <url><loc>https://neotoma.io/es/connect</loc></url>
   <url><loc>https://neotoma.io/es/docs</loc></url>
   <url><loc>https://neotoma.io/es/terminology</loc></url>
@@ -144,6 +173,14 @@
   <url><loc>https://neotoma.io/es/mcp</loc></url>
   <url><loc>https://neotoma.io/es/cli</loc></url>
   <url><loc>https://neotoma.io/es/aauth</loc></url>
+  <url><loc>https://neotoma.io/es/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/es/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/es/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/es/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/es/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/es/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/es/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/es/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/es/inspector</loc></url>
   <url><loc>https://neotoma.io/es/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/es/inspector/entities</loc></url>
@@ -153,12 +190,12 @@
   <url><loc>https://neotoma.io/es/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/es/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/es/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/es/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/es/inspector/search</loc></url>
   <url><loc>https://neotoma.io/es/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/es/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/es/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/es/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/es/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/es/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/es/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/es/aauth/cli-keys</loc></url>
@@ -184,11 +221,17 @@
   <url><loc>https://neotoma.io/es/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/es/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/es/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/es/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/es/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/es/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/es/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/es/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/es/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/es/versioned-history</loc></url>
   <url><loc>https://neotoma.io/es/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/es/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/es/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/es/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/es/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/es/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/es/conflicting-facts-risk</loc></url>
@@ -203,6 +246,17 @@
   <url><loc>https://neotoma.io/es/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/es/database-memory</loc></url>
   <url><loc>https://neotoma.io/es/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/es/skills</loc></url>
+  <url><loc>https://neotoma.io/es/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/es/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/es/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/es/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/es/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/es/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/es/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/es/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/es/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/es/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/es/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/es/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/es/troubleshooting</loc></url>
@@ -239,10 +293,12 @@
   <url><loc>https://neotoma.io/es/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/es/walkthrough</loc></url>
   <url><loc>https://neotoma.io/es/schema-management</loc></url>
+  <url><loc>https://neotoma.io/es/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/es/changelog</loc></url>
   <url><loc>https://neotoma.io/es/memory-models</loc></url>
   <url><loc>https://neotoma.io/es/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/es/foundations</loc></url>
+  <url><loc>https://neotoma.io/es/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/es/privacy-first</loc></url>
   <url><loc>https://neotoma.io/es/cross-platform</loc></url>
   <url><loc>https://neotoma.io/es/memory-vendors</loc></url>
@@ -256,6 +312,7 @@
   <url><loc>https://neotoma.io/ca/sandbox</loc></url>
   <url><loc>https://neotoma.io/ca/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/ca/hosted</loc></url>
+  <url><loc>https://neotoma.io/ca/integrations</loc></url>
   <url><loc>https://neotoma.io/ca/connect</loc></url>
   <url><loc>https://neotoma.io/ca/docs</loc></url>
   <url><loc>https://neotoma.io/ca/terminology</loc></url>
@@ -267,6 +324,14 @@
   <url><loc>https://neotoma.io/ca/mcp</loc></url>
   <url><loc>https://neotoma.io/ca/cli</loc></url>
   <url><loc>https://neotoma.io/ca/aauth</loc></url>
+  <url><loc>https://neotoma.io/ca/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/ca/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/ca/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/ca/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/ca/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/ca/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/ca/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/ca/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/ca/inspector</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/entities</loc></url>
@@ -276,12 +341,12 @@
   <url><loc>https://neotoma.io/ca/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/ca/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/search</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/ca/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/ca/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/ca/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/ca/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/ca/aauth/cli-keys</loc></url>
@@ -307,11 +372,17 @@
   <url><loc>https://neotoma.io/ca/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/ca/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/ca/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/ca/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/ca/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/ca/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/ca/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/ca/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/ca/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/ca/versioned-history</loc></url>
   <url><loc>https://neotoma.io/ca/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/ca/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/ca/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/ca/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/ca/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/ca/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/ca/conflicting-facts-risk</loc></url>
@@ -326,6 +397,17 @@
   <url><loc>https://neotoma.io/ca/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/ca/database-memory</loc></url>
   <url><loc>https://neotoma.io/ca/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/ca/skills</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/ca/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/ca/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/ca/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/ca/troubleshooting</loc></url>
@@ -362,10 +444,12 @@
   <url><loc>https://neotoma.io/ca/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/ca/walkthrough</loc></url>
   <url><loc>https://neotoma.io/ca/schema-management</loc></url>
+  <url><loc>https://neotoma.io/ca/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/ca/changelog</loc></url>
   <url><loc>https://neotoma.io/ca/memory-models</loc></url>
   <url><loc>https://neotoma.io/ca/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/ca/foundations</loc></url>
+  <url><loc>https://neotoma.io/ca/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/ca/privacy-first</loc></url>
   <url><loc>https://neotoma.io/ca/cross-platform</loc></url>
   <url><loc>https://neotoma.io/ca/memory-vendors</loc></url>
@@ -379,6 +463,7 @@
   <url><loc>https://neotoma.io/zh/sandbox</loc></url>
   <url><loc>https://neotoma.io/zh/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/zh/hosted</loc></url>
+  <url><loc>https://neotoma.io/zh/integrations</loc></url>
   <url><loc>https://neotoma.io/zh/connect</loc></url>
   <url><loc>https://neotoma.io/zh/docs</loc></url>
   <url><loc>https://neotoma.io/zh/terminology</loc></url>
@@ -390,6 +475,14 @@
   <url><loc>https://neotoma.io/zh/mcp</loc></url>
   <url><loc>https://neotoma.io/zh/cli</loc></url>
   <url><loc>https://neotoma.io/zh/aauth</loc></url>
+  <url><loc>https://neotoma.io/zh/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/zh/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/zh/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/zh/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/zh/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/zh/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/zh/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/zh/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/zh/inspector</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/entities</loc></url>
@@ -399,12 +492,12 @@
   <url><loc>https://neotoma.io/zh/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/zh/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/search</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/zh/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/zh/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/zh/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/zh/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/zh/aauth/cli-keys</loc></url>
@@ -430,11 +523,17 @@
   <url><loc>https://neotoma.io/zh/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/zh/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/zh/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/zh/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/zh/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/zh/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/zh/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/zh/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/zh/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/zh/versioned-history</loc></url>
   <url><loc>https://neotoma.io/zh/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/zh/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/zh/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/zh/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/zh/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/zh/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/zh/conflicting-facts-risk</loc></url>
@@ -449,6 +548,17 @@
   <url><loc>https://neotoma.io/zh/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/zh/database-memory</loc></url>
   <url><loc>https://neotoma.io/zh/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/zh/skills</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/zh/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/zh/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/zh/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/zh/troubleshooting</loc></url>
@@ -485,10 +595,12 @@
   <url><loc>https://neotoma.io/zh/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/zh/walkthrough</loc></url>
   <url><loc>https://neotoma.io/zh/schema-management</loc></url>
+  <url><loc>https://neotoma.io/zh/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/zh/changelog</loc></url>
   <url><loc>https://neotoma.io/zh/memory-models</loc></url>
   <url><loc>https://neotoma.io/zh/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/zh/foundations</loc></url>
+  <url><loc>https://neotoma.io/zh/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/zh/privacy-first</loc></url>
   <url><loc>https://neotoma.io/zh/cross-platform</loc></url>
   <url><loc>https://neotoma.io/zh/memory-vendors</loc></url>
@@ -502,6 +614,7 @@
   <url><loc>https://neotoma.io/hi/sandbox</loc></url>
   <url><loc>https://neotoma.io/hi/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/hi/hosted</loc></url>
+  <url><loc>https://neotoma.io/hi/integrations</loc></url>
   <url><loc>https://neotoma.io/hi/connect</loc></url>
   <url><loc>https://neotoma.io/hi/docs</loc></url>
   <url><loc>https://neotoma.io/hi/terminology</loc></url>
@@ -513,6 +626,14 @@
   <url><loc>https://neotoma.io/hi/mcp</loc></url>
   <url><loc>https://neotoma.io/hi/cli</loc></url>
   <url><loc>https://neotoma.io/hi/aauth</loc></url>
+  <url><loc>https://neotoma.io/hi/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/hi/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/hi/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/hi/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/hi/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/hi/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/hi/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/hi/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/hi/inspector</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/entities</loc></url>
@@ -522,12 +643,12 @@
   <url><loc>https://neotoma.io/hi/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/hi/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/search</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/hi/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/hi/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/hi/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/hi/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/hi/aauth/cli-keys</loc></url>
@@ -553,11 +674,17 @@
   <url><loc>https://neotoma.io/hi/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/hi/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/hi/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/hi/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/hi/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/hi/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/hi/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/hi/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/hi/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/hi/versioned-history</loc></url>
   <url><loc>https://neotoma.io/hi/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/hi/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/hi/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/hi/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/hi/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/hi/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/hi/conflicting-facts-risk</loc></url>
@@ -572,6 +699,17 @@
   <url><loc>https://neotoma.io/hi/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/hi/database-memory</loc></url>
   <url><loc>https://neotoma.io/hi/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/hi/skills</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/hi/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/hi/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/hi/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/hi/troubleshooting</loc></url>
@@ -608,10 +746,12 @@
   <url><loc>https://neotoma.io/hi/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/hi/walkthrough</loc></url>
   <url><loc>https://neotoma.io/hi/schema-management</loc></url>
+  <url><loc>https://neotoma.io/hi/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/hi/changelog</loc></url>
   <url><loc>https://neotoma.io/hi/memory-models</loc></url>
   <url><loc>https://neotoma.io/hi/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/hi/foundations</loc></url>
+  <url><loc>https://neotoma.io/hi/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/hi/privacy-first</loc></url>
   <url><loc>https://neotoma.io/hi/cross-platform</loc></url>
   <url><loc>https://neotoma.io/hi/memory-vendors</loc></url>
@@ -625,6 +765,7 @@
   <url><loc>https://neotoma.io/ar/sandbox</loc></url>
   <url><loc>https://neotoma.io/ar/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/ar/hosted</loc></url>
+  <url><loc>https://neotoma.io/ar/integrations</loc></url>
   <url><loc>https://neotoma.io/ar/connect</loc></url>
   <url><loc>https://neotoma.io/ar/docs</loc></url>
   <url><loc>https://neotoma.io/ar/terminology</loc></url>
@@ -636,6 +777,14 @@
   <url><loc>https://neotoma.io/ar/mcp</loc></url>
   <url><loc>https://neotoma.io/ar/cli</loc></url>
   <url><loc>https://neotoma.io/ar/aauth</loc></url>
+  <url><loc>https://neotoma.io/ar/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/ar/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/ar/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/ar/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/ar/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/ar/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/ar/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/ar/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/ar/inspector</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/entities</loc></url>
@@ -645,12 +794,12 @@
   <url><loc>https://neotoma.io/ar/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/ar/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/search</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/ar/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/ar/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/ar/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/ar/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/ar/aauth/cli-keys</loc></url>
@@ -676,11 +825,17 @@
   <url><loc>https://neotoma.io/ar/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/ar/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/ar/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/ar/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/ar/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/ar/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/ar/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/ar/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/ar/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/ar/versioned-history</loc></url>
   <url><loc>https://neotoma.io/ar/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/ar/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/ar/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/ar/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/ar/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/ar/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/ar/conflicting-facts-risk</loc></url>
@@ -695,6 +850,17 @@
   <url><loc>https://neotoma.io/ar/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/ar/database-memory</loc></url>
   <url><loc>https://neotoma.io/ar/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/ar/skills</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/ar/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/ar/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/ar/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/ar/troubleshooting</loc></url>
@@ -731,10 +897,12 @@
   <url><loc>https://neotoma.io/ar/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/ar/walkthrough</loc></url>
   <url><loc>https://neotoma.io/ar/schema-management</loc></url>
+  <url><loc>https://neotoma.io/ar/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/ar/changelog</loc></url>
   <url><loc>https://neotoma.io/ar/memory-models</loc></url>
   <url><loc>https://neotoma.io/ar/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/ar/foundations</loc></url>
+  <url><loc>https://neotoma.io/ar/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/ar/privacy-first</loc></url>
   <url><loc>https://neotoma.io/ar/cross-platform</loc></url>
   <url><loc>https://neotoma.io/ar/memory-vendors</loc></url>
@@ -748,6 +916,7 @@
   <url><loc>https://neotoma.io/fr/sandbox</loc></url>
   <url><loc>https://neotoma.io/fr/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/fr/hosted</loc></url>
+  <url><loc>https://neotoma.io/fr/integrations</loc></url>
   <url><loc>https://neotoma.io/fr/connect</loc></url>
   <url><loc>https://neotoma.io/fr/docs</loc></url>
   <url><loc>https://neotoma.io/fr/terminology</loc></url>
@@ -759,6 +928,14 @@
   <url><loc>https://neotoma.io/fr/mcp</loc></url>
   <url><loc>https://neotoma.io/fr/cli</loc></url>
   <url><loc>https://neotoma.io/fr/aauth</loc></url>
+  <url><loc>https://neotoma.io/fr/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/fr/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/fr/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/fr/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/fr/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/fr/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/fr/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/fr/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/fr/inspector</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/entities</loc></url>
@@ -768,12 +945,12 @@
   <url><loc>https://neotoma.io/fr/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/fr/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/search</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/fr/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/fr/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/fr/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/fr/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/fr/aauth/cli-keys</loc></url>
@@ -799,11 +976,17 @@
   <url><loc>https://neotoma.io/fr/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/fr/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/fr/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/fr/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/fr/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/fr/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/fr/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/fr/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/fr/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/fr/versioned-history</loc></url>
   <url><loc>https://neotoma.io/fr/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/fr/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/fr/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/fr/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/fr/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/fr/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/fr/conflicting-facts-risk</loc></url>
@@ -818,6 +1001,17 @@
   <url><loc>https://neotoma.io/fr/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/fr/database-memory</loc></url>
   <url><loc>https://neotoma.io/fr/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/fr/skills</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/fr/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/fr/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/fr/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/fr/troubleshooting</loc></url>
@@ -854,10 +1048,12 @@
   <url><loc>https://neotoma.io/fr/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/fr/walkthrough</loc></url>
   <url><loc>https://neotoma.io/fr/schema-management</loc></url>
+  <url><loc>https://neotoma.io/fr/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/fr/changelog</loc></url>
   <url><loc>https://neotoma.io/fr/memory-models</loc></url>
   <url><loc>https://neotoma.io/fr/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/fr/foundations</loc></url>
+  <url><loc>https://neotoma.io/fr/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/fr/privacy-first</loc></url>
   <url><loc>https://neotoma.io/fr/cross-platform</loc></url>
   <url><loc>https://neotoma.io/fr/memory-vendors</loc></url>
@@ -871,6 +1067,7 @@
   <url><loc>https://neotoma.io/pt/sandbox</loc></url>
   <url><loc>https://neotoma.io/pt/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/pt/hosted</loc></url>
+  <url><loc>https://neotoma.io/pt/integrations</loc></url>
   <url><loc>https://neotoma.io/pt/connect</loc></url>
   <url><loc>https://neotoma.io/pt/docs</loc></url>
   <url><loc>https://neotoma.io/pt/terminology</loc></url>
@@ -882,6 +1079,14 @@
   <url><loc>https://neotoma.io/pt/mcp</loc></url>
   <url><loc>https://neotoma.io/pt/cli</loc></url>
   <url><loc>https://neotoma.io/pt/aauth</loc></url>
+  <url><loc>https://neotoma.io/pt/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/pt/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/pt/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/pt/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/pt/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/pt/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/pt/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/pt/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/pt/inspector</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/entities</loc></url>
@@ -891,12 +1096,12 @@
   <url><loc>https://neotoma.io/pt/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/pt/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/search</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/pt/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/pt/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/pt/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/pt/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/pt/aauth/cli-keys</loc></url>
@@ -922,11 +1127,17 @@
   <url><loc>https://neotoma.io/pt/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/pt/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/pt/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/pt/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/pt/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/pt/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/pt/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/pt/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/pt/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/pt/versioned-history</loc></url>
   <url><loc>https://neotoma.io/pt/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/pt/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/pt/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/pt/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/pt/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/pt/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/pt/conflicting-facts-risk</loc></url>
@@ -941,6 +1152,17 @@
   <url><loc>https://neotoma.io/pt/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/pt/database-memory</loc></url>
   <url><loc>https://neotoma.io/pt/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/pt/skills</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/pt/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/pt/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/pt/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/pt/troubleshooting</loc></url>
@@ -977,10 +1199,12 @@
   <url><loc>https://neotoma.io/pt/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/pt/walkthrough</loc></url>
   <url><loc>https://neotoma.io/pt/schema-management</loc></url>
+  <url><loc>https://neotoma.io/pt/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/pt/changelog</loc></url>
   <url><loc>https://neotoma.io/pt/memory-models</loc></url>
   <url><loc>https://neotoma.io/pt/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/pt/foundations</loc></url>
+  <url><loc>https://neotoma.io/pt/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/pt/privacy-first</loc></url>
   <url><loc>https://neotoma.io/pt/cross-platform</loc></url>
   <url><loc>https://neotoma.io/pt/memory-vendors</loc></url>
@@ -994,6 +1218,7 @@
   <url><loc>https://neotoma.io/ru/sandbox</loc></url>
   <url><loc>https://neotoma.io/ru/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/ru/hosted</loc></url>
+  <url><loc>https://neotoma.io/ru/integrations</loc></url>
   <url><loc>https://neotoma.io/ru/connect</loc></url>
   <url><loc>https://neotoma.io/ru/docs</loc></url>
   <url><loc>https://neotoma.io/ru/terminology</loc></url>
@@ -1005,6 +1230,14 @@
   <url><loc>https://neotoma.io/ru/mcp</loc></url>
   <url><loc>https://neotoma.io/ru/cli</loc></url>
   <url><loc>https://neotoma.io/ru/aauth</loc></url>
+  <url><loc>https://neotoma.io/ru/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/ru/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/ru/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/ru/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/ru/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/ru/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/ru/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/ru/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/ru/inspector</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/entities</loc></url>
@@ -1014,12 +1247,12 @@
   <url><loc>https://neotoma.io/ru/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/ru/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/search</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/ru/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/ru/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/ru/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/ru/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/ru/aauth/cli-keys</loc></url>
@@ -1045,11 +1278,17 @@
   <url><loc>https://neotoma.io/ru/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/ru/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/ru/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/ru/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/ru/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/ru/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/ru/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/ru/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/ru/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/ru/versioned-history</loc></url>
   <url><loc>https://neotoma.io/ru/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/ru/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/ru/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/ru/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/ru/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/ru/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/ru/conflicting-facts-risk</loc></url>
@@ -1064,6 +1303,17 @@
   <url><loc>https://neotoma.io/ru/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/ru/database-memory</loc></url>
   <url><loc>https://neotoma.io/ru/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/ru/skills</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/ru/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/ru/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/ru/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/ru/troubleshooting</loc></url>
@@ -1100,10 +1350,12 @@
   <url><loc>https://neotoma.io/ru/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/ru/walkthrough</loc></url>
   <url><loc>https://neotoma.io/ru/schema-management</loc></url>
+  <url><loc>https://neotoma.io/ru/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/ru/changelog</loc></url>
   <url><loc>https://neotoma.io/ru/memory-models</loc></url>
   <url><loc>https://neotoma.io/ru/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/ru/foundations</loc></url>
+  <url><loc>https://neotoma.io/ru/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/ru/privacy-first</loc></url>
   <url><loc>https://neotoma.io/ru/cross-platform</loc></url>
   <url><loc>https://neotoma.io/ru/memory-vendors</loc></url>
@@ -1117,6 +1369,7 @@
   <url><loc>https://neotoma.io/bn/sandbox</loc></url>
   <url><loc>https://neotoma.io/bn/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/bn/hosted</loc></url>
+  <url><loc>https://neotoma.io/bn/integrations</loc></url>
   <url><loc>https://neotoma.io/bn/connect</loc></url>
   <url><loc>https://neotoma.io/bn/docs</loc></url>
   <url><loc>https://neotoma.io/bn/terminology</loc></url>
@@ -1128,6 +1381,14 @@
   <url><loc>https://neotoma.io/bn/mcp</loc></url>
   <url><loc>https://neotoma.io/bn/cli</loc></url>
   <url><loc>https://neotoma.io/bn/aauth</loc></url>
+  <url><loc>https://neotoma.io/bn/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/bn/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/bn/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/bn/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/bn/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/bn/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/bn/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/bn/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/bn/inspector</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/entities</loc></url>
@@ -1137,12 +1398,12 @@
   <url><loc>https://neotoma.io/bn/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/bn/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/search</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/bn/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/bn/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/bn/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/bn/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/bn/aauth/cli-keys</loc></url>
@@ -1168,11 +1429,17 @@
   <url><loc>https://neotoma.io/bn/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/bn/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/bn/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/bn/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/bn/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/bn/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/bn/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/bn/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/bn/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/bn/versioned-history</loc></url>
   <url><loc>https://neotoma.io/bn/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/bn/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/bn/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/bn/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/bn/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/bn/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/bn/conflicting-facts-risk</loc></url>
@@ -1187,6 +1454,17 @@
   <url><loc>https://neotoma.io/bn/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/bn/database-memory</loc></url>
   <url><loc>https://neotoma.io/bn/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/bn/skills</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/bn/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/bn/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/bn/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/bn/troubleshooting</loc></url>
@@ -1223,10 +1501,12 @@
   <url><loc>https://neotoma.io/bn/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/bn/walkthrough</loc></url>
   <url><loc>https://neotoma.io/bn/schema-management</loc></url>
+  <url><loc>https://neotoma.io/bn/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/bn/changelog</loc></url>
   <url><loc>https://neotoma.io/bn/memory-models</loc></url>
   <url><loc>https://neotoma.io/bn/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/bn/foundations</loc></url>
+  <url><loc>https://neotoma.io/bn/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/bn/privacy-first</loc></url>
   <url><loc>https://neotoma.io/bn/cross-platform</loc></url>
   <url><loc>https://neotoma.io/bn/memory-vendors</loc></url>
@@ -1240,6 +1520,7 @@
   <url><loc>https://neotoma.io/ur/sandbox</loc></url>
   <url><loc>https://neotoma.io/ur/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/ur/hosted</loc></url>
+  <url><loc>https://neotoma.io/ur/integrations</loc></url>
   <url><loc>https://neotoma.io/ur/connect</loc></url>
   <url><loc>https://neotoma.io/ur/docs</loc></url>
   <url><loc>https://neotoma.io/ur/terminology</loc></url>
@@ -1251,6 +1532,14 @@
   <url><loc>https://neotoma.io/ur/mcp</loc></url>
   <url><loc>https://neotoma.io/ur/cli</loc></url>
   <url><loc>https://neotoma.io/ur/aauth</loc></url>
+  <url><loc>https://neotoma.io/ur/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/ur/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/ur/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/ur/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/ur/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/ur/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/ur/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/ur/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/ur/inspector</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/entities</loc></url>
@@ -1260,12 +1549,12 @@
   <url><loc>https://neotoma.io/ur/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/ur/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/search</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/ur/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/ur/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/ur/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/ur/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/ur/aauth/cli-keys</loc></url>
@@ -1291,11 +1580,17 @@
   <url><loc>https://neotoma.io/ur/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/ur/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/ur/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/ur/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/ur/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/ur/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/ur/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/ur/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/ur/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/ur/versioned-history</loc></url>
   <url><loc>https://neotoma.io/ur/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/ur/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/ur/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/ur/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/ur/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/ur/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/ur/conflicting-facts-risk</loc></url>
@@ -1310,6 +1605,17 @@
   <url><loc>https://neotoma.io/ur/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/ur/database-memory</loc></url>
   <url><loc>https://neotoma.io/ur/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/ur/skills</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/ur/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/ur/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/ur/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/ur/troubleshooting</loc></url>
@@ -1346,10 +1652,12 @@
   <url><loc>https://neotoma.io/ur/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/ur/walkthrough</loc></url>
   <url><loc>https://neotoma.io/ur/schema-management</loc></url>
+  <url><loc>https://neotoma.io/ur/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/ur/changelog</loc></url>
   <url><loc>https://neotoma.io/ur/memory-models</loc></url>
   <url><loc>https://neotoma.io/ur/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/ur/foundations</loc></url>
+  <url><loc>https://neotoma.io/ur/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/ur/privacy-first</loc></url>
   <url><loc>https://neotoma.io/ur/cross-platform</loc></url>
   <url><loc>https://neotoma.io/ur/memory-vendors</loc></url>
@@ -1363,6 +1671,7 @@
   <url><loc>https://neotoma.io/id/sandbox</loc></url>
   <url><loc>https://neotoma.io/id/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/id/hosted</loc></url>
+  <url><loc>https://neotoma.io/id/integrations</loc></url>
   <url><loc>https://neotoma.io/id/connect</loc></url>
   <url><loc>https://neotoma.io/id/docs</loc></url>
   <url><loc>https://neotoma.io/id/terminology</loc></url>
@@ -1374,6 +1683,14 @@
   <url><loc>https://neotoma.io/id/mcp</loc></url>
   <url><loc>https://neotoma.io/id/cli</loc></url>
   <url><loc>https://neotoma.io/id/aauth</loc></url>
+  <url><loc>https://neotoma.io/id/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/id/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/id/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/id/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/id/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/id/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/id/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/id/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/id/inspector</loc></url>
   <url><loc>https://neotoma.io/id/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/id/inspector/entities</loc></url>
@@ -1383,12 +1700,12 @@
   <url><loc>https://neotoma.io/id/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/id/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/id/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/id/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/id/inspector/search</loc></url>
   <url><loc>https://neotoma.io/id/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/id/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/id/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/id/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/id/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/id/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/id/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/id/aauth/cli-keys</loc></url>
@@ -1414,11 +1731,17 @@
   <url><loc>https://neotoma.io/id/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/id/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/id/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/id/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/id/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/id/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/id/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/id/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/id/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/id/versioned-history</loc></url>
   <url><loc>https://neotoma.io/id/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/id/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/id/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/id/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/id/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/id/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/id/conflicting-facts-risk</loc></url>
@@ -1433,6 +1756,17 @@
   <url><loc>https://neotoma.io/id/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/id/database-memory</loc></url>
   <url><loc>https://neotoma.io/id/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/id/skills</loc></url>
+  <url><loc>https://neotoma.io/id/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/id/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/id/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/id/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/id/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/id/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/id/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/id/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/id/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/id/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/id/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/id/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/id/troubleshooting</loc></url>
@@ -1469,10 +1803,12 @@
   <url><loc>https://neotoma.io/id/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/id/walkthrough</loc></url>
   <url><loc>https://neotoma.io/id/schema-management</loc></url>
+  <url><loc>https://neotoma.io/id/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/id/changelog</loc></url>
   <url><loc>https://neotoma.io/id/memory-models</loc></url>
   <url><loc>https://neotoma.io/id/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/id/foundations</loc></url>
+  <url><loc>https://neotoma.io/id/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/id/privacy-first</loc></url>
   <url><loc>https://neotoma.io/id/cross-platform</loc></url>
   <url><loc>https://neotoma.io/id/memory-vendors</loc></url>
@@ -1486,6 +1822,7 @@
   <url><loc>https://neotoma.io/de/sandbox</loc></url>
   <url><loc>https://neotoma.io/de/sandbox/terms-of-use</loc></url>
   <url><loc>https://neotoma.io/de/hosted</loc></url>
+  <url><loc>https://neotoma.io/de/integrations</loc></url>
   <url><loc>https://neotoma.io/de/connect</loc></url>
   <url><loc>https://neotoma.io/de/docs</loc></url>
   <url><loc>https://neotoma.io/de/terminology</loc></url>
@@ -1497,6 +1834,14 @@
   <url><loc>https://neotoma.io/de/mcp</loc></url>
   <url><loc>https://neotoma.io/de/cli</loc></url>
   <url><loc>https://neotoma.io/de/aauth</loc></url>
+  <url><loc>https://neotoma.io/de/peer-sync</loc></url>
+  <url><loc>https://neotoma.io/de/subscriptions</loc></url>
+  <url><loc>https://neotoma.io/de/issue-reporting</loc></url>
+  <url><loc>https://neotoma.io/de/security-hardening</loc></url>
+  <url><loc>https://neotoma.io/de/plans-guide</loc></url>
+  <url><loc>https://neotoma.io/de/issues-guide</loc></url>
+  <url><loc>https://neotoma.io/de/mirror-guide</loc></url>
+  <url><loc>https://neotoma.io/de/subscriptions-guide</loc></url>
   <url><loc>https://neotoma.io/de/inspector</loc></url>
   <url><loc>https://neotoma.io/de/inspector/dashboard</loc></url>
   <url><loc>https://neotoma.io/de/inspector/entities</loc></url>
@@ -1506,12 +1851,12 @@
   <url><loc>https://neotoma.io/de/inspector/timeline</loc></url>
   <url><loc>https://neotoma.io/de/inspector/conversations</loc></url>
   <url><loc>https://neotoma.io/de/inspector/agents</loc></url>
+  <url><loc>https://neotoma.io/de/inspector/peers</loc></url>
   <url><loc>https://neotoma.io/de/inspector/search</loc></url>
   <url><loc>https://neotoma.io/de/inspector/settings</loc></url>
   <url><loc>https://neotoma.io/de/inspector/settings/connection</loc></url>
   <url><loc>https://neotoma.io/de/inspector/settings/attribution-policy</loc></url>
   <url><loc>https://neotoma.io/de/inspector/settings/retention</loc></url>
-  <url><loc>https://neotoma.io/de/inspector/feedback</loc></url>
   <url><loc>https://neotoma.io/de/aauth/spec</loc></url>
   <url><loc>https://neotoma.io/de/aauth/attestation</loc></url>
   <url><loc>https://neotoma.io/de/aauth/cli-keys</loc></url>
@@ -1537,11 +1882,17 @@
   <url><loc>https://neotoma.io/de/neotoma-with-openclaw</loc></url>
   <url><loc>https://neotoma.io/de/neotoma-with-ironclaw</loc></url>
   <url><loc>https://neotoma.io/de/neotoma-with-openclaw-connect-local-stdio</loc></url>
+  <url><loc>https://neotoma.io/de/neotoma-with-continue</loc></url>
+  <url><loc>https://neotoma.io/de/neotoma-with-windsurf</loc></url>
+  <url><loc>https://neotoma.io/de/neotoma-with-vscode</loc></url>
+  <url><loc>https://neotoma.io/de/neotoma-with-letta</loc></url>
   <url><loc>https://neotoma.io/de/neotoma-with-openclaw-connect-remote-http</loc></url>
   <url><loc>https://neotoma.io/de/deterministic-state-evolution</loc></url>
   <url><loc>https://neotoma.io/de/versioned-history</loc></url>
   <url><loc>https://neotoma.io/de/replayable-timeline</loc></url>
   <url><loc>https://neotoma.io/de/auditable-change-log</loc></url>
+  <url><loc>https://neotoma.io/de/strong-consistency</loc></url>
+  <url><loc>https://neotoma.io/de/transactional-writes</loc></url>
   <url><loc>https://neotoma.io/de/schema-constraints</loc></url>
   <url><loc>https://neotoma.io/de/silent-mutation-risk</loc></url>
   <url><loc>https://neotoma.io/de/conflicting-facts-risk</loc></url>
@@ -1556,6 +1907,17 @@
   <url><loc>https://neotoma.io/de/file-based-memory</loc></url>
   <url><loc>https://neotoma.io/de/database-memory</loc></url>
   <url><loc>https://neotoma.io/de/deterministic-memory</loc></url>
+  <url><loc>https://neotoma.io/de/skills</loc></url>
+  <url><loc>https://neotoma.io/de/skills/ensure-neotoma</loc></url>
+  <url><loc>https://neotoma.io/de/skills/remember-email</loc></url>
+  <url><loc>https://neotoma.io/de/skills/remember-conversations</loc></url>
+  <url><loc>https://neotoma.io/de/skills/remember-meetings</loc></url>
+  <url><loc>https://neotoma.io/de/skills/remember-finances</loc></url>
+  <url><loc>https://neotoma.io/de/skills/remember-contacts</loc></url>
+  <url><loc>https://neotoma.io/de/skills/remember-calendar</loc></url>
+  <url><loc>https://neotoma.io/de/skills/remember-codebase</loc></url>
+  <url><loc>https://neotoma.io/de/skills/store-data</loc></url>
+  <url><loc>https://neotoma.io/de/skills/query-memory</loc></url>
   <url><loc>https://neotoma.io/de/build-vs-buy</loc></url>
   <url><loc>https://neotoma.io/de/multi-agent-state</loc></url>
   <url><loc>https://neotoma.io/de/troubleshooting</loc></url>
@@ -1592,10 +1954,12 @@
   <url><loc>https://neotoma.io/de/schemas/versioning</loc></url>
   <url><loc>https://neotoma.io/de/walkthrough</loc></url>
   <url><loc>https://neotoma.io/de/schema-management</loc></url>
+  <url><loc>https://neotoma.io/de/non-destructive-testing</loc></url>
   <url><loc>https://neotoma.io/de/changelog</loc></url>
   <url><loc>https://neotoma.io/de/memory-models</loc></url>
   <url><loc>https://neotoma.io/de/memory-guarantees</loc></url>
   <url><loc>https://neotoma.io/de/foundations</loc></url>
+  <url><loc>https://neotoma.io/de/foundation/problem-statement</loc></url>
   <url><loc>https://neotoma.io/de/privacy-first</loc></url>
   <url><loc>https://neotoma.io/de/cross-platform</loc></url>
   <url><loc>https://neotoma.io/de/memory-vendors</loc></url>
