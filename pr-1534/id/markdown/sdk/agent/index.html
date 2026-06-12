@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!DOCTYPE html><html lang="id" dir="ltr"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/pr-1534/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/pr-1534/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/pr-1534/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/pr-1534/apple-touch-icon.png">
+    <link rel="manifest" href="/pr-1534/site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="application-name" content="Neotoma">
+    <meta name="theme-color" content="#130918">
+    <meta name="description" content="Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonical store-first turn protocol so agents using any LLM provider get correct memory behavior by construction.">
+    <meta name="author" content="Neotoma">
+    <meta name="robots" content="noindex,follow">
+    <link rel="canonical" href="https://neotoma.io/id/markdown/sdk/agent">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Neotoma">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:title" content="TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma">
+    <meta property="og:description" content="Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonical store-first turn protocol so agents using any LLM provider get correct memory behavior by construction.">
+    <meta property="og:url" content="https://neotoma.io/id/markdown/sdk/agent">
+    <meta property="og:image" content="https://neotoma.io/pr-1534/neotoma-og-1200x630.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma. Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonic...">
+    <meta name="keywords" content="TypeScript SDK (@neotoma/agent) (Markdown), Neotoma, MCP, Model Context Protocol, AI agents, agent memory, deterministic state">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@markmhendrickson">
+    <meta name="twitter:title" content="TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma">
+    <meta name="twitter:description" content="Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonical store-first turn protocol so agents using any LLM provider get correct memory behavior by construction.">
+    <meta name="twitter:image" content="https://neotoma.io/pr-1534/neotoma-og-1200x630.png">
+    <meta name="twitter:image:width" content="1200">
+    <meta name="twitter:image:height" content="630">
+    <meta name="twitter:image:alt" content="TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma. Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonic...">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma","description":"Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonical store-first turn protocol so agents using any LLM provider get correct memory behavior by construction.","url":"https://neotoma.io/id/markdown/sdk/agent","publisher":{"@type":"Organization","name":"Neotoma"},"image":{"@type":"ImageObject","url":"https://neotoma.io/pr-1534/neotoma-og-1200x630.png","width":1200,"height":630,"caption":"TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma. Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonic..."}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://neotoma.io/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://neotoma.io/docs"},{"@type":"ListItem","position":3,"name":"TypeScript SDK","item":"https://neotoma.io/sdk/agent"}]}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+    <title>TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma</title>
+    <script type="module" crossorigin="" src="/pr-1534/assets/main-oGY8qoCq.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/pr-1534/assets/main-CeTgVovq.css">
+  
+    <!-- build: 452cb4e -->
+      <link rel="alternate" hreflang="x-default" href="https://neotoma.io/markdown/sdk/agent">
+    <link rel="alternate" hreflang="en" href="https://neotoma.io/markdown/sdk/agent">
+    <link rel="alternate" hreflang="es" href="https://neotoma.io/es/markdown/sdk/agent">
+    <link rel="alternate" hreflang="ca" href="https://neotoma.io/ca/markdown/sdk/agent">
+    <link rel="alternate" hreflang="zh" href="https://neotoma.io/zh/markdown/sdk/agent">
+    <link rel="alternate" hreflang="hi" href="https://neotoma.io/hi/markdown/sdk/agent">
+    <link rel="alternate" hreflang="ar" href="https://neotoma.io/ar/markdown/sdk/agent">
+    <link rel="alternate" hreflang="fr" href="https://neotoma.io/fr/markdown/sdk/agent">
+    <link rel="alternate" hreflang="pt" href="https://neotoma.io/pt/markdown/sdk/agent">
+    <link rel="alternate" hreflang="ru" href="https://neotoma.io/ru/markdown/sdk/agent">
+    <link rel="alternate" hreflang="bn" href="https://neotoma.io/bn/markdown/sdk/agent">
+    <link rel="alternate" hreflang="ur" href="https://neotoma.io/ur/markdown/sdk/agent">
+    <link rel="alternate" hreflang="id" href="https://neotoma.io/id/markdown/sdk/agent">
+    <link rel="alternate" hreflang="de" href="https://neotoma.io/de/markdown/sdk/agent">
+  <link rel="icon" href="/pr-1534/favicon.ico" sizes="any" data-rh="true"><link rel="icon" type="image/svg+xml" href="/pr-1534/favicon.svg" data-rh="true"><link rel="icon" type="image/png" sizes="48x48" href="/pr-1534/favicon-48x48.png" data-rh="true"><link rel="apple-touch-icon" sizes="180x180" href="/pr-1534/apple-touch-icon.png" data-rh="true"><link rel="manifest" href="/pr-1534/site.webmanifest" data-rh="true"><link rel="canonical" href="https://neotoma.io/id/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="x-default" href="https://neotoma.io/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="en" href="https://neotoma.io/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="es" href="https://neotoma.io/es/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="ca" href="https://neotoma.io/ca/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="zh" href="https://neotoma.io/zh/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="hi" href="https://neotoma.io/hi/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="ar" href="https://neotoma.io/ar/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="fr" href="https://neotoma.io/fr/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="pt" href="https://neotoma.io/pt/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="ru" href="https://neotoma.io/ru/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="bn" href="https://neotoma.io/bn/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="ur" href="https://neotoma.io/ur/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="id" href="https://neotoma.io/id/markdown/sdk/agent" data-rh="true"><link rel="alternate" hreflang="de" href="https://neotoma.io/de/markdown/sdk/agent" data-rh="true"><meta name="description" content="Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonical store-first turn protocol so agents using any LLM provider get correct memory behavior by construction." data-rh="true"><meta name="author" content="Neotoma" data-rh="true"><meta name="application-name" content="Neotoma" data-rh="true"><meta name="robots" content="noindex,nofollow" data-rh="true"><meta name="theme-color" content="#130918" data-rh="true"><meta property="og:type" content="website" data-rh="true"><meta property="og:site_name" content="Neotoma" data-rh="true"><meta property="og:locale" content="id_ID" data-rh="true"><meta property="og:title" content="TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma" data-rh="true"><meta property="og:description" content="Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonical store-first turn protocol so agents using any LLM provider get correct memory behavior by construction." data-rh="true"><meta property="og:url" content="https://neotoma.io/id/markdown/sdk/agent" data-rh="true"><meta property="og:image" content="https://neotoma.io/pr-1534/neotoma-og-1200x630.png" data-rh="true"><meta property="og:image:width" content="1200" data-rh="true"><meta property="og:image:height" content="630" data-rh="true"><meta property="og:image:alt" content="TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma. Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonic..." data-rh="true"><meta name="keywords" content="TypeScript SDK (@neotoma/agent) (Markdown), Neotoma, MCP, Model Context Protocol, AI agents, agent memory, deterministic state" data-rh="true"><meta name="twitter:card" content="summary_large_image" data-rh="true"><meta name="twitter:site" content="@markmhendrickson" data-rh="true"><meta name="twitter:title" content="TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma" data-rh="true"><meta name="twitter:description" content="Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonical store-first turn protocol so agents using any LLM provider get correct memory behavior by construction." data-rh="true"><meta name="twitter:image" content="https://neotoma.io/pr-1534/neotoma-og-1200x630.png" data-rh="true"><meta name="twitter:image:width" content="1200" data-rh="true"><meta name="twitter:image:height" content="630" data-rh="true"><meta name="twitter:image:alt" content="TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma. Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonic..." data-rh="true"><script type="application/ld+json" data-rh="true">{"@context":"https://schema.org","@type":"WebPage","name":"TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma","description":"Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonical store-first turn protocol so agents using any LLM provider get correct memory behavior by construction.","url":"https://neotoma.io/id/markdown/sdk/agent","publisher":{"@type":"Organization","name":"Neotoma"},"image":{"@type":"ImageObject","url":"https://neotoma.io/pr-1534/neotoma-og-1200x630.png","width":1200,"height":630,"caption":"TypeScript SDK (@neotoma/agent) (Markdown) | Neotoma. Markdown export of the rendered /sdk/agent page. Protocol-enforcing agent harness SDK for Neotoma. Wraps @neotoma/client with the canonic..."}}</script><script type="application/ld+json" data-rh="true">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://neotoma.io/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://neotoma.io/docs"},{"@type":"ListItem","position":3,"name":"TypeScript SDK","item":"https://neotoma.io/sdk/agent"}]}</script></head>
+  <body>
+    <div id="root"><iframe title="Markdown capture" aria-hidden="true" width="1280" height="900" class="pointer-events-none fixed left-[-9999px] top-0 z-[-1] border-0 opacity-0" sandbox="allow-same-origin allow-scripts allow-forms"></iframe><div class="min-h-screen bg-background text-foreground"><pre class="whitespace-pre-wrap break-words p-4 font-mono text-[13px] leading-relaxed text-foreground">&lt;!--
+  Full-page Markdown export (rendered HTML → GFM).
+  Source: https://neotoma.io/id/sdk/agent
+  Generated: 2026-06-12T11:24:08.829Z
+--&gt;
+# TypeScript SDK (@neotoma/agent)
+
+The `@neotoma/agent` package is the protocol-enforcing agent harness SDK for Neotoma. It wraps
+
+[
+
+`@neotoma/client`
+
+](https://github.com/markmhendrickson/neotoma/tree/main/packages/client)
+
+with the canonical store-first turn protocol so developers building agents with any LLM provider get correct Neotoma memory behavior without learning the interaction rules by hand.
+
+**Provider-agnostic.** This package does not call any LLM. Compose it around any agent loop — Claude, OpenAI, custom HTTP, whatever.
+
+## Install
+
+```
+npm install @neotoma/agent @neotoma/client
+```
+
+## When to reach for this package
+
+-   You are building an agent that should persist its turns to Neotoma.
+-   You want correct `conversation` / `conversation_message` shapes, `PART_OF` and `REFERS_TO` edges, and deterministic idempotency keys by construction — not by hand.
+-   You do not want your agent code to learn the Neotoma turn lifecycle.
+
+If you only need to write a single ad-hoc record, use `@neotoma/client` directly. If you are wiring a host harness (Claude Code, Cursor, OpenCode, Codex), use the dedicated hook plugin — it already depends on `@neotoma/agent` under the hood.
+
+## Quick start (provider-agnostic)
+
+```ts
+import { HttpTransport } from "@neotoma/client";
+import { withMemory } from "@neotoma/agent";
+
+const wrapped = withMemory(
+  async (userMessage, ctx) =&gt; {
+    // ctx.retrieved gives you entities Neotoma already knows that match the
+    // user message. Use them however you want — build the prompt, ground the
+    // reply, mention them to the model. Up to you.
+    return await yourAgent(userMessage, ctx.retrieved);
+  },
+  {
+    transport: new HttpTransport({
+      baseUrl: process.env.NEOTOMA_URL!,
+      token: process.env.NEOTOMA_TOKEN!,
+    }),
+    conversationId: "conv-2026-05-20",
+    platform: "my-agent",
+  }
+);
+
+const { assistantMessage } = await wrapped("What do we know about Acme Corp?");
+```
+
+On every call, the wrapper:
+
+1.  **Bounded retrieval** — extracts identifiers from the user message and looks them up in Neotoma (best-effort; falls back to empty set on failure).
+2.  **Stores the user message** as a `conversation_message` `PART_OF` the conversation, with `REFERS_TO` edges to retrieved entities.
+3.  **Invokes your agent** with the retrieved set available on `ctx.retrieved`.
+4.  **Stores the assistant reply** the same way, with `REFERS_TO` edges to cited entities.
+5.  **Idempotency keys** are deterministic per turn — re-runs collapse onto one observation.
+
+## Example: Claude (Anthropic SDK)
+
+```ts
+import Anthropic from "@anthropic-ai/sdk";
+import { HttpTransport } from "@neotoma/client";
+import { withMemory } from "@neotoma/agent";
+
+const anthropic = new Anthropic();
+const transport = new HttpTransport({
+  baseUrl: process.env.NEOTOMA_URL!,
+  token: process.env.NEOTOMA_TOKEN!,
+});
+
+const claudeWithMemory = withMemory(
+  async (userMessage, ctx) =&gt; {
+    const systemContext = ctx.retrieved.length
+      ? `Known entities relevant to this message:\n${JSON.stringify(ctx.retrieved, null, 2)}`
+      : "";
+
+    const response = await anthropic.messages.create({
+      model: "claude-opus-4-7",
+      max_tokens: 1024,
+      system: systemContext,
+      messages: [{ role: "user", content: userMessage }],
+    });
+
+    const block = response.content[0];
+    return block.type === "text" ? block.text : "";
+  },
+  { transport, conversationId: "claude-session-1", platform: "claude-api" }
+);
+
+const { assistantMessage } = await claudeWithMemory("Tell me about Acme Corp.");
+```
+
+## Example: OpenAI
+
+```ts
+import OpenAI from "openai";
+import { HttpTransport } from "@neotoma/client";
+import { withMemory } from "@neotoma/agent";
+
+const openai = new OpenAI();
+const transport = new HttpTransport({
+  baseUrl: process.env.NEOTOMA_URL!,
+  token: process.env.NEOTOMA_TOKEN!,
+});
+
+const gptWithMemory = withMemory(
+  async (userMessage, ctx) =&gt; {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "system",
+          content: ctx.retrieved.length
+            ? `Known entities relevant to this message:\n${JSON.stringify(ctx.retrieved, null, 2)}`
+            : "You are a helpful assistant.",
+        },
+        { role: "user", content: userMessage },
+      ],
+    });
+    return response.choices[0].message.content ?? "";
+  },
+  { transport, conversationId: "gpt-session-1", platform: "openai" }
+);
+
+const { assistantMessage } = await gptWithMemory("Tell me about Acme Corp.");
+```
+
+## Explicit lifecycle control
+
+For streaming, multi-step tool loops, or any case where `withMemory` is too coarse, use `NeotomaMemory` directly:
+
+```ts
+import { NeotomaMemory } from "@neotoma/agent";
+
+const memory = new NeotomaMemory({ transport, conversationId, platform: "my-agent" });
+
+const opened = await memory.openTurn({ turnId, userMessage });
+
+// ... run any agent loop, possibly multiple LLM calls and tool invocations,
+// using opened.retrieved as context ...
+
+await memory.closeTurn({
+  turnId,
+  assistantMessage,
+  refersTo: opened.retrievedEntityIds,
+});
+```
+
+## What this package gives you over `@neotoma/client`
+
+`@neotoma/client` is the low-level REST/local transport — it knows nothing about turn lifecycles. `@neotoma/agent` is the protocol layer that enforces:
+
+-   Bounded retrieval before write.
+-   `conversation` / `conversation_message` entity shapes.
+-   `PART_OF` edges from messages to conversation.
+-   `REFERS_TO` edges from messages to retrieved / cited entities.
+-   Deterministic idempotency keys per `(conversation_id, turn_id, role)`.
+
+These are easy to get wrong by hand. The SDK gets them right by construction.
+
+## Coverage vs. MCP instructions
+
+`@neotoma/agent` enforces the *mechanical* protocol described in the
+
+[
+
+agent instructions
+
+](/id/agent-instructions)
+
+— turn ordering, entity shapes, relationships, idempotency. It does **not** enforce behavioral policies (QA reflection, display-rule output, issue-filing consent, PII stripping in issue bodies, custom entity extraction beyond the user / assistant message pair). Those remain agent-side concerns; see the agent instructions for the full contract.
+
+## See also
+
+-   [Python SDK](/id/sdk/python) — the same protocol layer for Python agents.
+-   [Agent instructions](/id/agent-instructions) — full behavioral contract for agents.
+-   [MCP reference](/id/mcp) — when not using the SDK directly.</pre></div><div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;"><ol tabindex="-1" class="fixed top-0 z-[100] flex w-full flex-col-reverse p-4 sm:bottom-4 sm:right-4 sm:top-auto sm:flex-col sm:max-h-[calc(100vh-1rem)] sm:overflow-y-auto md:max-w-[420px]"></ol></div></div>
+  
+
+
+</body></html>
