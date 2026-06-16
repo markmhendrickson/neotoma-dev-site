@@ -21,6 +21,8 @@
   <url><loc>https://neotoma.io/api</loc></url>
   <url><loc>https://neotoma.io/mcp</loc></url>
   <url><loc>https://neotoma.io/cli</loc></url>
+  <url><loc>https://neotoma.io/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/sdk/python</loc></url>
   <url><loc>https://neotoma.io/aauth</loc></url>
   <url><loc>https://neotoma.io/peer-sync</loc></url>
   <url><loc>https://neotoma.io/subscriptions</loc></url>
@@ -172,6 +174,8 @@
   <url><loc>https://neotoma.io/es/api</loc></url>
   <url><loc>https://neotoma.io/es/mcp</loc></url>
   <url><loc>https://neotoma.io/es/cli</loc></url>
+  <url><loc>https://neotoma.io/es/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/es/sdk/python</loc></url>
   <url><loc>https://neotoma.io/es/aauth</loc></url>
   <url><loc>https://neotoma.io/es/peer-sync</loc></url>
   <url><loc>https://neotoma.io/es/subscriptions</loc></url>
@@ -323,6 +327,8 @@
   <url><loc>https://neotoma.io/ca/api</loc></url>
   <url><loc>https://neotoma.io/ca/mcp</loc></url>
   <url><loc>https://neotoma.io/ca/cli</loc></url>
+  <url><loc>https://neotoma.io/ca/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/ca/sdk/python</loc></url>
   <url><loc>https://neotoma.io/ca/aauth</loc></url>
   <url><loc>https://neotoma.io/ca/peer-sync</loc></url>
   <url><loc>https://neotoma.io/ca/subscriptions</loc></url>
@@ -474,6 +480,8 @@
   <url><loc>https://neotoma.io/zh/api</loc></url>
   <url><loc>https://neotoma.io/zh/mcp</loc></url>
   <url><loc>https://neotoma.io/zh/cli</loc></url>
+  <url><loc>https://neotoma.io/zh/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/zh/sdk/python</loc></url>
   <url><loc>https://neotoma.io/zh/aauth</loc></url>
   <url><loc>https://neotoma.io/zh/peer-sync</loc></url>
   <url><loc>https://neotoma.io/zh/subscriptions</loc></url>
@@ -625,6 +633,8 @@
   <url><loc>https://neotoma.io/hi/api</loc></url>
   <url><loc>https://neotoma.io/hi/mcp</loc></url>
   <url><loc>https://neotoma.io/hi/cli</loc></url>
+  <url><loc>https://neotoma.io/hi/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/hi/sdk/python</loc></url>
   <url><loc>https://neotoma.io/hi/aauth</loc></url>
   <url><loc>https://neotoma.io/hi/peer-sync</loc></url>
   <url><loc>https://neotoma.io/hi/subscriptions</loc></url>
@@ -776,6 +786,8 @@
   <url><loc>https://neotoma.io/ar/api</loc></url>
   <url><loc>https://neotoma.io/ar/mcp</loc></url>
   <url><loc>https://neotoma.io/ar/cli</loc></url>
+  <url><loc>https://neotoma.io/ar/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/ar/sdk/python</loc></url>
   <url><loc>https://neotoma.io/ar/aauth</loc></url>
   <url><loc>https://neotoma.io/ar/peer-sync</loc></url>
   <url><loc>https://neotoma.io/ar/subscriptions</loc></url>
@@ -927,6 +939,8 @@
   <url><loc>https://neotoma.io/fr/api</loc></url>
   <url><loc>https://neotoma.io/fr/mcp</loc></url>
   <url><loc>https://neotoma.io/fr/cli</loc></url>
+  <url><loc>https://neotoma.io/fr/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/fr/sdk/python</loc></url>
   <url><loc>https://neotoma.io/fr/aauth</loc></url>
   <url><loc>https://neotoma.io/fr/peer-sync</loc></url>
   <url><loc>https://neotoma.io/fr/subscriptions</loc></url>
@@ -1078,6 +1092,8 @@
   <url><loc>https://neotoma.io/pt/api</loc></url>
   <url><loc>https://neotoma.io/pt/mcp</loc></url>
   <url><loc>https://neotoma.io/pt/cli</loc></url>
+  <url><loc>https://neotoma.io/pt/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/pt/sdk/python</loc></url>
   <url><loc>https://neotoma.io/pt/aauth</loc></url>
   <url><loc>https://neotoma.io/pt/peer-sync</loc></url>
   <url><loc>https://neotoma.io/pt/subscriptions</loc></url>
@@ -1229,6 +1245,8 @@
   <url><loc>https://neotoma.io/ru/api</loc></url>
   <url><loc>https://neotoma.io/ru/mcp</loc></url>
   <url><loc>https://neotoma.io/ru/cli</loc></url>
+  <url><loc>https://neotoma.io/ru/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/ru/sdk/python</loc></url>
   <url><loc>https://neotoma.io/ru/aauth</loc></url>
   <url><loc>https://neotoma.io/ru/peer-sync</loc></url>
   <url><loc>https://neotoma.io/ru/subscriptions</loc></url>
@@ -1380,6 +1398,8 @@
   <url><loc>https://neotoma.io/bn/api</loc></url>
   <url><loc>https://neotoma.io/bn/mcp</loc></url>
   <url><loc>https://neotoma.io/bn/cli</loc></url>
+  <url><loc>https://neotoma.io/bn/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/bn/sdk/python</loc></url>
   <url><loc>https://neotoma.io/bn/aauth</loc></url>
   <url><loc>https://neotoma.io/bn/peer-sync</loc></url>
   <url><loc>https://neotoma.io/bn/subscriptions</loc></url>
@@ -1531,6 +1551,8 @@
   <url><loc>https://neotoma.io/ur/api</loc></url>
   <url><loc>https://neotoma.io/ur/mcp</loc></url>
   <url><loc>https://neotoma.io/ur/cli</loc></url>
+  <url><loc>https://neotoma.io/ur/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/ur/sdk/python</loc></url>
   <url><loc>https://neotoma.io/ur/aauth</loc></url>
   <url><loc>https://neotoma.io/ur/peer-sync</loc></url>
   <url><loc>https://neotoma.io/ur/subscriptions</loc></url>
@@ -1682,6 +1704,8 @@
   <url><loc>https://neotoma.io/id/api</loc></url>
   <url><loc>https://neotoma.io/id/mcp</loc></url>
   <url><loc>https://neotoma.io/id/cli</loc></url>
+  <url><loc>https://neotoma.io/id/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/id/sdk/python</loc></url>
   <url><loc>https://neotoma.io/id/aauth</loc></url>
   <url><loc>https://neotoma.io/id/peer-sync</loc></url>
   <url><loc>https://neotoma.io/id/subscriptions</loc></url>
@@ -1833,6 +1857,8 @@
   <url><loc>https://neotoma.io/de/api</loc></url>
   <url><loc>https://neotoma.io/de/mcp</loc></url>
   <url><loc>https://neotoma.io/de/cli</loc></url>
+  <url><loc>https://neotoma.io/de/sdk/agent</loc></url>
+  <url><loc>https://neotoma.io/de/sdk/python</loc></url>
   <url><loc>https://neotoma.io/de/aauth</loc></url>
   <url><loc>https://neotoma.io/de/peer-sync</loc></url>
   <url><loc>https://neotoma.io/de/subscriptions</loc></url>
