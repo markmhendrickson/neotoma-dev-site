@@ -147,6 +147,7 @@
   <url><loc>https://neotoma.io/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/walkthrough</loc></url>
   <url><loc>https://neotoma.io/schema-management</loc></url>
   <url><loc>https://neotoma.io/non-destructive-testing</loc></url>
@@ -305,6 +306,7 @@
   <url><loc>https://neotoma.io/es/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/es/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/es/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/es/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/es/walkthrough</loc></url>
   <url><loc>https://neotoma.io/es/schema-management</loc></url>
   <url><loc>https://neotoma.io/es/non-destructive-testing</loc></url>
@@ -463,6 +465,7 @@
   <url><loc>https://neotoma.io/ca/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/ca/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/ca/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/ca/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/ca/walkthrough</loc></url>
   <url><loc>https://neotoma.io/ca/schema-management</loc></url>
   <url><loc>https://neotoma.io/ca/non-destructive-testing</loc></url>
@@ -621,6 +624,7 @@
   <url><loc>https://neotoma.io/zh/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/zh/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/zh/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/zh/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/zh/walkthrough</loc></url>
   <url><loc>https://neotoma.io/zh/schema-management</loc></url>
   <url><loc>https://neotoma.io/zh/non-destructive-testing</loc></url>
@@ -779,6 +783,7 @@
   <url><loc>https://neotoma.io/hi/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/hi/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/hi/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/hi/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/hi/walkthrough</loc></url>
   <url><loc>https://neotoma.io/hi/schema-management</loc></url>
   <url><loc>https://neotoma.io/hi/non-destructive-testing</loc></url>
@@ -937,6 +942,7 @@
   <url><loc>https://neotoma.io/ar/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/ar/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/ar/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/ar/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/ar/walkthrough</loc></url>
   <url><loc>https://neotoma.io/ar/schema-management</loc></url>
   <url><loc>https://neotoma.io/ar/non-destructive-testing</loc></url>
@@ -1095,6 +1101,7 @@
   <url><loc>https://neotoma.io/fr/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/fr/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/fr/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/fr/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/fr/walkthrough</loc></url>
   <url><loc>https://neotoma.io/fr/schema-management</loc></url>
   <url><loc>https://neotoma.io/fr/non-destructive-testing</loc></url>
@@ -1253,6 +1260,7 @@
   <url><loc>https://neotoma.io/pt/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/pt/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/pt/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/pt/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/pt/walkthrough</loc></url>
   <url><loc>https://neotoma.io/pt/schema-management</loc></url>
   <url><loc>https://neotoma.io/pt/non-destructive-testing</loc></url>
@@ -1411,6 +1419,7 @@
   <url><loc>https://neotoma.io/ru/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/ru/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/ru/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/ru/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/ru/walkthrough</loc></url>
   <url><loc>https://neotoma.io/ru/schema-management</loc></url>
   <url><loc>https://neotoma.io/ru/non-destructive-testing</loc></url>
@@ -1569,6 +1578,7 @@
   <url><loc>https://neotoma.io/bn/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/bn/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/bn/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/bn/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/bn/walkthrough</loc></url>
   <url><loc>https://neotoma.io/bn/schema-management</loc></url>
   <url><loc>https://neotoma.io/bn/non-destructive-testing</loc></url>
@@ -1727,6 +1737,7 @@
   <url><loc>https://neotoma.io/ur/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/ur/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/ur/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/ur/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/ur/walkthrough</loc></url>
   <url><loc>https://neotoma.io/ur/schema-management</loc></url>
   <url><loc>https://neotoma.io/ur/non-destructive-testing</loc></url>
@@ -1885,6 +1896,7 @@
   <url><loc>https://neotoma.io/id/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/id/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/id/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/id/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/id/walkthrough</loc></url>
   <url><loc>https://neotoma.io/id/schema-management</loc></url>
   <url><loc>https://neotoma.io/id/non-destructive-testing</loc></url>
@@ -2043,6 +2055,7 @@
   <url><loc>https://neotoma.io/de/schemas/merge-policies</loc></url>
   <url><loc>https://neotoma.io/de/schemas/storage-layers</loc></url>
   <url><loc>https://neotoma.io/de/schemas/versioning</loc></url>
+  <url><loc>https://neotoma.io/de/schemas/locked-vs-evolving</loc></url>
   <url><loc>https://neotoma.io/de/walkthrough</loc></url>
   <url><loc>https://neotoma.io/de/schema-management</loc></url>
   <url><loc>https://neotoma.io/de/non-destructive-testing</loc></url>
