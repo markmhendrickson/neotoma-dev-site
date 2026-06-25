@@ -38,10 +38,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
     <title>Integrations | Neotoma</title>
-    <script type="module" crossorigin="" src="/pr-1792/assets/main-CioTcD-H.js"></script>
+    <script type="module" crossorigin="" src="/pr-1792/assets/main-DLzAVEKO.js"></script>
     <link rel="stylesheet" crossorigin="" href="/pr-1792/assets/main-CeTgVovq.css">
   
-    <!-- build: 1894266 -->
+    <!-- build: 869f4c2 -->
       <link rel="alternate" hreflang="x-default" href="https://neotoma.io/integrations">
     <link rel="alternate" hreflang="en" href="https://neotoma.io/integrations">
     <link rel="alternate" hreflang="es" href="https://neotoma.io/es/integrations">
@@ -63,41 +63,16 @@
 <p>This page is the single index of every host, harness, and framework Neotoma integrates with today, and the status of each.</p>
 <h2>Supported via MCP</h2>
 <p>MCP is the primary integration protocol. Every host below speaks MCP over local stdio, remote HTTP, or both.</p>
-<p>| Host | Modes | Install | Setup guide |
-| --- | --- | --- | --- |
-| Cursor | stdio, remote HTTP | <code>neotoma setup --tool cursor --yes</code> | <a href="/hi/neotoma-with-cursor" data-discover="true">neotoma-with-cursor</a> |
-| Claude Code | stdio, remote HTTP | <code>neotoma setup --tool claude-code --yes</code> | <a href="/hi/neotoma-with-claude-code" data-discover="true">neotoma-with-claude-code</a> |
-| Claude Desktop | local, remote MCP | <code>neotoma setup --tool claude-desktop --yes</code> | <a href="/hi/neotoma-with-claude-connect-desktop" data-discover="true">desktop</a> · <a href="/hi/neotoma-with-claude-connect-remote-mcp" data-discover="true">remote MCP</a> |
-| ChatGPT | MCP App, Custom GPT Actions | Manual HTTPS + OAuth | <a href="/hi/neotoma-with-chatgpt" data-discover="true">neotoma-with-chatgpt</a> · <a href="/hi/neotoma-with-chatgpt-connect-remote-mcp" data-discover="true">remote MCP</a> · <a href="/hi/neotoma-with-chatgpt-connect-custom-gpt" data-discover="true">custom GPT</a> |
-| Codex CLI | stdio, remote HTTP (OAuth) | <code>neotoma setup --tool codex --yes</code> | <a href="/hi/neotoma-with-codex" data-discover="true">neotoma-with-codex</a> · <a href="/hi/neotoma-with-codex-connect-local-stdio" data-discover="true">stdio</a> · <a href="/hi/neotoma-with-codex-connect-remote-http-oauth" data-discover="true">remote HTTP</a> |
-| OpenClaw | Native plugin + MCP | <code>neotoma setup --tool openclaw --yes</code> | <a href="/hi/neotoma-with-openclaw" data-discover="true">neotoma-with-openclaw</a> · <a href="/hi/neotoma-with-openclaw-connect-local-stdio" data-discover="true">stdio</a> · <a href="/hi/neotoma-with-openclaw-connect-remote-http" data-discover="true">remote HTTP</a> |
-| IronClaw | MCP | <code>neotoma setup --tool ironclaw --yes</code> | <a href="/hi/neotoma-with-ironclaw" data-discover="true">neotoma-with-ironclaw</a> |
-| Windsurf | MCP | <code>neotoma setup --tool windsurf --yes</code> | <a href="/hi/neotoma-with-windsurf" data-discover="true">neotoma-with-windsurf</a> |
-| Continue | MCP | <code>neotoma setup --tool continue --yes</code> | <a href="/hi/neotoma-with-continue" data-discover="true">neotoma-with-continue</a> |
-| VS Code (Copilot Chat) | MCP | <code>neotoma setup --tool vscode --yes</code> | <a href="/hi/neotoma-with-vscode" data-discover="true">neotoma-with-vscode</a> |
-| Letta | MCP (streamable HTTP, SSE, stdio) | Manual SDK setup | <a href="/hi/neotoma-with-letta" data-discover="true">neotoma-with-letta</a> |</p>
+<table><thead><tr><th>Host</th><th>Modes</th><th>Install</th><th>Setup guide</th></tr></thead><tbody><tr><td>Cursor</td><td>stdio, remote HTTP</td><td><code>neotoma setup --tool cursor --yes</code></td><td><a href="/hi/neotoma-with-cursor" data-discover="true">neotoma-with-cursor</a></td></tr><tr><td>Claude Code</td><td>stdio, remote HTTP</td><td><code>neotoma setup --tool claude-code --yes</code></td><td><a href="/hi/neotoma-with-claude-code" data-discover="true">neotoma-with-claude-code</a></td></tr><tr><td>Claude Desktop</td><td>local, remote MCP</td><td><code>neotoma setup --tool claude-desktop --yes</code></td><td><a href="/hi/neotoma-with-claude-connect-desktop" data-discover="true">desktop</a> · <a href="/hi/neotoma-with-claude-connect-remote-mcp" data-discover="true">remote MCP</a></td></tr><tr><td>ChatGPT</td><td>MCP App, Custom GPT Actions</td><td>Manual HTTPS + OAuth</td><td><a href="/hi/neotoma-with-chatgpt" data-discover="true">neotoma-with-chatgpt</a> · <a href="/hi/neotoma-with-chatgpt-connect-remote-mcp" data-discover="true">remote MCP</a> · <a href="/hi/neotoma-with-chatgpt-connect-custom-gpt" data-discover="true">custom GPT</a></td></tr><tr><td>Codex CLI</td><td>stdio, remote HTTP (OAuth)</td><td><code>neotoma setup --tool codex --yes</code></td><td><a href="/hi/neotoma-with-codex" data-discover="true">neotoma-with-codex</a> · <a href="/hi/neotoma-with-codex-connect-local-stdio" data-discover="true">stdio</a> · <a href="/hi/neotoma-with-codex-connect-remote-http-oauth" data-discover="true">remote HTTP</a></td></tr><tr><td>OpenClaw</td><td>Native plugin + MCP</td><td><code>neotoma setup --tool openclaw --yes</code></td><td><a href="/hi/neotoma-with-openclaw" data-discover="true">neotoma-with-openclaw</a> · <a href="/hi/neotoma-with-openclaw-connect-local-stdio" data-discover="true">stdio</a> · <a href="/hi/neotoma-with-openclaw-connect-remote-http" data-discover="true">remote HTTP</a></td></tr><tr><td>IronClaw</td><td>MCP</td><td><code>neotoma setup --tool ironclaw --yes</code></td><td><a href="/hi/neotoma-with-ironclaw" data-discover="true">neotoma-with-ironclaw</a></td></tr><tr><td>Windsurf</td><td>MCP</td><td><code>neotoma setup --tool windsurf --yes</code></td><td><a href="/hi/neotoma-with-windsurf" data-discover="true">neotoma-with-windsurf</a></td></tr><tr><td>Continue</td><td>MCP</td><td><code>neotoma setup --tool continue --yes</code></td><td><a href="/hi/neotoma-with-continue" data-discover="true">neotoma-with-continue</a></td></tr><tr><td>VS Code (Copilot Chat)</td><td>MCP</td><td><code>neotoma setup --tool vscode --yes</code></td><td><a href="/hi/neotoma-with-vscode" data-discover="true">neotoma-with-vscode</a></td></tr><tr><td>Letta</td><td>MCP (streamable HTTP, SSE, stdio)</td><td>Manual SDK setup</td><td><a href="/hi/neotoma-with-letta" data-discover="true">neotoma-with-letta</a></td></tr></tbody></table>
 <h2>Supported via hooks</h2>
 <p>Hooks integrate with harnesses that expose lifecycle events. They provide guaranteed capture, retrieval injection, and persistence safety nets — the reliability floor that composes with MCP's quality ceiling.</p>
-<p>| Harness | Setup guide |
-| --- | --- |
-| Claude Code | <a href="/hi/neotoma-with-claude-code" data-discover="true">neotoma-with-claude-code</a> |
-| Cursor | <a href="/hi/neotoma-with-cursor" data-discover="true">neotoma-with-cursor</a> |
-| OpenCode | <a href="/hi/neotoma-with-opencode" data-discover="true">neotoma-with-opencode</a> |
-| Codex CLI | <a href="/hi/neotoma-with-codex" data-discover="true">neotoma-with-codex</a> |
-| Claude Agent SDK | <a href="/hi/neotoma-with-claude-agent-sdk" data-discover="true">neotoma-with-claude-agent-sdk</a> |</p>
+<table><thead><tr><th>Harness</th><th>Setup guide</th></tr></thead><tbody><tr><td>Claude Code</td><td><a href="/hi/neotoma-with-claude-code" data-discover="true">neotoma-with-claude-code</a></td></tr><tr><td>Cursor</td><td><a href="/hi/neotoma-with-cursor" data-discover="true">neotoma-with-cursor</a></td></tr><tr><td>OpenCode</td><td><a href="/hi/neotoma-with-opencode" data-discover="true">neotoma-with-opencode</a></td></tr><tr><td>Codex CLI</td><td><a href="/hi/neotoma-with-codex" data-discover="true">neotoma-with-codex</a></td></tr><tr><td>Claude Agent SDK</td><td><a href="/hi/neotoma-with-claude-agent-sdk" data-discover="true">neotoma-with-claude-agent-sdk</a></td></tr></tbody></table>
 <h2>Client libraries</h2>
 <p>Embed Neotoma directly in your application:</p>
-<p>| Language | Package |
-| --- | --- |
-| TypeScript | <code>@neotoma/client</code> |
-| Python | <code>neotoma-client</code> |</p>
+<table><thead><tr><th>Language</th><th>Package</th></tr></thead><tbody><tr><td>TypeScript</td><td><code>@neotoma/client</code></td></tr><tr><td>Python</td><td><code>neotoma-client</code></td></tr></tbody></table>
 <h2>Not yet supported</h2>
 <p>These hosts are commonly requested. They are not yet supported. The "What it would take" column is descriptive, not committal — open a feature request if you want one prioritized.</p>
-<p>| Host / framework | What it would take |
-| --- | --- |
-| LangGraph | A Python adapter on top of the Neotoma Python client, exposing <code>store</code> and <code>retrieve_*</code> as LangGraph memory nodes. |
-| CrewAI | A Python adapter that exposes Neotoma actions as CrewAI tools, similar in shape to the OpenClaw native plugin. |
-| Hermes | Confirm the specific framework being referenced (the name is overloaded) before scoping. |</p>
+<table><thead><tr><th>Host / framework</th><th>What it would take</th></tr></thead><tbody><tr><td>LangGraph</td><td>A Python adapter on top of the Neotoma Python client, exposing <code>store</code> and <code>retrieve_*</code> as LangGraph memory nodes.</td></tr><tr><td>CrewAI</td><td>A Python adapter that exposes Neotoma actions as CrewAI tools, similar in shape to the OpenClaw native plugin.</td></tr><tr><td>Hermes</td><td>Confirm the specific framework being referenced (the name is overloaded) before scoping.</td></tr></tbody></table>
 <p><strong>Want one of these prioritized?</strong> Open an issue at <a href="https://github.com/Lemonbrand/neotoma-feedback">github.com/Lemonbrand/neotoma-feedback</a> describing your use case.</p>
 <h2>Related</h2>
 <ul>

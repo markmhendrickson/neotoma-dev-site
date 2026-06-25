@@ -38,10 +38,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
     <title>Issues | Neotoma</title>
-    <script type="module" crossorigin="" src="/pr-1792/assets/main-CioTcD-H.js"></script>
+    <script type="module" crossorigin="" src="/pr-1792/assets/main-DLzAVEKO.js"></script>
     <link rel="stylesheet" crossorigin="" href="/pr-1792/assets/main-CeTgVovq.css">
   
-    <!-- build: 1894266 -->
+    <!-- build: 869f4c2 -->
       <link rel="alternate" hreflang="x-default" href="https://neotoma.io/issues-guide">
     <link rel="alternate" hreflang="en" href="https://neotoma.io/issues-guide">
     <link rel="alternate" hreflang="es" href="https://neotoma.io/es/issues-guide">
@@ -114,20 +114,7 @@ neotoma issues message 42 --body "Still happening on v0.13.0" --guest-access-tok
 <p>The importer reads a JSONL file (one JSON object per line), scans each line against a fixed set of anomaly predicates, redacts PII, deduplicates against existing open issues, and either files new issues or folds duplicate observations as thread messages.</p>
 <h3>JSONL line format</h3>
 <p>Each line must be a valid JSON object. All fields are optional for forward compatibility, but the following are recognised:</p>
-<p>| Field | Type | Description |
-|---|---|---|
-| <code>timestamp</code> | string (ISO 8601) | When the command ran. Used by <code>--since</code> / <code>--until</code> filters. |
-| <code>command</code> | string | The command string (e.g. <code>"store entities"</code>). Used in issue titles and dedup keys. |
-| <code>exit_code</code> | number | Process exit code. Non-zero + <code>ERR_*</code> in stderr triggers a <code>hard_error</code> anomaly. |
-| <code>stderr</code> | string | Standard error output. Scanned for <code>ERR_*</code> codes and sentinel strings. |
-| <code>stdout</code> | string | Standard output. Scanned for <code>unknown_fields_count &gt; 0</code> (schema drift). |
-| <code>duration_ms</code> | number | Execution time in milliseconds. Values over 5000 on store/retrieve commands trigger a <code>perf_regression</code> anomaly. |
-| <code>status_code</code> | number | HTTP status code. <code>503</code> on <code>/mcp</code> triggers a <code>stale_mcp_session</code> anomaly. |
-| <code>path</code> | string | Request path (used with <code>status_code</code>). |
-| <code>reporter_channel</code> | string | Label stamped on every filed issue for grouping by source (e.g. <code>"prod-daemon"</code>, <code>"ci"</code>). Overridable with <code>--reporter-channel</code>. |
-| <code>reporter_git_sha</code> | string | Git SHA of the reporting binary. Used as reporter provenance. |
-| <code>reporter_app_version</code> | string | Semver of the reporting binary. Used as reporter provenance. |
-| <code>unknown_fields_count</code> | number | Count of fields not projected by the current schema. Non-zero triggers a <code>schema_drift</code> anomaly. |</p>
+<table><thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>timestamp</code></td><td>string (ISO 8601)</td><td>When the command ran. Used by <code>--since</code> / <code>--until</code> filters.</td></tr><tr><td><code>command</code></td><td>string</td><td>The command string (e.g. <code>"store entities"</code>). Used in issue titles and dedup keys.</td></tr><tr><td><code>exit_code</code></td><td>number</td><td>Process exit code. Non-zero + <code>ERR_*</code> in stderr triggers a <code>hard_error</code> anomaly.</td></tr><tr><td><code>stderr</code></td><td>string</td><td>Standard error output. Scanned for <code>ERR_*</code> codes and sentinel strings.</td></tr><tr><td><code>stdout</code></td><td>string</td><td>Standard output. Scanned for <code>unknown_fields_count &gt; 0</code> (schema drift).</td></tr><tr><td><code>duration_ms</code></td><td>number</td><td>Execution time in milliseconds. Values over 5000 on store/retrieve commands trigger a <code>perf_regression</code> anomaly.</td></tr><tr><td><code>status_code</code></td><td>number</td><td>HTTP status code. <code>503</code> on <code>/mcp</code> triggers a <code>stale_mcp_session</code> anomaly.</td></tr><tr><td><code>path</code></td><td>string</td><td>Request path (used with <code>status_code</code>).</td></tr><tr><td><code>reporter_channel</code></td><td>string</td><td>Label stamped on every filed issue for grouping by source (e.g. <code>"prod-daemon"</code>, <code>"ci"</code>). Overridable with <code>--reporter-channel</code>.</td></tr><tr><td><code>reporter_git_sha</code></td><td>string</td><td>Git SHA of the reporting binary. Used as reporter provenance.</td></tr><tr><td><code>reporter_app_version</code></td><td>string</td><td>Semver of the reporting binary. Used as reporter provenance.</td></tr><tr><td><code>unknown_fields_count</code></td><td>number</td><td>Count of fields not projected by the current schema. Non-zero triggers a <code>schema_drift</code> anomaly.</td></tr></tbody></table>
 <p>Lines beginning with <code>//</code> and blank lines are ignored. Lines that cannot be parsed as JSON objects are counted as <code>lines_unparseable</code> in the sweep report.</p>
 <p><strong>Anomaly predicates (hard-coded):</strong></p>
 <ol>
@@ -144,18 +131,7 @@ neotoma issues message 42 --body "Still happening on v0.13.0" --guest-access-tok
 <h3>Command</h3>
 <pre><code class="language-bash">neotoma issues import --from-jsonl &lt;path&gt; [options]
 </code></pre>
-<p>| Flag | Default | Description |
-|---|---|---|
-| <code>--from-jsonl &lt;path&gt;</code> | required | Path to the observer JSONL file. |
-| <code>--since &lt;iso8601&gt;</code> | — | Skip lines with <code>timestamp</code> before this value. |
-| <code>--until &lt;iso8601&gt;</code> | — | Skip lines with <code>timestamp</code> after this value. |
-| <code>--reporter-channel &lt;label&gt;</code> | from line | Override the channel label for all filed issues. |
-| <code>--reporter-git-sha &lt;sha&gt;</code> | from line or binary | Reporter git SHA when not in JSONL lines (required on dev builds). |
-| <code>--reporter-app-version &lt;ver&gt;</code> | from line or binary | Reporter app version when not in JSONL lines. |
-| <code>--mode proactive\|consent</code> | <code>consent</code> | <code>consent</code> prompts before each file/fold action; <code>proactive</code> files immediately. |
-| <code>--dry-run</code> | false | Emit a structured JSON sweep report without filing anything. |
-| <code>--limit &lt;n&gt;</code> | — | Stop after extracting n anomalies (useful for testing). |
-| <code>--json</code> | false | Emit the sweep report as JSON instead of prose. |</p>
+<table><thead><tr><th>Flag</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><code>--from-jsonl &lt;path&gt;</code></td><td>required</td><td>Path to the observer JSONL file.</td></tr><tr><td><code>--since &lt;iso8601&gt;</code></td><td>—</td><td>Skip lines with <code>timestamp</code> before this value.</td></tr><tr><td><code>--until &lt;iso8601&gt;</code></td><td>—</td><td>Skip lines with <code>timestamp</code> after this value.</td></tr><tr><td><code>--reporter-channel &lt;label&gt;</code></td><td>from line</td><td>Override the channel label for all filed issues.</td></tr><tr><td><code>--reporter-git-sha &lt;sha&gt;</code></td><td>from line or binary</td><td>Reporter git SHA when not in JSONL lines (required on dev builds).</td></tr><tr><td><code>--reporter-app-version &lt;ver&gt;</code></td><td>from line or binary</td><td>Reporter app version when not in JSONL lines.</td></tr><tr><td><code>--mode proactive|consent</code></td><td><code>consent</code></td><td><code>consent</code> prompts before each file/fold action; <code>proactive</code> files immediately.</td></tr><tr><td><code>--dry-run</code></td><td>false</td><td>Emit a structured JSON sweep report without filing anything.</td></tr><tr><td><code>--limit &lt;n&gt;</code></td><td>—</td><td>Stop after extracting n anomalies (useful for testing).</td></tr><tr><td><code>--json</code></td><td>false</td><td>Emit the sweep report as JSON instead of prose.</td></tr></tbody></table>
 <h3>Deduplication and idempotency</h3>
 <p>Before filing, the importer loads existing open GitHub issues (best-effort; proceeds without dedup if GitHub is unavailable). For each anomaly it computes a dedup key from <code>(anomaly_class, command_prefix, reporter_channel)</code> and derives a deterministic <code>observer-dedup:&lt;8-char-hex&gt;</code> label. If an open issue already carries that label, the anomaly is <strong>folded</strong> (appended as a thread message) instead of filed as a new issue.</p>
 <p>Within a single batch, the first occurrence of a dedup key is filed and subsequent occurrences fold into the just-filed issue — so running the same log twice does not create duplicates.</p>

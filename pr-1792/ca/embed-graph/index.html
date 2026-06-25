@@ -38,10 +38,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
     <title>Embeddable graph | Neotoma</title>
-    <script type="module" crossorigin="" src="/pr-1792/assets/main-CioTcD-H.js"></script>
+    <script type="module" crossorigin="" src="/pr-1792/assets/main-DLzAVEKO.js"></script>
     <link rel="stylesheet" crossorigin="" href="/pr-1792/assets/main-CeTgVovq.css">
   
-    <!-- build: 1894266 -->
+    <!-- build: 869f4c2 -->
       <link rel="alternate" hreflang="x-default" href="https://neotoma.io/embed-graph">
     <link rel="alternate" hreflang="en" href="https://neotoma.io/embed-graph">
     <link rel="alternate" hreflang="es" href="https://neotoma.io/es/embed-graph">
@@ -69,10 +69,7 @@
 </code></pre>
 <p>Replace <code>your-neotoma-host</code> with the URL of your Neotoma instance. <code>node=ent_abc123</code> pre-loads that entity on mount; omit it to start with an empty search field.</p>
 <h2>Query parameters</h2>
-<p>| Parameter | Description |
-|---|---|
-| <code>apiBase</code> | Target API origin (e.g. <code>https://neotoma.example.com</code>). Falls back to the Inspector's own configured URL when omitted. |
-| <code>node</code> | Entity ID or source ID to pre-load on mount. |</p>
+<table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>apiBase</code></td><td>Target API origin (e.g. <code>https://neotoma.example.com</code>). Falls back to the Inspector's own configured URL when omitted.</td></tr><tr><td><code>node</code></td><td>Entity ID or source ID to pre-load on mount.</td></tr></tbody></table>
 <h2>Theming</h2>
 <p>The embed inherits CSS variable skin tokens from the page. Apply a skin via the existing <code>NEOTOMA_INSPECTOR_SKIN</code> or <code>NEOTOMA_INSPECTOR_SKIN_CONFIG</code> environment variables — no rebuild required. The <code>NEOTOMA_INSPECTOR_SKIN=&lt;preset&gt;</code> variable loads a named preset from <code>dist/inspector/skins/&lt;name&gt;.json</code>; <code>NEOTOMA_INSPECTOR_SKIN_CONFIG=/path/to/custom.json</code> loads an arbitrary skin file. Palette tokens use the shadcn/Tailwind HSL triplet format (<code>"hue sat% lum%"</code>). See the </p>
 <a class="text-foreground underline underline-offset-2 hover:no-underline" href="/ca/inspector" data-discover="true"><p>Inspector reference</p></a>

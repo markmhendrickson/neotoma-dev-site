@@ -38,10 +38,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
     <title>Subscriptions | Neotoma</title>
-    <script type="module" crossorigin="" src="/pr-1792/assets/main-CioTcD-H.js"></script>
+    <script type="module" crossorigin="" src="/pr-1792/assets/main-DLzAVEKO.js"></script>
     <link rel="stylesheet" crossorigin="" href="/pr-1792/assets/main-CeTgVovq.css">
   
-    <!-- build: 1894266 -->
+    <!-- build: 869f4c2 -->
       <link rel="alternate" hreflang="x-default" href="https://neotoma.io/subscriptions-guide">
     <link rel="alternate" hreflang="en" href="https://neotoma.io/subscriptions-guide">
     <link rel="alternate" hreflang="es" href="https://neotoma.io/es/subscriptions-guide">
@@ -75,7 +75,7 @@
 <ul class="list-none pl-0 space-y-2 mb-6"><li class="text-[15px] leading-7 text-muted-foreground"><code>entity_types</code> (array of strings): receive events for these entity types.</li><li class="text-[15px] leading-7 text-muted-foreground"><code>entity_ids</code> (array of strings): receive events for these specific entities.</li><li class="text-[15px] leading-7 text-muted-foreground"><code>event_types</code> (array of strings): receive only these event types.</li></ul>
 <h2>Webhook delivery</h2>
 <p>Webhook subscriptions receive an HTTP POST for each matching event:</p>
-<ul class="list-none pl-0 space-y-2 mb-6"><li class="text-[15px] leading-7 text-muted-foreground"><strong>Signing</strong>: every request includes <code>X-Neotoma-Signature-256: sha256=&lt;hex&gt;</code> computed over the JSON body with the subscription's <code>webhook_secret</code>. Verify this to confirm authenticity.</li><li class="text-[15px] leading-7 text-muted-foreground"><strong>Retries</strong>: failed deliveries retry with exponential backoff (<code>1s, 5s, 30s, 5m</code>).</li><li class="text-[15px] leading-7 text-muted-foreground"><strong>Circuit breaker</strong>: after 10 consecutive failures (configurable via <code>max_failures</code>), the subscription is deactivated. Reactivate by updating the subscription.</li><li class="text-[15px] leading-7 text-muted-foreground"><strong>HTTPS required</strong>: webhook URLs must use HTTPS in production. <code>http://localhost</code> and <code>http://127.0.0.1</code> are allowed in development.</li></ul>
+<ul class="list-none pl-0 space-y-2 mb-6"><li class="text-[15px] leading-7 text-muted-foreground"><strong>Signing</strong>: every request includes <code>X-Neotoma-Signature-256: sha256=&lt;hex&gt;</code> computed over the JSON body with the subscription's <code>webhook_secret</code>. Verify this to confirm authenticity.</li><li class="text-[15px] leading-7 text-muted-foreground"><strong>Retries</strong>: failed deliveries retry with exponential backoff (<code>1s, 5s, 30s, 5m</code>).</li><li class="text-[15px] leading-7 text-muted-foreground"><strong>Circuit breaker</strong>: after 10 consecutive failures (configurable via <code>max_failures</code>), the subscription is deactivated. Reactivate by updating the subscription.</li><li class="text-[15px] leading-7 text-muted-foreground"><strong>HTTPS required</strong>: webhook URLs must use HTTPS in production. <code><a href="http://localhost">http://localhost</a></code> and <code><a href="http://127.0.0.1">http://127.0.0.1</a></code> are allowed in development.</li></ul>
 <h2>SSE delivery</h2>
 <p>For real-time streaming without running a webhook server:</p>
 <pre><code>GET /events/stream?subscription_id=&lt;id&gt;
