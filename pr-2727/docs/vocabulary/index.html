@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vocabulary | Neotoma docs</title>
+<meta name="description" content="This page defines the terms Neotoma&#39;s code, docs, and UI text use, the synonyms to avoid, and the retired category nouns.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://neotoma.io/docs/vocabulary/">
+<link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/markmhendrickson/neotoma/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/vocabulary/canonical_terms.md" title="Markdown source at 782d6d1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Neotoma">
+<meta property="og:title" content="Vocabulary | Neotoma docs">
+<meta property="og:description" content="This page defines the terms Neotoma&#39;s code, docs, and UI text use, the synonyms to avoid, and the retired category nouns.">
+<meta property="og:url" content="https://neotoma.io/docs/vocabulary/">
+<meta property="og:image" content="https://neotoma.io/pr-2727/neotoma-og-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="docs-viewer-source" content="docs/vocabulary/canonical_terms.md">
+<meta name="docs-viewer-commit" content="782d6d1124712c30ecc0dc26fab3c0c847a340ad">
+<link rel="icon" href="/pr-2727/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/pr-2727/favicon.ico" sizes="any">
+<style>
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Instrument Serif Docs";src:url("/pr-2727/brand/october/instrument-serif.ttf") format("truetype");font-weight:400;font-display:swap}
+:root{color-scheme:light;
+--paper:#faf8f3;--sheet:#faf8f3;--ink:#172b39;--rust:#a14624;--muted:#52616a;--line:#d6d0c4;--band:#f1ece2;
+--doc:#faf8f3;--text:#172b39;--link:#a14624;--code-bg:#f1ece2;--code-line:#d6d0c4;
+--t-comment:#52616a;--t-keyword:#a14624;--t-string:#3f6259;--t-number:#79520c;--t-function:#22587a;--t-var:#6a3d99;--t-punct:#52616a;
+--serif:"Instrument Serif Docs",Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;--sans:"Instrument Sans Docs",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+--paper:#1d272c;--sheet:#1d272c;--ink:#eeeae0;--rust:#e5a17c;--muted:#b7c4ca;--line:#4b5050;--band:#303333;
+--doc:#1d272c;--text:#eeeae0;--link:#e5a17c;--code-bg:#303333;--code-line:#4b5050;
+--t-comment:#b7c4ca;--t-keyword:#e5a17c;--t-string:#abd1b9;--t-number:#e8c07d;--t-function:#8fc4e2;--t-var:#cdb0f2;--t-punct:#e0ddd5}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.dv-skip{position:absolute;left:12px;top:-60px;background:var(--paper);border:1px solid var(--ink);padding:8px 12px;z-index:10}
+.dv-skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.dv-mono{font:600 12px/1.4 var(--sans);letter-spacing:.09em;text-transform:uppercase}
+.dv-masthead{border-bottom:1px solid var(--line);background:var(--paper)}
+.dv-masthead-inner{max-width:1400px;margin:0 auto;padding:18px clamp(18px,5vw,80px);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+.dv-brand{display:inline-flex;gap:12px;align-items:center;min-height:44px;text-decoration:none}
+.dv-brand img{display:block;width:132px;height:28px}
+.dv-brand .dv-logo-dark{display:none}
+@media (prefers-color-scheme:dark){.dv-brand .dv-logo-light{display:none}.dv-brand .dv-logo-dark{display:block}}
+.dv-brand span{color:var(--rust)}
+.dv-masthead nav{display:flex;gap:8px 20px;flex-wrap:wrap}
+.dv-masthead nav a{display:inline-flex;align-items:center;min-height:32px;padding:4px 0;font:600 0.875rem/1.4 var(--sans);text-decoration:none}
+.dv-masthead nav a:hover,.dv-masthead nav a:focus-visible{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-layout{max-width:1400px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(18px,5vw,80px) 64px;display:grid;grid-template-columns:14rem minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:start}
+.dv-side{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:2px 0}
+.dv-side h2,.dv-mnav h2{margin:16px 0 6px;color:var(--rust)}
+.dv-side h2:first-child{margin-top:0}
+.dv-side ul,.dv-mnav ul{list-style:none;margin:0;padding:0}
+.dv-side li a,.dv-mnav li a{display:block;min-height:32px;padding:6px 0;text-decoration:none;font-size:.9375rem;line-height:1.35;border-left:2px solid transparent}
+.dv-side li a:hover,.dv-mnav li a:hover{text-decoration:underline}
+.dv-side li a[aria-current=page],.dv-mnav li a[aria-current=page]{border-left-color:var(--rust);padding-left:10px;font-weight:600}
+.dv-mnav{display:none;border-bottom:1px solid var(--line);margin-bottom:28px}
+.dv-mnav summary{cursor:pointer;padding:12px 0;list-style-position:inside}
+.dv-mnav div{padding:0 0 12px}
+.dv-sheet{position:relative;min-width:0;background:var(--doc)}
+.dv-head{padding:0 0 30px;border-bottom:1px solid var(--line)}
+.dv-kicker{margin:0 0 10px;color:var(--rust)}
+.dv-head h1{font:400 clamp(2.8rem,5vw,4.9rem)/1.04 var(--serif);letter-spacing:-.03em;margin:0 0 16px}
+.dv-summary{font:400 clamp(1.1rem,1.55vw,1.35rem)/1.48 var(--sans);margin:0 0 16px;max-width:48rem}
+.dv-applies{margin:0 0 12px;font-size:.9375rem}
+.dv-applies .dv-mono{color:var(--rust);margin-right:8px}
+.dv-meta{margin:0;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-meta a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);font-weight:600}
+.dv-meta code{font:inherit}
+.dv-preview{margin:0 0 18px;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem}
+.dv-toc{margin:16px 0 0}
+.dv-toc summary{cursor:pointer;color:var(--muted)}
+.dv-toc ol{margin:8px 0 0;padding-left:22px;columns:2 16rem;font-size:.9375rem}
+.dv-toc ol ol{columns:auto;margin:2px 0 4px;padding-left:18px;font-size:.875rem}
+.dv-toc li{margin:2px 0;break-inside:avoid}
+.dv-toc a{display:inline-block;min-height:32px;line-height:32px}
+.dv-note{margin:2rem 0 0;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem;color:var(--muted)}
+.dv-body{padding:36px 0 42px;color:var(--text);font:17px/1.65 var(--sans)}
+.dv-body>*{max-width:72ch}
+.dv-body>.dv-table,.dv-body>.dv-code{max-width:100%}
+.dv-body p,.dv-body li{overflow-wrap:anywhere}
+.dv-body td,.dv-body th{overflow-wrap:break-word}
+.dv-table code{white-space:nowrap}
+.dv-body a{color:var(--link);text-decoration-thickness:1px}
+.dv-body a:hover{color:var(--ink);text-decoration-color:var(--rust);text-decoration-thickness:2px}
+.dv-body h2,.dv-body h3,.dv-body h4,.dv-body h5,.dv-body h6{font-family:var(--serif);font-weight:400;color:var(--text);line-height:1.12;scroll-margin-top:24px}
+.dv-body h2{font-size:clamp(2rem,3.2vw,3rem);margin:3.2rem 0 1rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.dv-body h3{font-size:1.65rem;margin:2.2rem 0 .75rem}
+.dv-body h4,.dv-body h5,.dv-body h6{font:600 1rem/1.35 var(--sans);margin:1.7rem 0 .5rem}
+.dv-anchor{margin-left:.4em;color:var(--muted)!important;text-decoration:none;font-weight:400}
+.dv-anchor:hover,.dv-anchor:focus-visible{color:var(--link)!important}
+.dv-body code{font:.88em/1.5 var(--mono);background:var(--code-bg);border:1px solid var(--code-line);border-radius:3px;padding:.05em .3em}
+.dv-code{position:relative;margin:1.2rem 0}
+.dv-code-lang{position:absolute;right:10px;top:8px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dv-body pre{margin:0;overflow:auto;background:var(--code-bg);border:1px solid var(--code-line);border-radius:4px;padding:30px 16px 16px}
+.dv-body pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.55;white-space:pre}
+.dv-body blockquote{margin:1.5rem 0;padding:.2rem 1rem;border-left:3px solid var(--rust);color:var(--text)}
+.dv-body hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+.dv-body img{max-width:100%;height:auto}
+.dv-table{overflow-x:auto;margin:1.2rem 0;border:1px solid var(--code-line)}
+.dv-table table{border-collapse:collapse;font-size:.9375rem;line-height:1.5;min-width:100%}
+.dv-table th,.dv-table td{border:1px solid var(--code-line);padding:8px 10px;vertical-align:top;text-align:left;min-width:7rem}
+.dv-table th{background:var(--code-bg);font-weight:600}
+.dv-align-center{text-align:center!important}.dv-align-right{text-align:right!important}
+.token.comment,.token.prolog,.token.doctype,.token.cdata{color:var(--t-comment);font-style:italic}
+.token.keyword,.token.boolean,.token.important,.token.atrule,.token.builtin,.token.tag{color:var(--t-keyword)}
+.token.string,.token.char,.token.attr-value,.token.inserted,.token.url{color:var(--t-string)}
+.token.number,.token.constant,.token.symbol{color:var(--t-number)}
+.token.function,.token.class-name,.token.property,.token.attr-name{color:var(--t-function)}
+.token.variable,.token.parameter,.token.regex{color:var(--t-var)}
+.token.punctuation,.token.operator{color:var(--t-punct)}
+.token.deleted{color:var(--t-keyword)}
+.dv-pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:28px 0 0;border-top:1px solid var(--line);background:var(--sheet)}
+.dv-pager a{display:block;padding:8px 0;text-decoration:none}
+.dv-pager a:hover{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-pager .dv-mono{display:block;color:var(--rust);margin-bottom:2px}
+.dv-pager .next{text-align:right;grid-column:2}
+.dv-foot{max-width:1400px;margin:0 auto;padding:0 clamp(18px,5vw,80px) 48px;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-foot a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);text-decoration:none}
+.dv-foot a:hover,.dv-foot a:focus-visible{text-decoration:underline}
+@media (max-width:900px){
+.dv-layout{grid-template-columns:minmax(0,1fr);padding-top:28px;gap:0}
+.dv-side{display:none}
+.dv-mnav{display:block}
+.dv-head{padding:0 0 24px}
+.dv-body{padding:28px 0 32px;font-size:16px}
+.dv-pager{padding:20px 0 0;grid-template-columns:1fr}
+.dv-pager .next{grid-column:1}
+}
+</style>
+</head>
+<body>
+<a class="dv-skip" href="#dv-main">Skip to the document</a>
+<header class="dv-masthead"><div class="dv-masthead-inner">
+<a class="dv-brand" href="/pr-2727/" aria-label="Neotoma home"><img class="dv-logo-light" src="/pr-2727/brand/n2-nav-light.svg" alt="Neotoma" width="132" height="28"><img class="dv-logo-dark" src="/pr-2727/brand/n2-nav-dark.svg" alt="Neotoma" width="132" height="28"><span class="dv-mono">Docs</span></a>
+<nav aria-label="Site"><a href="/pr-2727/">Home</a><a href="/pr-2727/install">Install</a><a href="https://github.com/markmhendrickson/neotoma">GitHub</a></nav>
+</div></header>
+<div class="dv-layout">
+<nav class="dv-side" aria-label="Documentation"><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/" aria-current="page">Vocabulary</a></li></ul></nav>
+<main id="dv-main" tabindex="-1">
+<details class="dv-mnav"><summary class="dv-mono">Documents</summary><div><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/" aria-current="page">Vocabulary</a></li></ul></div></details>
+<article class="dv-sheet">
+<header class="dv-head">
+<p class="dv-preview">Pre-release review</p>
+<p class="dv-kicker dv-mono">Docs · How the record works</p>
+<h1>Vocabulary</h1>
+<p class="dv-summary">This page defines the terms Neotoma's code, docs, and UI text use, the synonyms to avoid, and the retired category nouns.</p>
+<p class="dv-applies"><span class="dv-mono">Applies to</span>v0.25.0 and main.</p>
+<p class="dv-meta"><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/vocabulary/canonical_terms.md">View and edit on GitHub</a> · <code>docs/vocabulary/canonical_terms.md</code> at <code>782d6d1</code></p>
+<details class="dv-toc"><summary class="dv-mono">On this page (4 sections)</summary><ol><li><a href="#core-terms">Core terms</a><ol><li><a href="#system-of-record">System of Record</a></li><li><a href="#canonicalization-rules">Canonicalization Rules</a></li><li><a href="#entity">Entity</a></li><li><a href="#entity-schema">Entity Schema</a></li><li><a href="#entity-type">Entity Type</a></li><li><a href="#event">Event</a></li><li><a href="#retrieving">Retrieving</a></li><li><a href="#extraction">Extraction</a></li><li><a href="#storing">Storing</a></li><li><a href="#interpretation">Interpretation</a></li><li><a href="#entity-graph">Entity Graph</a></li><li><a href="#observation">Observation</a></li><li><a href="#provenance">Provenance</a></li><li><a href="#raw-fragment">Raw Fragment</a></li><li><a href="#reducer">Reducer</a></li><li><a href="#relationship">Relationship</a></li><li><a href="#entity-snapshot">Entity Snapshot</a></li><li><a href="#snapshot">Snapshot</a></li><li><a href="#source">Source</a></li></ol></li><li><a href="#legacy-terms">Legacy terms</a><ol><li><a href="#capability">Capability</a></li><li><a href="#entity-extraction-rule">Entity Extraction Rule</a></li><li><a href="#ingestion">Ingestion</a></li><li><a href="#record">Record</a></li><li><a href="#record-type">Record Type</a></li></ol></li><li><a href="#forbidden-terms-in-code-and-docs">Forbidden terms in code and docs</a></li><li><a href="#usage-examples">Usage examples</a></li></ol></details>
+</header>
+<div class="dv-body">
+<h2 id="core-terms">Core terms<a href="#core-terms" class="dv-anchor" aria-label="Link to this section: Core terms">#</a></h2>
+<h3 id="system-of-record">System of Record<a href="#system-of-record" class="dv-anchor" aria-label="Link to this section: System of Record">#</a></h3>
+<p><strong>Definition:</strong> The role Neotoma plays: it keeps observations with their sources and computes the current value of each field, for connected agents to read. The full category line is "the system of record for AI agents".</p>
+<p><strong>Use:</strong> "Neotoma is the system of record beneath agents, pipelines, and applications. They read the record, act outside it, and write their results back as observations."</p>
+<p><strong>Example:</strong> "An agent stores an invoice and its vendor. Neotoma keeps both observations with their source, and any agent connected later reads the same current values and can see which observation set each field."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"state layer" (retired category noun)</li>
+<li>"memory layer" (retired category noun)</li>
+<li>"truth layer" (retired category noun)</li>
+<li>"deterministic state" (retired category noun; the reducer is deterministic, the category is not named after it)</li>
+<li>"data layer" (too generic)</li>
+<li>"knowledge base" (implies semantic reasoning)</li>
+</ul>
+<p>The phrase "your agents forget" is also retired as a framing. The contrast to use is "a record, not recall".</p>
+<h3 id="canonicalization-rules">Canonicalization Rules<a href="#canonicalization-rules" class="dv-anchor" aria-label="Link to this section: Canonicalization Rules">#</a></h3>
+<p><strong>Definition:</strong> The rules that normalize an entity's identity so the same thing resolves to the same <a href="#entity">entity</a> id. In current <a href="#entity-schema">entity schemas</a> these are the <code>canonical_name_fields</code> rules: the fields, single or composite, that form the canonical name. Values are normalized before hashing.</p>
+<p><strong>Use:</strong> "The built-in invoice schema's canonicalization rule is the composite of <code>invoice_number</code>, <code>vendor_name</code>, and <code>invoice_date</code>."</p>
+<p><strong>Example:</strong> "Two stores of a company named 'Acme Corp' and 'acme corp' normalize to the same canonical name and resolve to one entity id."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"normalization" (canonicalization is the specific normalization used for identity)</li>
+<li>"standardization" (too generic)</li>
+</ul>
+<h3 id="entity">Entity<a href="#entity" class="dv-anchor" aria-label="Link to this section: Entity">#</a></h3>
+<p><strong>Definition:</strong> One person, company, task, invoice, or other thing that <a href="#observation">observations</a> are about. Its id is <code>ent_</code> followed by a hash of the <a href="#entity-type">entity type</a> and its identity fields.</p>
+<p><strong>Use:</strong> "Entity resolution maps each stored item to its canonical entity id."</p>
+<p><strong>Example:</strong> "Observations from two invoices that name 'Acme Corp' and 'ACME CORP' resolve to the same company entity."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"object" (programming term)</li>
+<li>"item" (too generic)</li>
+</ul>
+<h3 id="entity-schema">Entity Schema<a href="#entity-schema" class="dv-anchor" aria-label="Link to this section: Entity Schema">#</a></h3>
+<p><strong>Definition:</strong> The versioned definition for an <a href="#entity-type">entity type</a>, stored in the schema registry: fields and their types, the merge policy for each field, <a href="#canonicalization-rules">canonicalization rules</a>, and which fields produce timeline <a href="#event">events</a>. The <a href="#reducer">reducer</a> uses it to compute <a href="#entity-snapshot">entity snapshots</a>.</p>
+<p><strong>Use:</strong> "Each entity type has an entity schema that defines its fields, merge policies, and identity rules."</p>
+<p><strong>Example:</strong> "The built-in invoice entity schema declares fields such as <code>invoice_number</code>, <code>invoice_date</code>, <code>amount_due</code>, and <code>vendor_name</code>, uses the composite of <code>invoice_number</code>, <code>vendor_name</code>, and <code>invoice_date</code> as its identity, and lists its temporal fields."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"schema" (too generic; say "entity schema")</li>
+<li>"capability" (legacy; see <a href="#capability">Capability</a>)</li>
+<li>"record type" (entity schemas apply to entity types)</li>
+<li>"database schema" (an entity schema defines domain fields, not database tables)</li>
+</ul>
+<h3 id="entity-type">Entity Type<a href="#entity-type" class="dv-anchor" aria-label="Link to this section: Entity Type">#</a></h3>
+<p><strong>Definition:</strong> The classification of an <a href="#entity">entity</a> that selects its <a href="#entity-schema">entity schema</a> and identity rules, for example <code>person</code>, <code>company</code>, <code>invoice</code>, <code>transaction</code>, or <code>release</code>.</p>
+<p><strong>Use:</strong> "Each entity has an <code>entity_type</code> that determines which entity schema applies."</p>
+<p><strong>Example:</strong> "An entity with <code>entity_type: 'company'</code> resolves by the company identity fields, while an <code>invoice</code> entity resolves by invoice number, vendor name, and invoice date together."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"record type" (legacy term; see <a href="#record-type">Record Type</a>)</li>
+<li>"schema type" (the entity type is the classification; the entity schema is the definition)</li>
+<li>"type" (too generic)</li>
+<li>"category" (too informal)</li>
+</ul>
+<h3 id="event">Event<a href="#event" class="dv-anchor" aria-label="Link to this section: Event">#</a></h3>
+<p><strong>Definition:</strong> A timeline event derived from a date field on an <a href="#entity-snapshot">entity snapshot</a>. An event carries <code>source_id</code>, <code>entity_id</code>, and the <code>source_field</code> that held the date.</p>
+<p><strong>Use:</strong> "Timeline events are derived from date fields, and the entity schema can name which fields count."</p>
+<p><strong>Example:</strong> "An invoice with <code>invoice_date: '2025-01-15'</code> produces an event with <code>event_type: 'InvoiceIssued'</code>, <code>event_timestamp: '2025-01-15T00:00:00Z'</code>, and <code>source_field: 'invoice_date'</code>."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"activity" (too informal)</li>
+<li>"occurrence" (verbose)</li>
+</ul>
+<h3 id="retrieving">Retrieving<a href="#retrieving" class="dv-anchor" aria-label="Link to this section: Retrieving">#</a></h3>
+<p><strong>Definition:</strong> Reading <a href="#entity">entities</a>, <a href="#observation">observations</a>, <a href="#entity-snapshot">entity snapshots</a>, and <a href="#relationship">relationships</a> from the record: querying entities by type or identifier, reading a snapshot with its <a href="#provenance">provenance</a>, listing an entity's observations, and traversing relationships.</p>
+<p><strong>Use:</strong> "Use <code>retrieve_entities</code> to query entities by type, or <code>retrieve_entity_snapshot</code> to read the current values of one entity."</p>
+<p><strong>Example:</strong> "<code>retrieve_entities</code> with <code>entity_type: 'invoice'</code> returns invoice entities with their snapshots. <code>retrieve_entity_snapshot</code> returns one entity's current values and, for each field, the observation that set it."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"fetch" (too generic)</li>
+<li>"load" (implies loading into memory)</li>
+<li>"get" (too generic; use the specific action name)</li>
+</ul>
+<h3 id="extraction">Extraction<a href="#extraction" class="dv-anchor" aria-label="Link to this section: Extraction">#</a></h3>
+<p><strong>Definition:</strong> Turning the content of a <a href="#source">source</a> into fields. For a structured payload the caller supplies the fields. For a file, the agent or client extracts the fields and records them as an <a href="#interpretation">interpretation</a>; Neotoma does not run an extraction model over stored files.</p>
+<p><strong>Use:</strong> "The agent extracted the invoice fields from the PDF and stored them with an interpretation block."</p>
+<p><strong>Example:</strong> "A client reads <code>invoice.pdf</code>, extracts <code>invoice_number: 'INV-001'</code> and the vendor name, and stores them linked to the file's source."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"parsing" (too generic)</li>
+<li>"analysis" (implies inference)</li>
+</ul>
+<h3 id="storing">Storing<a href="#storing" class="dv-anchor" aria-label="Link to this section: Storing">#</a></h3>
+<p><strong>Definition:</strong> Writing data into Neotoma with the <code>store</code> action (MCP tool, <code>POST /store</code>, or <code>neotoma store</code>). A store takes structured entities (<code>entities</code>) or a file (<code>file_content</code> with <code>mime_type</code>, or <code>file_path</code> on the server's own filesystem). Files are kept as <a href="#source">sources</a>. Structured entities are resolved to <a href="#entity">entities</a> and written as <a href="#observation">observations</a>; fields the <a href="#entity-schema">entity schema</a> does not declare are kept as <a href="#raw-fragment">raw fragments</a>.</p>
+<p><strong>Use:</strong> "Storing writes observations; the reducer then recomputes each affected entity's snapshot."</p>
+<p><strong>Example:</strong> "An agent stores <code>{entities: [{entity_type: 'invoice', invoice_number: 'INV-001', vendor_name: 'Acme Corp'}]}</code>. Neotoma records the source, resolves the invoice entity, writes one observation, and derives a timeline event from the invoice date."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"import" (ambiguous)</li>
+<li>"upload" (only one step)</li>
+<li>"processing" (too vague)</li>
+<li>"ingestion" (replaced by "storing"; see <a href="#ingestion">Ingestion</a>)</li>
+</ul>
+<h3 id="interpretation">Interpretation<a href="#interpretation" class="dv-anchor" aria-label="Link to this section: Interpretation">#</a></h3>
+<p><strong>Definition:</strong> A record of one extraction over a stored <a href="#source">source</a>: the entities a client extracted from it and the configuration the client reports (provider, model, temperature, and a prompt hash). Observations written from an interpretation carry its <code>interpretation_id</code>.</p>
+<p><strong>Use:</strong> "Each new interpretation of a source adds new observations and leaves the earlier ones in place."</p>
+<p><strong>Example:</strong> "A client extracts an invoice from <code>invoice.pdf</code> with one model and stores it with an interpretation. Extracting again with a different model adds a second interpretation and new observations; the first set stays listed."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"interpretation run" (say "interpretation")</li>
+<li>"analysis" (implies inference)</li>
+<li>"processing" (too vague)</li>
+</ul>
+<h3 id="entity-graph">Entity Graph<a href="#entity-graph" class="dv-anchor" aria-label="Link to this section: Entity Graph">#</a></h3>
+<p><strong>Definition:</strong> The connected set of <a href="#source">sources</a>, <a href="#observation">observations</a>, <a href="#entity">entities</a>, <a href="#relationship">relationships</a>, and <a href="#event">events</a>, joined by typed links.</p>
+<p><strong>Use:</strong> "The entity graph links each observation to its source and to the entity it describes."</p>
+<p><strong>Example:</strong> "Source <code>src_invoice_pdf</code> links to an observation of the invoice entity, and the payment entity has a <code>SETTLES</code> relationship to that invoice."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"memory graph" (retired)</li>
+<li>"knowledge graph" (implies semantic reasoning)</li>
+<li>"data graph" (too generic)</li>
+</ul>
+<h3 id="observation">Observation<a href="#observation" class="dv-anchor" aria-label="Link to this section: Observation">#</a></h3>
+<p><strong>Definition:</strong> A set of field values about one <a href="#entity">entity</a>, written at one time. Observations from a store or an <a href="#interpretation">interpretation</a> are linked to their <a href="#source">source</a>; a correction observation has no source. The <a href="#reducer">reducer</a> merges an entity's observations into its <a href="#entity-snapshot">entity snapshot</a>. A fact enters Neotoma as an observation.</p>
+<p><strong>Use:</strong> "Each observation records where it came from, when it was observed, and its source priority."</p>
+<p><strong>Example:</strong> "An observation of the company entity carries <code>fields: {name: 'Acme Corp', address: '123 Main St'}</code>, <code>source_id: 'src_001'</code>, <code>observed_at: '2025-01-15T10:30:00Z'</code>, and <code>source_priority: 0</code>."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"datum" (too technical)</li>
+<li>"extraction" (the observation is the result; extraction is the process)</li>
+</ul>
+<h3 id="provenance">Provenance<a href="#provenance" class="dv-anchor" aria-label="Link to this section: Provenance">#</a></h3>
+<p><strong>Definition:</strong> Where a value came from: the <a href="#observation">observation</a> that set it, that observation's <a href="#source">source</a> and <a href="#interpretation">interpretation</a> when it has them, when it was observed, and the user it belongs to. Each field of an <a href="#entity-snapshot">entity snapshot</a> names the observation that set it.</p>
+<p><strong>Use:</strong> "Provenance lets an agent trace a current value back to the observation and source behind it."</p>
+<p><strong>Example:</strong> "The <code>vendor_name</code> field of an invoice snapshot names observation <code>obs_123</code>, which links to <code>source_id: 'src_abc123'</code> (the uploaded PDF) and <code>interpretation_id: 'int_xyz789'</code>, with <code>observed_at: '2025-01-15T10:30:00Z'</code>. A value set by a correction names the correction observation, which has no source."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"metadata" (provenance is a specific kind of metadata)</li>
+<li>"origin" (informal)</li>
+</ul>
+<h3 id="raw-fragment">Raw Fragment<a href="#raw-fragment" class="dv-anchor" aria-label="Link to this section: Raw Fragment">#</a></h3>
+<p><strong>Definition:</strong> A field value that arrived with an <a href="#observation">observation</a> but is not declared in the <a href="#entity-schema">entity schema</a>. Raw fragments are kept with the entity, source, and interpretation they came from, so a schema can declare the field later.</p>
+<p><strong>Use:</strong> "Undeclared fields are kept as raw fragments rather than dropped."</p>
+<p><strong>Example:</strong> "An invoice stored with an undeclared <code>po_reference</code> field keeps that value as a raw fragment of the invoice entity."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"extra fields" (informal)</li>
+<li>"junk data" (the values are kept on purpose)</li>
+</ul>
+<h3 id="reducer">Reducer<a href="#reducer" class="dv-anchor" aria-label="Link to this section: Reducer">#</a></h3>
+<p><strong>Definition:</strong> The function that merges an entity's <a href="#observation">observations</a> into its <a href="#entity-snapshot">entity snapshot</a>, field by field, using the merge policy in the <a href="#entity-schema">entity schema</a>. The same observations and merge policies always produce the same snapshot.</p>
+<p><strong>Use:</strong> "The reducer recomputes the snapshot after every write to the entity."</p>
+<p><strong>Example:</strong> "Given observations <code>{name: 'Acme'}</code> with priority 0 and <code>{name: 'Acme Corp'}</code> with priority 100, the <code>highest_priority</code> policy produces <code>{name: 'Acme Corp'}</code>."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"merger" (too generic)</li>
+<li>"aggregator" (implies accumulation)</li>
+<li>"combiner" (too generic)</li>
+</ul>
+<h3 id="relationship">Relationship<a href="#relationship" class="dv-anchor" aria-label="Link to this section: Relationship">#</a></h3>
+<p><strong>Definition:</strong> A typed connection between two <a href="#entity">entities</a>, for example <code>PART_OF</code> or <code>SETTLES</code>. The type vocabulary is a runtime registry read with <code>list_relationship_types</code>. Relationships are stored as relationship observations with <a href="#provenance">provenance</a> and reduced to relationship snapshots. Deleting a relationship adds an observation that marks it deleted, and <code>restore_relationship</code> restores it; neither edits the earlier observations.</p>
+<p><strong>Use:</strong> "Relationships connect entities in the entity graph with typed links."</p>
+<p><strong>Example:</strong> "The relationship <code>{relationship_type: 'SETTLES', source_entity_id: 'ent_payment_456', target_entity_id: 'ent_invoice_123'}</code> records that the payment settles the invoice, with metadata <code>{amount: 1500.00}</code>."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"link" (too generic)</li>
+<li>"connection" (too generic)</li>
+<li>"edge" (implementation detail; "relationship" is the domain term)</li>
+</ul>
+<h3 id="entity-snapshot">Entity Snapshot<a href="#entity-snapshot" class="dv-anchor" aria-label="Link to this section: Entity Snapshot">#</a></h3>
+<p><strong>Definition:</strong> The <a href="#reducer">reducer</a>'s output for one <a href="#entity">entity</a>: the current value of each field, computed from all of its <a href="#observation">observations</a>, with each field naming the observation that set it. "Current state" is fine in prose for what a snapshot shows.</p>
+<p><strong>Use:</strong> "Entity snapshots are recomputed from observations whenever the entity changes."</p>
+<p><strong>Example:</strong> "The snapshot of the company entity merges <code>{name: 'Acme Corp'}</code>, <code>{address: '123 Main St'}</code>, and <code>{tax_id: '12-3456789'}</code> into one set of fields, and its provenance names the observation behind each."</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"merged data" (the snapshot is the computed result)</li>
+<li>"aggregate" (implies accumulation)</li>
+</ul>
+<h3 id="snapshot">Snapshot<a href="#snapshot" class="dv-anchor" aria-label="Link to this section: Snapshot">#</a></h3>
+<p>Short form of <a href="#entity-snapshot">entity snapshot</a>, used where the context is clear. Relationships have relationship snapshots, computed the same way.</p>
+<h3 id="source">Source<a href="#source" class="dv-anchor" aria-label="Link to this section: Source">#</a></h3>
+<p><strong>Definition:</strong> The input a write arrived with: a file, raw text, or a structured payload. Files are stored with SHA-256 content hashing, unique per user, so the same file stored twice reuses one source. Observations link to their source through <code>source_id</code>.</p>
+<p><strong>Use:</strong> "Every observation from a store traces to its source."</p>
+<p><strong>Example:</strong> "A source can be <code>invoice.pdf</code>, a pasted text, or the JSON payload of a <code>store</code> call. An agent that extracts entities from the PDF stores them linked to the PDF's source."</p>
+<p><strong>Source origin for MCP stores:</strong></p>
+<ul>
+<li><strong>Conversation-sourced:</strong> data the user said in chat or that comes from the agent's dialogue; store it through the structured path (<code>store</code> with <code>entities</code>).</li>
+<li><strong>File-sourced or resource-sourced:</strong> a user-attached file or another artifact to keep; store it through the file path (<code>store</code> with <code>file_content</code> or <code>file_path</code>) so the artifact is kept as a source.</li>
+</ul>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"content" (say "source")</li>
+<li>"data" (too generic)</li>
+<li>"file" (a source can also be text or a structured payload)</li>
+<li>"document" (ambiguous)</li>
+<li>"source material" (older term; say "source")</li>
+</ul>
+<h2 id="legacy-terms">Legacy terms<a href="#legacy-terms" class="dv-anchor" aria-label="Link to this section: Legacy terms">#</a></h2>
+<p>These terms belong to the earlier record-based design. They are listed so older docs and code comments can be read. Do not use them in new code or docs.</p>
+<h3 id="capability">Capability<a href="#capability" class="dv-anchor" aria-label="Link to this section: Capability">#</a></h3>
+<p><strong>Definition:</strong> Legacy processing specification from the capability registry (<code>src/services/capability_registry.ts</code>), which carried canonicalization and entity extraction rules per intent. Entity schemas replaced it; the store path does not use it.</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"schema" (say "entity schema")</li>
+<li>"type" (say "entity type")</li>
+<li>"handler" (implementation detail)</li>
+</ul>
+<h3 id="entity-extraction-rule">Entity Extraction Rule<a href="#entity-extraction-rule" class="dv-anchor" aria-label="Link to this section: Entity Extraction Rule">#</a></h3>
+<p><strong>Definition:</strong> Legacy capability rule (<code>field_value</code>, <code>payload_self</code>, or <code>array_items</code>) that derived several entities from one structured payload. In the current store path the caller sends one entry per entity in <code>entities</code> and links them with relationships.</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"extraction rule" (too generic)</li>
+<li>"mapping" (too generic)</li>
+</ul>
+<h3 id="ingestion">Ingestion<a href="#ingestion" class="dv-anchor" aria-label="Link to this section: Ingestion">#</a></h3>
+<p>Older name for <a href="#storing">storing</a>. Docs that still say "ingestion" mean storing.</p>
+<h3 id="record">Record<a href="#record" class="dv-anchor" aria-label="Link to this section: Record">#</a></h3>
+<p><strong>Definition:</strong> In the earlier design, a record was one stored document with its extracted properties. That data type is retired; say <a href="#source">source</a> for the input and <a href="#observation">observation</a> for what was extracted from it. "The record" in "system of record" means Neotoma's stored observations and snapshots as a whole, which is a different sense.</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"document" (ambiguous with a source file)</li>
+<li>"memory" (too vague)</li>
+<li>"entry" (too generic)</li>
+</ul>
+<h3 id="record-type">Record Type<a href="#record-type" class="dv-anchor" aria-label="Link to this section: Record Type">#</a></h3>
+<p><strong>Definition:</strong> Legacy classification of a record that chose its extraction rules. Say <a href="#entity-type">entity type</a> for the classification of entities.</p>
+<p><strong>Forbidden synonyms:</strong></p>
+<ul>
+<li>"schema type" (schemas apply to entity types)</li>
+<li>"entity type" (a record type classified documents, not entities)</li>
+<li>"category" (too informal)</li>
+<li>"class" (programming term)</li>
+</ul>
+<h2 id="forbidden-terms-in-code-and-docs">Forbidden terms in code and docs<a href="#forbidden-terms-in-code-and-docs" class="dv-anchor" aria-label="Link to this section: Forbidden terms in code and docs">#</a></h2>
+<ul>
+<li>"dapp": say "app"</li>
+<li>"smart": marketing language</li>
+<li>"intelligent": implies inference</li>
+<li>"learn": Neotoma does not learn; it records observations</li>
+<li>"understand": Neotoma does not understand content; it stores fields</li>
+<li>"memory layer", "state layer", "truth layer", and "deterministic state" as names for what Neotoma is: say "system of record"</li>
+</ul>
+<h2 id="usage-examples">Usage examples<a href="#usage-examples" class="dv-anchor" aria-label="Link to this section: Usage examples">#</a></h2>
+<p>Use:</p>
+<ul>
+<li>"Neotoma stores the fields an agent extracted from an uploaded file, linked to the file."</li>
+<li>"Entity resolution gives each vendor one canonical id."</li>
+<li>"The timeline shows events derived from date fields."</li>
+</ul>
+<p>Avoid:</p>
+<ul>
+<li>"Neotoma understands your documents using AI."</li>
+<li>"Smart extraction learns from your data."</li>
+<li>"Neotoma is the memory layer for your agents."</li>
+</ul>
+<p class="dv-note">The file ends with an “Agent Instructions” section written for coding agents. It is left out here; read it <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/vocabulary/canonical_terms.md#agent-instructions">on GitHub</a>.</p>
+</div>
+<nav class="dv-pager" aria-label="Previous and next document"><a class="prev" href="/pr-2727/docs/architecture/" rel="prev"><span class="dv-mono">Previous</span>Architecture</a></nav>
+</article>
+</main>
+</div>
+<footer class="dv-foot">
+<p>Rendered from <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/vocabulary/canonical_terms.md">docs/vocabulary/canonical_terms.md</a> at commit <code>782d6d1</code>. The file on GitHub is the source; edits there appear here at the next site deploy.</p>
+<p><a href="/pr-2727/">neotoma.io</a> · <a href="/pr-2727/privacy">Privacy</a> · <a href="/pr-2727/terms">Terms of use</a></p>
+</footer>
+</body>
+</html>

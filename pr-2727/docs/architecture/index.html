@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecture | Neotoma docs</title>
+<meta name="description" content="Neotoma is the system of record for AI agents: it keeps observations with their sources, computes the current value of each field, and serves both to…">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://neotoma.io/docs/architecture/">
+<link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/markmhendrickson/neotoma/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/architecture/architecture.md" title="Markdown source at 782d6d1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Neotoma">
+<meta property="og:title" content="Architecture | Neotoma docs">
+<meta property="og:description" content="Neotoma is the system of record for AI agents: it keeps observations with their sources, computes the current value of each field, and serves both to…">
+<meta property="og:url" content="https://neotoma.io/docs/architecture/">
+<meta property="og:image" content="https://neotoma.io/pr-2727/neotoma-og-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="docs-viewer-source" content="docs/architecture/architecture.md">
+<meta name="docs-viewer-commit" content="782d6d1124712c30ecc0dc26fab3c0c847a340ad">
+<link rel="icon" href="/pr-2727/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/pr-2727/favicon.ico" sizes="any">
+<style>
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Instrument Serif Docs";src:url("/pr-2727/brand/october/instrument-serif.ttf") format("truetype");font-weight:400;font-display:swap}
+:root{color-scheme:light;
+--paper:#faf8f3;--sheet:#faf8f3;--ink:#172b39;--rust:#a14624;--muted:#52616a;--line:#d6d0c4;--band:#f1ece2;
+--doc:#faf8f3;--text:#172b39;--link:#a14624;--code-bg:#f1ece2;--code-line:#d6d0c4;
+--t-comment:#52616a;--t-keyword:#a14624;--t-string:#3f6259;--t-number:#79520c;--t-function:#22587a;--t-var:#6a3d99;--t-punct:#52616a;
+--serif:"Instrument Serif Docs",Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;--sans:"Instrument Sans Docs",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+--paper:#1d272c;--sheet:#1d272c;--ink:#eeeae0;--rust:#e5a17c;--muted:#b7c4ca;--line:#4b5050;--band:#303333;
+--doc:#1d272c;--text:#eeeae0;--link:#e5a17c;--code-bg:#303333;--code-line:#4b5050;
+--t-comment:#b7c4ca;--t-keyword:#e5a17c;--t-string:#abd1b9;--t-number:#e8c07d;--t-function:#8fc4e2;--t-var:#cdb0f2;--t-punct:#e0ddd5}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.dv-skip{position:absolute;left:12px;top:-60px;background:var(--paper);border:1px solid var(--ink);padding:8px 12px;z-index:10}
+.dv-skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.dv-mono{font:600 12px/1.4 var(--sans);letter-spacing:.09em;text-transform:uppercase}
+.dv-masthead{border-bottom:1px solid var(--line);background:var(--paper)}
+.dv-masthead-inner{max-width:1400px;margin:0 auto;padding:18px clamp(18px,5vw,80px);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+.dv-brand{display:inline-flex;gap:12px;align-items:center;min-height:44px;text-decoration:none}
+.dv-brand img{display:block;width:132px;height:28px}
+.dv-brand .dv-logo-dark{display:none}
+@media (prefers-color-scheme:dark){.dv-brand .dv-logo-light{display:none}.dv-brand .dv-logo-dark{display:block}}
+.dv-brand span{color:var(--rust)}
+.dv-masthead nav{display:flex;gap:8px 20px;flex-wrap:wrap}
+.dv-masthead nav a{display:inline-flex;align-items:center;min-height:32px;padding:4px 0;font:600 0.875rem/1.4 var(--sans);text-decoration:none}
+.dv-masthead nav a:hover,.dv-masthead nav a:focus-visible{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-layout{max-width:1400px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(18px,5vw,80px) 64px;display:grid;grid-template-columns:14rem minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:start}
+.dv-side{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:2px 0}
+.dv-side h2,.dv-mnav h2{margin:16px 0 6px;color:var(--rust)}
+.dv-side h2:first-child{margin-top:0}
+.dv-side ul,.dv-mnav ul{list-style:none;margin:0;padding:0}
+.dv-side li a,.dv-mnav li a{display:block;min-height:32px;padding:6px 0;text-decoration:none;font-size:.9375rem;line-height:1.35;border-left:2px solid transparent}
+.dv-side li a:hover,.dv-mnav li a:hover{text-decoration:underline}
+.dv-side li a[aria-current=page],.dv-mnav li a[aria-current=page]{border-left-color:var(--rust);padding-left:10px;font-weight:600}
+.dv-mnav{display:none;border-bottom:1px solid var(--line);margin-bottom:28px}
+.dv-mnav summary{cursor:pointer;padding:12px 0;list-style-position:inside}
+.dv-mnav div{padding:0 0 12px}
+.dv-sheet{position:relative;min-width:0;background:var(--doc)}
+.dv-head{padding:0 0 30px;border-bottom:1px solid var(--line)}
+.dv-kicker{margin:0 0 10px;color:var(--rust)}
+.dv-head h1{font:400 clamp(2.8rem,5vw,4.9rem)/1.04 var(--serif);letter-spacing:-.03em;margin:0 0 16px}
+.dv-summary{font:400 clamp(1.1rem,1.55vw,1.35rem)/1.48 var(--sans);margin:0 0 16px;max-width:48rem}
+.dv-applies{margin:0 0 12px;font-size:.9375rem}
+.dv-applies .dv-mono{color:var(--rust);margin-right:8px}
+.dv-meta{margin:0;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-meta a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);font-weight:600}
+.dv-meta code{font:inherit}
+.dv-preview{margin:0 0 18px;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem}
+.dv-toc{margin:16px 0 0}
+.dv-toc summary{cursor:pointer;color:var(--muted)}
+.dv-toc ol{margin:8px 0 0;padding-left:22px;columns:2 16rem;font-size:.9375rem}
+.dv-toc ol ol{columns:auto;margin:2px 0 4px;padding-left:18px;font-size:.875rem}
+.dv-toc li{margin:2px 0;break-inside:avoid}
+.dv-toc a{display:inline-block;min-height:32px;line-height:32px}
+.dv-note{margin:2rem 0 0;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem;color:var(--muted)}
+.dv-body{padding:36px 0 42px;color:var(--text);font:17px/1.65 var(--sans)}
+.dv-body>*{max-width:72ch}
+.dv-body>.dv-table,.dv-body>.dv-code{max-width:100%}
+.dv-body p,.dv-body li{overflow-wrap:anywhere}
+.dv-body td,.dv-body th{overflow-wrap:break-word}
+.dv-table code{white-space:nowrap}
+.dv-body a{color:var(--link);text-decoration-thickness:1px}
+.dv-body a:hover{color:var(--ink);text-decoration-color:var(--rust);text-decoration-thickness:2px}
+.dv-body h2,.dv-body h3,.dv-body h4,.dv-body h5,.dv-body h6{font-family:var(--serif);font-weight:400;color:var(--text);line-height:1.12;scroll-margin-top:24px}
+.dv-body h2{font-size:clamp(2rem,3.2vw,3rem);margin:3.2rem 0 1rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.dv-body h3{font-size:1.65rem;margin:2.2rem 0 .75rem}
+.dv-body h4,.dv-body h5,.dv-body h6{font:600 1rem/1.35 var(--sans);margin:1.7rem 0 .5rem}
+.dv-anchor{margin-left:.4em;color:var(--muted)!important;text-decoration:none;font-weight:400}
+.dv-anchor:hover,.dv-anchor:focus-visible{color:var(--link)!important}
+.dv-body code{font:.88em/1.5 var(--mono);background:var(--code-bg);border:1px solid var(--code-line);border-radius:3px;padding:.05em .3em}
+.dv-code{position:relative;margin:1.2rem 0}
+.dv-code-lang{position:absolute;right:10px;top:8px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dv-body pre{margin:0;overflow:auto;background:var(--code-bg);border:1px solid var(--code-line);border-radius:4px;padding:30px 16px 16px}
+.dv-body pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.55;white-space:pre}
+.dv-body blockquote{margin:1.5rem 0;padding:.2rem 1rem;border-left:3px solid var(--rust);color:var(--text)}
+.dv-body hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+.dv-body img{max-width:100%;height:auto}
+.dv-table{overflow-x:auto;margin:1.2rem 0;border:1px solid var(--code-line)}
+.dv-table table{border-collapse:collapse;font-size:.9375rem;line-height:1.5;min-width:100%}
+.dv-table th,.dv-table td{border:1px solid var(--code-line);padding:8px 10px;vertical-align:top;text-align:left;min-width:7rem}
+.dv-table th{background:var(--code-bg);font-weight:600}
+.dv-align-center{text-align:center!important}.dv-align-right{text-align:right!important}
+.token.comment,.token.prolog,.token.doctype,.token.cdata{color:var(--t-comment);font-style:italic}
+.token.keyword,.token.boolean,.token.important,.token.atrule,.token.builtin,.token.tag{color:var(--t-keyword)}
+.token.string,.token.char,.token.attr-value,.token.inserted,.token.url{color:var(--t-string)}
+.token.number,.token.constant,.token.symbol{color:var(--t-number)}
+.token.function,.token.class-name,.token.property,.token.attr-name{color:var(--t-function)}
+.token.variable,.token.parameter,.token.regex{color:var(--t-var)}
+.token.punctuation,.token.operator{color:var(--t-punct)}
+.token.deleted{color:var(--t-keyword)}
+.dv-pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:28px 0 0;border-top:1px solid var(--line);background:var(--sheet)}
+.dv-pager a{display:block;padding:8px 0;text-decoration:none}
+.dv-pager a:hover{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-pager .dv-mono{display:block;color:var(--rust);margin-bottom:2px}
+.dv-pager .next{text-align:right;grid-column:2}
+.dv-foot{max-width:1400px;margin:0 auto;padding:0 clamp(18px,5vw,80px) 48px;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-foot a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);text-decoration:none}
+.dv-foot a:hover,.dv-foot a:focus-visible{text-decoration:underline}
+@media (max-width:900px){
+.dv-layout{grid-template-columns:minmax(0,1fr);padding-top:28px;gap:0}
+.dv-side{display:none}
+.dv-mnav{display:block}
+.dv-head{padding:0 0 24px}
+.dv-body{padding:28px 0 32px;font-size:16px}
+.dv-pager{padding:20px 0 0;grid-template-columns:1fr}
+.dv-pager .next{grid-column:1}
+}
+</style>
+</head>
+<body>
+<a class="dv-skip" href="#dv-main">Skip to the document</a>
+<header class="dv-masthead"><div class="dv-masthead-inner">
+<a class="dv-brand" href="/pr-2727/" aria-label="Neotoma home"><img class="dv-logo-light" src="/pr-2727/brand/n2-nav-light.svg" alt="Neotoma" width="132" height="28"><img class="dv-logo-dark" src="/pr-2727/brand/n2-nav-dark.svg" alt="Neotoma" width="132" height="28"><span class="dv-mono">Docs</span></a>
+<nav aria-label="Site"><a href="/pr-2727/">Home</a><a href="/pr-2727/install">Install</a><a href="https://github.com/markmhendrickson/neotoma">GitHub</a></nav>
+</div></header>
+<div class="dv-layout">
+<nav class="dv-side" aria-label="Documentation"><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/" aria-current="page">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></nav>
+<main id="dv-main" tabindex="-1">
+<details class="dv-mnav"><summary class="dv-mono">Documents</summary><div><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/" aria-current="page">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></div></details>
+<article class="dv-sheet">
+<header class="dv-head">
+<p class="dv-preview">Pre-release review</p>
+<p class="dv-kicker dv-mono">Docs · How the record works</p>
+<h1>Architecture</h1>
+<p class="dv-summary">Neotoma is the system of record for AI agents: it keeps observations with their sources, computes the current value of each field, and serves both to connected agents over MCP, REST, and the CLI.</p>
+<p class="dv-applies"><span class="dv-mono">Applies to</span>v0.25.0 and main. Where main differs from v0.25.0, the text says so.</p>
+<p class="dv-meta"><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/architecture/architecture.md">View and edit on GitHub</a> · <code>docs/architecture/architecture.md</code> at <code>782d6d1</code></p>
+<details class="dv-toc"><summary class="dv-mono">On this page (14 sections)</summary><ol><li><a href="#scope">Scope</a></li><li><a href="#a-record-not-recall">A record, not recall</a></li><li><a href="#data-model">Data model</a><ol><li><a href="#sources">Sources</a></li><li><a href="#interpretations">Interpretations</a></li><li><a href="#observations">Observations</a></li><li><a href="#entities">Entities</a></li><li><a href="#entity-snapshots">Entity snapshots</a></li><li><a href="#relationships">Relationships</a></li><li><a href="#timeline-events">Timeline events</a></li><li><a href="#schema-registry">Schema registry</a></li></ol></li><li><a href="#how-a-write-becomes-a-current-value">How a write becomes a current value</a></li><li><a href="#reads">Reads</a></li><li><a href="#corrections-and-deletions">Corrections and deletions</a></li><li><a href="#interfaces">Interfaces</a></li><li><a href="#storage">Storage</a></li><li><a href="#network-use">Network use</a><ol><li><a href="#possible-by-default">Possible by default</a></li><li><a href="#only-when-configured">Only when configured</a></li><li><a href="#only-when-an-agent-calls-a-tool">Only when an agent calls a tool</a></li></ol></li><li><a href="#code-layout">Code layout</a></li><li><a href="#outbound-signals">Outbound signals</a></li><li><a href="#security-boundaries">Security boundaries</a><ol><li><a href="#tenant-isolation">Tenant isolation</a></li><li><a href="#encryption-at-rest">Encryption at rest</a></li><li><a href="#in-transit-and-in-logs">In transit and in logs</a></li></ol></li><li><a href="#what-neotoma-does-not-do">What Neotoma does not do</a></li><li><a href="#related-documents">Related documents</a></li></ol></details>
+</header>
+<div class="dv-body">
+<p>Terms on this page follow the <a href="/pr-2727/docs/vocabulary/">canonical vocabulary</a>.</p>
+<h2 id="scope">Scope<a href="#scope" class="dv-anchor" aria-label="Link to this section: Scope">#</a></h2>
+<p>This page covers:</p>
+<ul>
+<li>What Neotoma does and what it leaves to the systems built on it</li>
+<li>The data model: sources, observations, entities, snapshots, and relationships</li>
+<li>How a write becomes a current value, and how reads, corrections, and deletions work</li>
+<li>The interfaces, storage, outbound signals, and security boundaries</li>
+</ul>
+<p>It does not cover:</p>
+<ul>
+<li>Field-level schemas (see <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/schema.md"><code>docs/subsystems/schema.md</code></a>)</li>
+<li>Reducer internals (see <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/reducer.md"><code>docs/subsystems/reducer.md</code></a>)</li>
+<li>Deployment and hosting (see <code>docs/infrastructure/</code>)</li>
+</ul>
+<h2 id="a-record-not-recall">A record, not recall<a href="#a-record-not-recall" class="dv-anchor" aria-label="Link to this section: A record, not recall">#</a></h2>
+<p>Neotoma does not try to remember on an agent's behalf or rank what to retrieve. It records what was observed, where each observation came from, and which observation currently sets each field. Agents, pipelines, and applications read that record, reason and act outside Neotoma, and write their results back as new observations.</p>
+<p>Neotoma does not decide, plan, or take actions. The systems above it do. Plans, decisions, and action logs those systems produce can be stored in Neotoma as entities like any other data.</p>
+<div class="dv-code"><span class="dv-code-lang">text</span><pre tabindex="0"><code class="language-text">Agents, pipelines, and applications
+  read current values and provenance; reason, decide, and act;
+  write results back as observations
+        |                         ^
+        | store, correct          | retrieve, subscribe
+        v                         |
+Neotoma (the system of record)
+  sources -&gt; observations -&gt; entity snapshots
+  relationships, timeline events, schema registry
+</code></pre></div>
+<h2 id="data-model">Data model<a href="#data-model" class="dv-anchor" aria-label="Link to this section: Data model">#</a></h2>
+<h3 id="sources">Sources<a href="#sources" class="dv-anchor" aria-label="Link to this section: Sources">#</a></h3>
+<p>A source is the input a write arrived with: a file, raw text, or a structured payload. File sources are stored by content hash (SHA-256), and the hash is unique per user, so uploading the same file twice reuses one source.</p>
+<h3 id="interpretations">Interpretations<a href="#interpretations" class="dv-anchor" aria-label="Link to this section: Interpretations">#</a></h3>
+<p>An interpretation records one extraction over a stored source: the entities a client extracted from it and the extraction configuration the client reports (provider, model, temperature, and a prompt hash). Neotoma stores files as they arrive and does not run an extraction model over them; the agent or client extracts the fields and passes them with an <code>interpretation</code> block on <code>store</code>, or through <code>create_interpretation</code>. A new interpretation of the same source adds new observations and leaves the earlier ones in place.</p>
+<h3 id="observations">Observations<a href="#observations" class="dv-anchor" aria-label="Link to this section: Observations">#</a></h3>
+<p>An observation is a set of field values about one entity, written at one time. Observations from a store or an interpretation are linked to their source. A correction observation has no source.</p>
+<p>Observation ids and source ids are not portable across instances:</p>
+<ul>
+<li>An observation id is a hash of its source id, its interpretation, its entity id, and its fields (<code>generateObservationId</code> in <code>src/services/observation_identity.ts</code>).</li>
+<li>A source id is a hash of the user id and the content hash (<code>generateDeterministicSourceId</code> in <code>src/services/source_identity.ts</code>).</li>
+<li>The user can differ between installs:
+<ul>
+<li>The stdio MCP server writes as the shared local development user, so the same content gets the same source and observation ids on every install.</li>
+<li>The HTTP server, which the CLI's local transport also starts (<code>src/shared/local_transport.ts</code>), runs in <code>local_sandbox</code> mode by default when it binds to loopback with no auth outside production (<code>resolveSandboxMode</code> in <code>src/services/sandbox_mode.ts</code>). Each install then gets its own fingerprinted local user (<code>ensureLocalSandboxUser</code> in <code>src/services/local_auth.ts</code>), so the same data stored on two installs gets different source and observation ids.</li>
+</ul>
+</li>
+<li>Each interpretation run gets a new id, so the observations it writes get new ids too.</li>
+</ul>
+<p>Entity ids, described below, agree across instances. Do not rely on source or observation ids matching across instances.</p>
+<p>Fields that the entity's schema does not declare are kept as raw fragments rather than dropped.</p>
+<h3 id="entities">Entities<a href="#entities" class="dv-anchor" aria-label="Link to this section: Entities">#</a></h3>
+<p>An entity is one person, company, task, invoice, or other thing that observations are about. Its id is a hash of the entity type and its identity fields (for most types, the normalized canonical name), so the same identity resolves to the same id. In sandbox mode, or when <code>NEOTOMA_TENANT_SCOPED_ENTITY_IDS</code> is set, the user id is folded into the hash so two users can hold same-named entities separately.</p>
+<h3 id="entity-snapshots">Entity snapshots<a href="#entity-snapshots" class="dv-anchor" aria-label="Link to this section: Entity snapshots">#</a></h3>
+<p>A snapshot is the current value of each field, computed by the reducer from the entity's observations using the merge policy declared in the schema for each field. The policies are <code>last_write</code> (the default), <code>highest_priority</code>, <code>most_specific</code>, and <code>merge_array</code>; main also adds <code>merge_array_by_key</code> (not in v0.25.0). Each field in a snapshot names the observation that set it. Given the same observations and the same merge policies, the reducer produces the same snapshot.</p>
+<p>Under the default policy a later store changes only the fields it sets; the other fields keep their current values.</p>
+<h3 id="relationships">Relationships<a href="#relationships" class="dv-anchor" aria-label="Link to this section: Relationships">#</a></h3>
+<p>A relationship is a typed connection between two entities, such as <code>PART_OF</code> or <code>REFERS_TO</code>. The type vocabulary is a runtime registry. Relationships are stored as relationship observations and reduced to relationship snapshots, the same way entities are. Deleting a relationship adds an observation that marks it deleted, and <code>restore_relationship</code> restores it.</p>
+<h3 id="timeline-events">Timeline events<a href="#timeline-events" class="dv-anchor" aria-label="Link to this section: Timeline events">#</a></h3>
+<p>Timeline events are derived from date fields on a snapshot. When a schema declares <code>temporal_fields</code>, only those fields produce events; otherwise a date-field heuristic applies. Event ids are hashes of the source, entity, field, and timestamp.</p>
+<h3 id="schema-registry">Schema registry<a href="#schema-registry" class="dv-anchor" aria-label="Link to this section: Schema registry">#</a></h3>
+<p>Entity schemas (fields, types, merge policies, and identity rules) live in a registry that can be extended at runtime. Type checks on write are uneven today. A plain store keeps a value of the wrong type for a declared field out of the snapshot and stores it as an unknown field (a raw fragment). A <code>date</code> field accepts any string, and <code>correct()</code> does not check types, so both can put a wrong-type value into the snapshot (issues <a href="https://github.com/markmhendrickson/neotoma/issues/2219">#2219</a> and <a href="https://github.com/markmhendrickson/neotoma/issues/2699">#2699</a>; <code>docs/known_limitations.md</code>, added by #2697, lists these limits).</p>
+<h2 id="how-a-write-becomes-a-current-value">How a write becomes a current value<a href="#how-a-write-becomes-a-current-value" class="dv-anchor" aria-label="Link to this section: How a write becomes a current value">#</a></h2>
+<ol>
+<li>A client calls <code>store</code> (MCP tool, <code>POST /store</code>, or <code>neotoma store</code>).</li>
+<li>Neotoma records the source, resolves each entity to its id, and writes one observation per entity. Undeclared fields go to raw fragments.</li>
+<li>The reducer recomputes the snapshot of each affected entity, and timeline events are derived from its date fields.</li>
+<li>Neotoma emits a substrate event describing the completed write (see <a href="#outbound-signals">Outbound signals</a>).</li>
+</ol>
+<p>A file is stored as a source as it arrives. Its fields enter the record only when a client sends extracted entities for it, which then follow the same steps.</p>
+<h2 id="reads">Reads<a href="#reads" class="dv-anchor" aria-label="Link to this section: Reads">#</a></h2>
+<ul>
+<li><code>retrieve_entities</code> and <code>retrieve_entity_by_identifier</code> return entities with their current snapshots.</li>
+<li><code>retrieve_entity_snapshot</code> returns one entity's snapshot with per-field provenance. It also answers an as-of question for that one entity: <code>at</code> limits the observations it uses by when they were observed, and <code>at_ingested</code> by when Neotoma received them.</li>
+<li><code>list_observations</code> and <code>retrieve_field_provenance</code> show which observations exist for an entity and which one set each field.</li>
+</ul>
+<p>There is no as-of query across the whole record: point-in-time reads work one entity at a time. The export commands (<code>neotoma entities export</code>, <code>neotoma snapshots export</code>, and <code>neotoma memory-export</code>) carry current values only, not observation history.</p>
+<h2 id="corrections-and-deletions">Corrections and deletions<a href="#corrections-and-deletions" class="dv-anchor" aria-label="Link to this section: Corrections and deletions">#</a></h2>
+<p>A correction adds a new observation with source priority 1000 and no source. The earlier value is not edited and stays listed among the entity's observations. A correction does not always stay in effect: under the default <code>last_write</code> policy a later write to the same field can replace it (tracked in <a href="https://github.com/markmhendrickson/neotoma/issues/2033">issue #2033</a>).</p>
+<p>Who made a correction is recorded only for writes over MCP, and only as the client name that the MCP client reports about itself.</p>
+<p>Deleting an entity records the deletion and hides the entity from snapshots and queries; its observations are not removed. <code>restore_entity</code> reverses it. The separate GDPR deletion path in <code>src/services/gdpr_deletion.ts</code> handles erasure requests.</p>
+<h2 id="interfaces">Interfaces<a href="#interfaces" class="dv-anchor" aria-label="Link to this section: Interfaces">#</a></h2>
+<div class="dv-table" tabindex="0" role="region" aria-label="Interfaces"><table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Where it is defined</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP</td>
+<td><code>src/server.ts</code>, <code>src/tool_definitions.ts</code></td>
+<td>stdio, and HTTP at <code>/mcp</code></td>
+</tr>
+<tr>
+<td>REST</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/openapi.yaml"><code>openapi.yaml</code></a></td>
+<td>112 paths on main, 109 in v0.25.0</td>
+</tr>
+<tr>
+<td>CLI</td>
+<td><code>src/cli/</code></td>
+<td><code>neotoma &lt;command&gt;</code>; see the <a href="/pr-2727/docs/cli/">CLI reference</a></td>
+</tr>
+</tbody>
+</table></div>
+<p>On main, the MCP WebSocket bridge (<code>src/mcp_ws_bridge.ts</code>) binds to loopback by default and <code>NEOTOMA_WS_HOST</code> widens it; in v0.25.0 it binds to all interfaces. The Inspector is a web UI served by the same HTTP server.</p>
+<h2 id="storage">Storage<a href="#storage" class="dv-anchor" aria-label="Link to this section: Storage">#</a></h2>
+<ul>
+<li><strong>Database.</strong> SQLite by default (<code>better-sqlite3</code> or <code>node:sqlite</code>). Set <code>NEOTOMA_DB_BACKEND=libsql</code> to use the libSQL driver, which runs statements off the Node event loop for local files and can connect to a remote sqld or Turso server through <code>NEOTOMA_DB_URL</code>. There is no PostgreSQL backend.</li>
+<li><strong>Files.</strong> Source files are stored at <code>sources/&lt;user_id&gt;/&lt;content_hash&gt;</code> in the configured file storage.</li>
+<li><strong>Embeddings.</strong> Semantic search over entities is optional. When <code>OPENAI_API_KEY</code> is set, Neotoma requests embeddings from OpenAI (<code>text-embedding-3-small</code>) and stores them in SQLite through <code>sqlite-vec</code>. Without the key, search uses structured filters only.</li>
+</ul>
+<h2 id="network-use">Network use<a href="#network-use" class="dv-anchor" aria-label="Link to this section: Network use">#</a></h2>
+<p>The requests below are the ones found in the code; the list is not exhaustive. Before relying on the absence of a request, search <code>src/</code> for <code>fetch(</code>, for <code>guardedFetch</code> (<code>src/services/net/private_host_guard.ts</code>), and for the OpenAI client.</p>
+<h3 id="possible-by-default">Possible by default<a href="#possible-by-default" class="dv-anchor" aria-label="Link to this section: Possible by default">#</a></h3>
+<ul>
+<li><strong>Update checks.</strong> The CLI checks the npm registry for a newer release about once a day (off with <code>--no-update-check</code> or <code>NO_UPDATE_NOTIFIER=1</code>). The stdio MCP server checks when a session starts and about every 6 hours after that (off with <code>NO_UPDATE_NOTIFIER=1</code>). The request carries only the package name, and the registry sees ordinary connection metadata.</li>
+<li><strong>Google Fonts, from the browser.</strong> The server-rendered OAuth pages link fonts on <code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code> (<code>renderOauthPage</code> in <code>src/actions.ts</code>), so a browser that opens them requests those hosts.</li>
+</ul>
+<h3 id="only-when-configured">Only when configured<a href="#only-when-configured" class="dv-anchor" aria-label="Link to this section: Only when configured">#</a></h3>
+<ul>
+<li><strong>OpenAI</strong>, when <code>OPENAI_API_KEY</code> is set: embeddings for semantic search, and model calls for schema recommendations and schema icons.</li>
+<li><strong>Webhooks</strong> to the URLs that subscribers register (see <a href="#outbound-signals">Outbound signals</a>).</li>
+<li><strong>Peer sync</strong> to the peers an operator configures.</li>
+<li><strong>GitHub</strong>, when issue sync is configured (<code>neotoma issues sync</code> with the server's <code>NEOTOMA_ISSUES_GITHUB_TOKEN</code>).</li>
+<li><strong>Google sign-in.</strong> The server fetches Google's signing keys and calls Google's token endpoint, which carries the authorization code and the client secret (<code>src/services/google_oidc.ts</code>). The authorization endpoint is only a browser redirect.</li>
+<li><strong>Apple App Attest revocation</strong>, when an AAuth attestation is verified: a request to Apple's revoked-list endpoint, or to <code>NEOTOMA_AAUTH_APPLE_REVOCATION_URL</code> (<code>src/services/aauth_attestation_revocation.ts</code>).</li>
+<li><strong>Tunnels</strong>, when started with <code>--tunnel</code>: ngrok or cloudflared connect to their provider.</li>
+</ul>
+<h3 id="only-when-an-agent-calls-a-tool">Only when an agent calls a tool<a href="#only-when-an-agent-calls-a-tool" class="dv-anchor" aria-label="Link to this section: Only when an agent calls a tool">#</a></h3>
+<ul>
+<li><strong><code>submit_issue</code></strong> forwards the report to the instance named by <code>NEOTOMA_ISSUES_TARGET_URL</code>.</li>
+<li><strong><code>npm_check_update</code></strong> queries the npm registry, and with <code>include_release_notes</code> also the GitHub API.</li>
+</ul>
+<p>By default <code>submit_issue</code> reports go to the maintainer's instance (<code>DEFAULT_ISSUES_TARGET_URL</code> in <code>src/services/issues/types.ts</code>). Only setting the <code>NEOTOMA_ISSUES_TARGET_URL</code> environment variable to an empty string keeps them local; an empty <code>target_url</code> in the stored issues config does not, because it falls back to the default (<code>src/services/issues/config.ts</code>).</p>
+<h2 id="code-layout">Code layout<a href="#code-layout" class="dv-anchor" aria-label="Link to this section: Code layout">#</a></h2>
+<div class="dv-table" tabindex="0" role="region" aria-label="Code layout"><table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/server.ts</code></td>
+<td>MCP server and tool handlers</td>
+</tr>
+<tr>
+<td><code>src/actions.ts</code></td>
+<td>HTTP API routes</td>
+</tr>
+<tr>
+<td><code>src/cli/</code></td>
+<td>The <code>neotoma</code> command</td>
+</tr>
+<tr>
+<td><code>src/services/</code></td>
+<td>Store, correction, resolution, query, and subscription logic</td>
+</tr>
+<tr>
+<td><code>src/reducers/</code></td>
+<td>Entity and relationship reducers</td>
+</tr>
+<tr>
+<td><code>src/repositories/</code></td>
+<td>Database drivers and connection lifecycle</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="outbound-signals">Outbound signals<a href="#outbound-signals" class="dv-anchor" aria-label="Link to this section: Outbound signals">#</a></h2>
+<p>After a successful write, Neotoma emits a substrate event that reports what changed. It does not decide which changes matter or act on its own events.</p>
+<ul>
+<li><strong>SSE.</strong> Subscribers on the event stream receive events from an in-memory buffer. Events are also written to the <code>substrate_events</code> table so a client can resume after a restart; that log keeps events for <code>NEOTOMA_EVENT_RETENTION_DAYS</code> (default 7).</li>
+<li><strong>Webhooks.</strong> Delivery is best effort. Each event is retried in process after 1 s, 5 s, 30 s, and 5 min; nothing persists a retry queue. A subscription is deactivated after its failure limit (default 10) and rate-limited to 60 deliveries a minute.</li>
+</ul>
+<p>Ordering and exactly-once delivery are not guaranteed. Consumers that need them build them on their side. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/subscriptions.md"><code>docs/subsystems/subscriptions.md</code></a> and <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/substrate_events.md"><code>docs/subsystems/substrate_events.md</code></a>.</p>
+<h2 id="security-boundaries">Security boundaries<a href="#security-boundaries" class="dv-anchor" aria-label="Link to this section: Security boundaries">#</a></h2>
+<h3 id="tenant-isolation">Tenant isolation<a href="#tenant-isolation" class="dv-anchor" aria-label="Link to this section: Tenant isolation">#</a></h3>
+<p>Each user's data is isolated in the application layer. User-scoped queries filter on <code>user_id</code> (<code>src/services/entity_queries.ts</code>), and <code>getAuthenticatedUserId</code> in <code>src/actions.ts</code> rejects a caller-supplied user id that does not match the authenticated one. The exception is the local development user: on a local install, a request from the same machine with no credential acts as that user, and it may pass any <code>user_id</code>. Graph and relationship reads are covered as well as flat lists; <code>tests/security/tenant_isolation_matrix.test.ts</code> is the regression test. The database does not enforce row-level security. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/auth.md#authorization"><code>docs/subsystems/auth.md</code></a>.</p>
+<h3 id="encryption-at-rest">Encryption at rest<a href="#encryption-at-rest" class="dv-anchor" aria-label="Link to this section: Encryption at rest">#</a></h3>
+<p>When <code>NEOTOMA_ENCRYPTION_ENABLED=true</code> with a key file (<code>NEOTOMA_KEY_FILE_PATH</code>) or a mnemonic (<code>NEOTOMA_MNEMONIC</code>), the SQLite adapter encrypts these columns with AES-256-GCM on write and decrypts them on read: observation fields, entity and relationship snapshots and their provenance, raw fragment values, schema recommendations, and the auto-enhancement queue payload. The <code>substrate_events</code> payload is encrypted with the same key. <code>neotoma db migrate-encryption</code> encrypts rows written before encryption was enabled.</p>
+<p>Everything else stays in plaintext, and Neotoma has no file-level encryption:</p>
+<ul>
+<li>Source files on disk at <code>sources/&lt;user_id&gt;/&lt;content_hash&gt;</code></li>
+<li>The markdown mirror, when enabled</li>
+<li>Metadata columns: entity ids, types, canonical names, and aliases; source filenames, MIME types, and provenance; timeline events; observation provenance; relationship observation metadata; interpretation configuration; and IDs, timestamps, and hashes everywhere</li>
+<li>Embedding tables and auth tables</li>
+<li>Log files. A <code>NEOTOMA_LOG_ENCRYPTION_ENABLED</code> setting and <code>neotoma logs tail --decrypt</code> exist, but no code path writes encrypted log lines, in v0.25.0 or on main.</li>
+</ul>
+<p>Where any of that matters, put the data directory on an encrypted volume (for example LUKS, FileVault, or a cloud provider's volume encryption).</p>
+<h3 id="in-transit-and-in-logs">In transit and in logs<a href="#in-transit-and-in-logs" class="dv-anchor" aria-label="Link to this section: In transit and in logs">#</a></h3>
+<p>Put HTTPS (a reverse proxy or tunnel) in front of the HTTP API and <code>/mcp</code> whenever they are reachable beyond localhost. Logs must not contain personal data (see <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/privacy.md"><code>docs/subsystems/privacy.md</code></a>).</p>
+<h2 id="what-neotoma-does-not-do">What Neotoma does not do<a href="#what-neotoma-does-not-do" class="dv-anchor" aria-label="Link to this section: What Neotoma does not do">#</a></h2>
+<ul>
+<li>Act as an agent, plan, or execute side effects</li>
+<li>Infer facts that no observation states</li>
+<li>Rank or prioritize changes for consumers</li>
+<li>Guarantee ordered or exactly-once delivery of signals</li>
+<li>Answer as-of queries across the whole record, or export history</li>
+</ul>
+<h2 id="related-documents">Related documents<a href="#related-documents" class="dv-anchor" aria-label="Link to this section: Related documents">#</a></h2>
+<ul>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/observation_architecture.md"><code>docs/subsystems/observation_architecture.md</code></a></li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/reducer.md"><code>docs/subsystems/reducer.md</code></a></li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/relationships.md"><code>docs/subsystems/relationships.md</code></a></li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/architecture/determinism.md"><code>docs/architecture/determinism.md</code></a></li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/architecture/consistency.md"><code>docs/architecture/consistency.md</code></a></li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/main/docs/foundation/core_identity.md"><code>docs/foundation/core_identity.md</code></a> (opens on GitHub)</li>
+</ul>
+<p class="dv-note">The file ends with an “Agent Instructions” section written for coding agents. It is left out here; read it <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/architecture/architecture.md#agent-instructions">on GitHub</a>.</p>
+</div>
+<nav class="dv-pager" aria-label="Previous and next document"><a class="prev" href="/pr-2727/docs/integrations/" rel="prev"><span class="dv-mono">Previous</span>Integrations matrix</a><a class="next" href="/pr-2727/docs/vocabulary/" rel="next"><span class="dv-mono">Next</span>Vocabulary</a></nav>
+</article>
+</main>
+</div>
+<footer class="dv-foot">
+<p>Rendered from <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/architecture/architecture.md">docs/architecture/architecture.md</a> at commit <code>782d6d1</code>. The file on GitHub is the source; edits there appear here at the next site deploy.</p>
+<p><a href="/pr-2727/">neotoma.io</a> · <a href="/pr-2727/privacy">Privacy</a> · <a href="/pr-2727/terms">Terms of use</a></p>
+</footer>
+</body>
+</html>

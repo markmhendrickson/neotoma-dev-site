@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP overview | Neotoma docs</title>
+<meta name="description" content="How agents connect to Neotoma through MCP and where to find setup and protocol details.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://neotoma.io/docs/mcp/">
+<link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/markmhendrickson/neotoma/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_overview.md" title="Markdown source at 782d6d1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Neotoma">
+<meta property="og:title" content="MCP overview | Neotoma docs">
+<meta property="og:description" content="How agents connect to Neotoma through MCP and where to find setup and protocol details.">
+<meta property="og:url" content="https://neotoma.io/docs/mcp/">
+<meta property="og:image" content="https://neotoma.io/pr-2727/neotoma-og-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="docs-viewer-source" content="docs/developer/mcp_overview.md">
+<meta name="docs-viewer-commit" content="782d6d1124712c30ecc0dc26fab3c0c847a340ad">
+<link rel="icon" href="/pr-2727/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/pr-2727/favicon.ico" sizes="any">
+<style>
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Instrument Serif Docs";src:url("/pr-2727/brand/october/instrument-serif.ttf") format("truetype");font-weight:400;font-display:swap}
+:root{color-scheme:light;
+--paper:#faf8f3;--sheet:#faf8f3;--ink:#172b39;--rust:#a14624;--muted:#52616a;--line:#d6d0c4;--band:#f1ece2;
+--doc:#faf8f3;--text:#172b39;--link:#a14624;--code-bg:#f1ece2;--code-line:#d6d0c4;
+--t-comment:#52616a;--t-keyword:#a14624;--t-string:#3f6259;--t-number:#79520c;--t-function:#22587a;--t-var:#6a3d99;--t-punct:#52616a;
+--serif:"Instrument Serif Docs",Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;--sans:"Instrument Sans Docs",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+--paper:#1d272c;--sheet:#1d272c;--ink:#eeeae0;--rust:#e5a17c;--muted:#b7c4ca;--line:#4b5050;--band:#303333;
+--doc:#1d272c;--text:#eeeae0;--link:#e5a17c;--code-bg:#303333;--code-line:#4b5050;
+--t-comment:#b7c4ca;--t-keyword:#e5a17c;--t-string:#abd1b9;--t-number:#e8c07d;--t-function:#8fc4e2;--t-var:#cdb0f2;--t-punct:#e0ddd5}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.dv-skip{position:absolute;left:12px;top:-60px;background:var(--paper);border:1px solid var(--ink);padding:8px 12px;z-index:10}
+.dv-skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.dv-mono{font:600 12px/1.4 var(--sans);letter-spacing:.09em;text-transform:uppercase}
+.dv-masthead{border-bottom:1px solid var(--line);background:var(--paper)}
+.dv-masthead-inner{max-width:1400px;margin:0 auto;padding:18px clamp(18px,5vw,80px);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+.dv-brand{display:inline-flex;gap:12px;align-items:center;min-height:44px;text-decoration:none}
+.dv-brand img{display:block;width:132px;height:28px}
+.dv-brand .dv-logo-dark{display:none}
+@media (prefers-color-scheme:dark){.dv-brand .dv-logo-light{display:none}.dv-brand .dv-logo-dark{display:block}}
+.dv-brand span{color:var(--rust)}
+.dv-masthead nav{display:flex;gap:8px 20px;flex-wrap:wrap}
+.dv-masthead nav a{display:inline-flex;align-items:center;min-height:32px;padding:4px 0;font:600 0.875rem/1.4 var(--sans);text-decoration:none}
+.dv-masthead nav a:hover,.dv-masthead nav a:focus-visible{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-layout{max-width:1400px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(18px,5vw,80px) 64px;display:grid;grid-template-columns:14rem minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:start}
+.dv-side{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:2px 0}
+.dv-side h2,.dv-mnav h2{margin:16px 0 6px;color:var(--rust)}
+.dv-side h2:first-child{margin-top:0}
+.dv-side ul,.dv-mnav ul{list-style:none;margin:0;padding:0}
+.dv-side li a,.dv-mnav li a{display:block;min-height:32px;padding:6px 0;text-decoration:none;font-size:.9375rem;line-height:1.35;border-left:2px solid transparent}
+.dv-side li a:hover,.dv-mnav li a:hover{text-decoration:underline}
+.dv-side li a[aria-current=page],.dv-mnav li a[aria-current=page]{border-left-color:var(--rust);padding-left:10px;font-weight:600}
+.dv-mnav{display:none;border-bottom:1px solid var(--line);margin-bottom:28px}
+.dv-mnav summary{cursor:pointer;padding:12px 0;list-style-position:inside}
+.dv-mnav div{padding:0 0 12px}
+.dv-sheet{position:relative;min-width:0;background:var(--doc)}
+.dv-head{padding:0 0 30px;border-bottom:1px solid var(--line)}
+.dv-kicker{margin:0 0 10px;color:var(--rust)}
+.dv-head h1{font:400 clamp(2.8rem,5vw,4.9rem)/1.04 var(--serif);letter-spacing:-.03em;margin:0 0 16px}
+.dv-summary{font:400 clamp(1.1rem,1.55vw,1.35rem)/1.48 var(--sans);margin:0 0 16px;max-width:48rem}
+.dv-applies{margin:0 0 12px;font-size:.9375rem}
+.dv-applies .dv-mono{color:var(--rust);margin-right:8px}
+.dv-meta{margin:0;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-meta a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);font-weight:600}
+.dv-meta code{font:inherit}
+.dv-preview{margin:0 0 18px;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem}
+.dv-toc{margin:16px 0 0}
+.dv-toc summary{cursor:pointer;color:var(--muted)}
+.dv-toc ol{margin:8px 0 0;padding-left:22px;columns:2 16rem;font-size:.9375rem}
+.dv-toc ol ol{columns:auto;margin:2px 0 4px;padding-left:18px;font-size:.875rem}
+.dv-toc li{margin:2px 0;break-inside:avoid}
+.dv-toc a{display:inline-block;min-height:32px;line-height:32px}
+.dv-note{margin:2rem 0 0;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem;color:var(--muted)}
+.dv-body{padding:36px 0 42px;color:var(--text);font:17px/1.65 var(--sans)}
+.dv-body>*{max-width:72ch}
+.dv-body>.dv-table,.dv-body>.dv-code{max-width:100%}
+.dv-body p,.dv-body li{overflow-wrap:anywhere}
+.dv-body td,.dv-body th{overflow-wrap:break-word}
+.dv-table code{white-space:nowrap}
+.dv-body a{color:var(--link);text-decoration-thickness:1px}
+.dv-body a:hover{color:var(--ink);text-decoration-color:var(--rust);text-decoration-thickness:2px}
+.dv-body h2,.dv-body h3,.dv-body h4,.dv-body h5,.dv-body h6{font-family:var(--serif);font-weight:400;color:var(--text);line-height:1.12;scroll-margin-top:24px}
+.dv-body h2{font-size:clamp(2rem,3.2vw,3rem);margin:3.2rem 0 1rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.dv-body h3{font-size:1.65rem;margin:2.2rem 0 .75rem}
+.dv-body h4,.dv-body h5,.dv-body h6{font:600 1rem/1.35 var(--sans);margin:1.7rem 0 .5rem}
+.dv-anchor{margin-left:.4em;color:var(--muted)!important;text-decoration:none;font-weight:400}
+.dv-anchor:hover,.dv-anchor:focus-visible{color:var(--link)!important}
+.dv-body code{font:.88em/1.5 var(--mono);background:var(--code-bg);border:1px solid var(--code-line);border-radius:3px;padding:.05em .3em}
+.dv-code{position:relative;margin:1.2rem 0}
+.dv-code-lang{position:absolute;right:10px;top:8px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dv-body pre{margin:0;overflow:auto;background:var(--code-bg);border:1px solid var(--code-line);border-radius:4px;padding:30px 16px 16px}
+.dv-body pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.55;white-space:pre}
+.dv-body blockquote{margin:1.5rem 0;padding:.2rem 1rem;border-left:3px solid var(--rust);color:var(--text)}
+.dv-body hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+.dv-body img{max-width:100%;height:auto}
+.dv-table{overflow-x:auto;margin:1.2rem 0;border:1px solid var(--code-line)}
+.dv-table table{border-collapse:collapse;font-size:.9375rem;line-height:1.5;min-width:100%}
+.dv-table th,.dv-table td{border:1px solid var(--code-line);padding:8px 10px;vertical-align:top;text-align:left;min-width:7rem}
+.dv-table th{background:var(--code-bg);font-weight:600}
+.dv-align-center{text-align:center!important}.dv-align-right{text-align:right!important}
+.token.comment,.token.prolog,.token.doctype,.token.cdata{color:var(--t-comment);font-style:italic}
+.token.keyword,.token.boolean,.token.important,.token.atrule,.token.builtin,.token.tag{color:var(--t-keyword)}
+.token.string,.token.char,.token.attr-value,.token.inserted,.token.url{color:var(--t-string)}
+.token.number,.token.constant,.token.symbol{color:var(--t-number)}
+.token.function,.token.class-name,.token.property,.token.attr-name{color:var(--t-function)}
+.token.variable,.token.parameter,.token.regex{color:var(--t-var)}
+.token.punctuation,.token.operator{color:var(--t-punct)}
+.token.deleted{color:var(--t-keyword)}
+.dv-pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:28px 0 0;border-top:1px solid var(--line);background:var(--sheet)}
+.dv-pager a{display:block;padding:8px 0;text-decoration:none}
+.dv-pager a:hover{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-pager .dv-mono{display:block;color:var(--rust);margin-bottom:2px}
+.dv-pager .next{text-align:right;grid-column:2}
+.dv-foot{max-width:1400px;margin:0 auto;padding:0 clamp(18px,5vw,80px) 48px;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-foot a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);text-decoration:none}
+.dv-foot a:hover,.dv-foot a:focus-visible{text-decoration:underline}
+@media (max-width:900px){
+.dv-layout{grid-template-columns:minmax(0,1fr);padding-top:28px;gap:0}
+.dv-side{display:none}
+.dv-mnav{display:block}
+.dv-head{padding:0 0 24px}
+.dv-body{padding:28px 0 32px;font-size:16px}
+.dv-pager{padding:20px 0 0;grid-template-columns:1fr}
+.dv-pager .next{grid-column:1}
+}
+</style>
+</head>
+<body>
+<a class="dv-skip" href="#dv-main">Skip to the document</a>
+<header class="dv-masthead"><div class="dv-masthead-inner">
+<a class="dv-brand" href="/pr-2727/" aria-label="Neotoma home"><img class="dv-logo-light" src="/pr-2727/brand/n2-nav-light.svg" alt="Neotoma" width="132" height="28"><img class="dv-logo-dark" src="/pr-2727/brand/n2-nav-dark.svg" alt="Neotoma" width="132" height="28"><span class="dv-mono">Docs</span></a>
+<nav aria-label="Site"><a href="/pr-2727/">Home</a><a href="/pr-2727/install">Install</a><a href="https://github.com/markmhendrickson/neotoma">GitHub</a></nav>
+</div></header>
+<div class="dv-layout">
+<nav class="dv-side" aria-label="Documentation"><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/" aria-current="page">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></nav>
+<main id="dv-main" tabindex="-1">
+<details class="dv-mnav"><summary class="dv-mono">Documents</summary><div><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/" aria-current="page">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></div></details>
+<article class="dv-sheet">
+<header class="dv-head">
+<p class="dv-preview">Pre-release review</p>
+<p class="dv-kicker dv-mono">Docs · Start here</p>
+<h1>MCP overview</h1>
+<p class="dv-summary">How agents connect to Neotoma through MCP and where to find setup and protocol details.</p>
+<p class="dv-applies"><span class="dv-mono">Applies to</span>v0.25.0 and main.</p>
+<p class="dv-meta"><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_overview.md">View and edit on GitHub</a> · <code>docs/developer/mcp_overview.md</code> at <code>782d6d1</code></p>
+<details class="dv-toc"><summary class="dv-mono">On this page (13 sections)</summary><ol><li><a href="#scope">Scope</a></li><li><a href="#purpose">Purpose</a></li><li><a href="#invariants">Invariants</a></li><li><a href="#definitions">Definitions</a></li><li><a href="#when-to-use-cli-vs-mcp">When to use CLI vs MCP</a></li><li><a href="#transport-choice-stdio-local-vs-http-remote">Transport choice: stdio (local) vs HTTP (remote)</a></li><li><a href="#setup-guides-by-harness">Setup guides by harness</a></li><li><a href="#other-canonical-references">Other canonical references</a></li><li><a href="#what-mcp-provides">What MCP provides</a></li><li><a href="#diagrams">Diagrams</a></li><li><a href="#examples">Examples</a></li><li><a href="#testing-requirements">Testing requirements</a></li><li><a href="#agent-mcp-behavior-tests">Agent MCP behavior tests</a></li></ol></details>
+</header>
+<div class="dv-body">
+<h2 id="scope">Scope<a href="#scope" class="dv-anchor" aria-label="Link to this section: Scope">#</a></h2>
+<p>This document covers a curated overview of Neotoma MCP usage and links to canonical MCP references. It does not replace the full MCP specification or OAuth implementation details.</p>
+<h2 id="purpose">Purpose<a href="#purpose" class="dv-anchor" aria-label="Link to this section: Purpose">#</a></h2>
+<p>Provide a single entry point for MCP documentation with links to setup guides, the MCP spec, and authentication references.</p>
+<h2 id="invariants">Invariants<a href="#invariants" class="dv-anchor" aria-label="Link to this section: Invariants">#</a></h2>
+<ol>
+<li>MCP actions MUST follow the MCP specification.</li>
+<li>MCP mutations MUST respect Neotoma's record boundary and explicit user control.</li>
+<li>MCP examples MUST be deterministic and free of credentials.</li>
+</ol>
+<h2 id="definitions">Definitions<a href="#definitions" class="dv-anchor" aria-label="Link to this section: Definitions">#</a></h2>
+<ul>
+<li><strong>MCP</strong>: Model Context Protocol used by AI tools to access Neotoma.</li>
+<li><strong>Action catalog</strong>: The list of supported MCP actions and schemas.</li>
+<li><strong>Setup guide</strong>: Tool specific instructions for MCP integration.</li>
+</ul>
+<h2 id="when-to-use-cli-vs-mcp">When to use CLI vs MCP<a href="#when-to-use-cli-vs-mcp" class="dv-anchor" aria-label="Link to this section: When to use CLI vs MCP">#</a></h2>
+<ul>
+<li><strong>Local (same machine as repo):</strong> Prefer the <strong>Neotoma CLI</strong> for all Neotoma operations. Invoke commands directly (e.g. <code>neotoma entities list</code>). The CLI is more reliable locally (no MCP server spawn/sync issues). Use MCP only if the user explicitly configures it.</li>
+<li><strong>Remote (tunnel, ChatGPT, cloud):</strong> Use <strong>MCP</strong> over HTTP with your instance's configured HTTPS URL.</li>
+</ul>
+<p>For local development and agents running in the repo, the CLI is the recommended interface; MCP is recommended for remote clients.</p>
+<h2 id="transport-choice-stdio-local-vs-http-remote">Transport choice: stdio (local) vs HTTP (remote)<a href="#transport-choice-stdio-local-vs-http-remote" class="dv-anchor" aria-label="Link to this section: Transport choice: stdio (local) vs HTTP (remote)">#</a></h2>
+<ul>
+<li><strong>Stdio:</strong> Use for local clients (Cursor, Claude Code, Codex on the same machine as the Neotoma repo). Client spawns the server; better recovery after sleep.</li>
+<li><strong>HTTP:</strong> Use for remote access (tunnel, ChatGPT, or another HTTPS deployment).</li>
+</ul>
+<p>See setup guides for config examples and comparison table.</p>
+<h2 id="setup-guides-by-harness">Setup guides by harness<a href="#setup-guides-by-harness" class="dv-anchor" aria-label="Link to this section: Setup guides by harness">#</a></h2>
+<p>The table below lists every supported harness with its setup guide and whether <code>neotoma setup --tool &lt;name&gt;</code> auto-installs the MCP server entry. <code>neotoma setup --help</code> lists five hosts: <code>claude-code</code>, <code>claude-desktop</code>, <code>cursor</code>, <code>codex</code>, <code>openclaw</code>. The argument parser (<code>toolFromString</code> in <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/src/cli/permissions.ts"><code>src/cli/permissions.ts</code></a>) also accepts <code>windsurf</code>, <code>continue</code>, and <code>vscode</code>, but the MCP step of <code>neotoma setup</code> only targets the Cursor, Claude Code, and Codex configs (<code>mcpHarness</code> in <code>src/cli/index.ts</code>), so configure those three hosts by hand with the guides below. Other harnesses use their native MCP-add command or a manual config file. Whether <code>setup</code> should install those three hosts is tracked in <a href="https://github.com/markmhendrickson/neotoma/issues/2681">#2681</a>.</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Setup guides by harness"><table>
+<thead>
+<tr>
+<th>Harness</th>
+<th>Guide</th>
+<th>Auto-install</th>
+<th>Transport</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cursor</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_cursor_setup.md"><code>mcp_cursor_setup.md</code></a></td>
+<td><code>neotoma setup --tool cursor</code></td>
+<td>stdio (local) or HTTP</td>
+<td>Source of truth for <code>.cursor/mcp.json</code>; sync to other clients via <code>npm run sync:mcp</code></td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_claude_code_setup.md"><code>mcp_claude_code_setup.md</code></a></td>
+<td><code>neotoma setup --tool claude-code</code></td>
+<td>stdio (local) or HTTP</td>
+<td>OAuth supported; writes user + project scopes</td>
+</tr>
+<tr>
+<td>Codex CLI</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_codex_remote_setup.md"><code>mcp_codex_remote_setup.md</code></a></td>
+<td><code>neotoma setup --tool codex</code> for local stdio; remote HTTP uses <code>codex mcp add</code></td>
+<td>stdio or HTTP</td>
+<td>The guide gives Codex-specific remote OAuth steps; repo config sync covers local stdio only</td>
+</tr>
+<tr>
+<td>Claude Desktop</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_claude_code_setup.md"><code>mcp_claude_code_setup.md</code></a></td>
+<td><code>neotoma setup --tool claude-desktop --install-scope user</code> updates an existing Desktop config</td>
+<td>stdio</td>
+<td>The default project scope writes a project MCP config instead; no allowlist patch</td>
+</tr>
+<tr>
+<td>Windsurf</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_windsurf_setup.md"><code>mcp_windsurf_setup.md</code></a></td>
+<td>manual (see guide)</td>
+<td>stdio (local) or HTTP</td>
+<td>Edit <code>~/.codeium/windsurf/mcp_config.json</code> by hand</td>
+</tr>
+<tr>
+<td>Continue</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_continue_setup.md"><code>mcp_continue_setup.md</code></a></td>
+<td>manual (see guide)</td>
+<td>stdio (local) or HTTP</td>
+<td>Edit Continue's <code>config.json</code> by hand</td>
+</tr>
+<tr>
+<td>VS Code</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_vscode_setup.md"><code>mcp_vscode_setup.md</code></a></td>
+<td>manual (see guide)</td>
+<td>stdio (local) or HTTP</td>
+<td>Copilot Chat MCP integration; edit <code>.vscode/mcp.json</code> by hand</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_openclaw_setup.md"><code>mcp_openclaw_setup.md</code></a></td>
+<td><code>neotoma setup --tool openclaw</code></td>
+<td>stdio (local) or HTTP</td>
+<td>Native plugin manages permissions; allowlist patch is skipped; installs skills under <code>.openclaw/skills/</code></td>
+</tr>
+<tr>
+<td>IronClaw</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_ironclaw_setup.md"><code>docs/developer/mcp_ironclaw_setup.md</code></a></td>
+<td>use <code>ironclaw mcp add</code></td>
+<td>HTTP recommended</td>
+<td>No <code>neotoma setup --tool ironclaw</code>; configured via IronClaw's own MCP commands</td>
+</tr>
+<tr>
+<td>Letta</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_letta_setup.md"><code>mcp_letta_setup.md</code></a></td>
+<td>manual</td>
+<td>streamable HTTP, SSE, or stdio</td>
+<td>TypeScript SDK or HTTP endpoint; no <code>neotoma setup</code> integration</td>
+</tr>
+<tr>
+<td>ChatGPT Apps connector</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/chatgpt_apps_setup.md"><code>chatgpt_apps_setup.md</code></a></td>
+<td>manual</td>
+<td>HTTP (MCP endpoint)</td>
+<td>Public HTTPS required; ChatGPT Developer Mode</td>
+</tr>
+<tr>
+<td>ChatGPT Custom GPT Actions</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/chatgpt_actions_setup.md"><code>chatgpt_actions_setup.md</code></a></td>
+<td>manual</td>
+<td>HTTP (OpenAPI, not MCP)</td>
+<td>Uses <code>openapi.yaml</code> as the action schema; distinct from MCP</td>
+</tr>
+<tr>
+<td>Mobile (iOS/Android)</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp/mobile_setup.md"><code>mcp/mobile_setup.md</code></a></td>
+<td>manual</td>
+<td>HTTP</td>
+<td>Tunnel-backed; no native auto-install</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="other-canonical-references">Other canonical references<a href="#other-canonical-references" class="dv-anchor" aria-label="Link to this section: Other canonical references">#</a></h2>
+<ul>
+<li><strong>MCP specification</strong>: <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/specs/MCP_SPEC.md"><code>docs/specs/MCP_SPEC.md</code></a></li>
+<li><strong>MCP server instructions</strong> (loaded at runtime): <a href="https://github.com/markmhendrickson/neotoma/tree/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp/"><code>docs/developer/mcp/</code></a> — <code>instructions.md</code>, <code>unauthenticated.md</code>, <code>tool_descriptions.yaml</code></li>
+<li><strong>Agent CLI config</strong> (unified MCP for Cursor, Claude Code, Codex): <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/agent_cli_configuration.md"><code>agent_cli_configuration.md</code></a></li>
+<li><strong>OAuth implementation</strong>: <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_oauth_implementation.md"><code>mcp_oauth_implementation.md</code></a></li>
+<li><strong>Authentication summary</strong>: <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_authentication_summary.md"><code>mcp_authentication_summary.md</code></a></li>
+</ul>
+<h2 id="what-mcp-provides">What MCP provides<a href="#what-mcp-provides" class="dv-anchor" aria-label="Link to this section: What MCP provides">#</a></h2>
+<p>MCP exposes structured actions for:</p>
+<ol>
+<li>Storing structured data and files.</li>
+<li>Retrieving entities, observations, relationships, and timeline events.</li>
+<li>Correcting and reinterpreting observations.</li>
+<li>Schema recommendations and updates.</li>
+</ol>
+<h2 id="diagrams">Diagrams<a href="#diagrams" class="dv-anchor" aria-label="Link to this section: Diagrams">#</a></h2>
+<div class="dv-code"><span class="dv-code-lang">mermaid</span><pre tabindex="0"><code class="language-mermaid">flowchart TD
+    aiTool[AITool] --&gt;|"MCP action"| mcpServer[McpServer]
+    mcpServer --&gt;|"Validate and store"| record[NeotomaRecord]
+    record --&gt;|"Response"| mcpServer
+    mcpServer --&gt;|"MCP response"| aiTool
+</code></pre></div>
+<h2 id="examples">Examples<a href="#examples" class="dv-anchor" aria-label="Link to this section: Examples">#</a></h2>
+<p><strong>Storing:</strong> Use the <strong>structured</strong> path (store with <code>entities</code>) for conversation- or tool-sourced data; use the <strong>unstructured</strong> path (store with <code>file_content</code>/<code>file_path</code>) for file- or resource-sourced data. See MCP_SPEC section 2.6 for the full rule.</p>
+<p>The JSON blocks below are arguments to the named MCP tool; the tool name is not an <code>action</code> field in the payload.</p>
+<h3 id="store-a-structured-entity">Store a structured entity<a href="#store-a-structured-entity" class="dv-anchor" aria-label="Link to this section: Store a structured entity">#</a></h3>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"idempotency_key"</span><span class="token operator">:</span> <span class="token string">"task-quarterly-report-001"</span><span class="token punctuation">,</span>
+  <span class="token property">"entities"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"entity_type"</span><span class="token operator">:</span> <span class="token string">"task"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Review quarterly report"</span><span class="token punctuation">,</span>
+      <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"open"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<h3 id="store-chat-turn-with-batched-relationships-preferred">Store chat turn with batched relationships (preferred)<a href="#store-chat-turn-with-batched-relationships-preferred" class="dv-anchor" aria-label="Link to this section: Store chat turn with batched relationships (preferred)">#</a></h3>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"idempotency_key"</span><span class="token operator">:</span> <span class="token string">"conversation-chat-12-1731680000000"</span><span class="token punctuation">,</span>
+  <span class="token property">"entities"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> <span class="token property">"entity_type"</span><span class="token operator">:</span> <span class="token string">"conversation"</span><span class="token punctuation">,</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Inbox check"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"entity_type"</span><span class="token operator">:</span> <span class="token string">"agent_message"</span><span class="token punctuation">,</span>
+      <span class="token property">"role"</span><span class="token operator">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span>
+      <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"show me the emails in my inbox"</span><span class="token punctuation">,</span>
+      <span class="token property">"turn_key"</span><span class="token operator">:</span> <span class="token string">"chat:12"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token property">"entity_type"</span><span class="token operator">:</span> <span class="token string">"task"</span><span class="token punctuation">,</span> <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Follow up on invoice"</span><span class="token punctuation">,</span> <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"open"</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"relationships"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> <span class="token property">"relationship_type"</span><span class="token operator">:</span> <span class="token string">"PART_OF"</span><span class="token punctuation">,</span> <span class="token property">"source_index"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token property">"target_index"</span><span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token property">"relationship_type"</span><span class="token operator">:</span> <span class="token string">"REFERS_TO"</span><span class="token punctuation">,</span> <span class="token property">"source_index"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token property">"target_index"</span><span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p>Use one <code>store</code> call with a batched <code>relationships</code> array when the linked entities are in the same request. Reserve <code>create_relationship</code> for fallback cases or links that target entities outside the request (for example, <code>EMBEDS</code> to a file interpretation entity).</p>
+<h3 id="store-a-file-from-a-co-located-mcp-server-unstructured">Store a file from a co-located MCP server (unstructured)<a href="#store-a-file-from-a-co-located-mcp-server-unstructured" class="dv-anchor" aria-label="Link to this section: Store a file from a co-located MCP server (unstructured)">#</a></h3>
+<p>Call <code>store</code> with <code>file_path</code> only when the path exists on the <strong>Neotoma server's</strong> filesystem. A local stdio server on the same machine can read this path. A remote HTTP server cannot read a file on the client machine; it rejects that request with <code>ERR_FILE_PATH_IS_SERVER_LOCAL</code>.</p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"idempotency_key"</span><span class="token operator">:</span> <span class="token string">"file-example-local-001"</span><span class="token punctuation">,</span>
+  <span class="token property">"file_path"</span><span class="token operator">:</span> <span class="token string">"/srv/neotoma/example.txt"</span><span class="token punctuation">,</span>
+  <span class="token property">"mime_type"</span><span class="token operator">:</span> <span class="token string">"text/plain"</span><span class="token punctuation">,</span>
+  <span class="token property">"original_filename"</span><span class="token operator">:</span> <span class="token string">"example.txt"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<h3 id="store-a-file-over-remote-http-mcp">Store a file over remote HTTP MCP<a href="#store-a-file-over-remote-http-mcp" class="dv-anchor" aria-label="Link to this section: Store a file over remote HTTP MCP">#</a></h3>
+<p>Call <code>store</code> with base64-encoded bytes in <code>file_content</code> and the matching <code>mime_type</code>. This payload works when the MCP client and Neotoma are on different machines; the example bytes decode to <code>Hello, Neotoma!</code> followed by a newline. For larger files, the REST multipart upload route <code>POST /sources/upload</code> is another remote transport; it is not an MCP tool.</p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"idempotency_key"</span><span class="token operator">:</span> <span class="token string">"file-example-remote-001"</span><span class="token punctuation">,</span>
+  <span class="token property">"file_content"</span><span class="token operator">:</span> <span class="token string">"SGVsbG8sIE5lb3RvbWEhCg=="</span><span class="token punctuation">,</span>
+  <span class="token property">"mime_type"</span><span class="token operator">:</span> <span class="token string">"text/plain"</span><span class="token punctuation">,</span>
+  <span class="token property">"original_filename"</span><span class="token operator">:</span> <span class="token string">"example.txt"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<h3 id="retrieve-entities">Retrieve entities<a href="#retrieve-entities" class="dv-anchor" aria-label="Link to this section: Retrieve entities">#</a></h3>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"entity_type"</span><span class="token operator">:</span> <span class="token string">"task"</span><span class="token punctuation">,</span>
+  <span class="token property">"limit"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+  <span class="token property">"offset"</span><span class="token operator">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<h2 id="testing-requirements">Testing requirements<a href="#testing-requirements" class="dv-anchor" aria-label="Link to this section: Testing requirements">#</a></h2>
+<ol>
+<li>Verify MCP actions conform to <code>docs/specs/MCP_SPEC.md</code>.</li>
+<li>Validate OAuth setup using the relevant setup guide.</li>
+</ol>
+<h2 id="agent-mcp-behavior-tests">Agent MCP behavior tests<a href="#agent-mcp-behavior-tests" class="dv-anchor" aria-label="Link to this section: Agent MCP behavior tests">#</a></h2>
+<p>Use the agent MCP behavior suite to validate that MCP instructions trigger the expected tool calls and stored entities.</p>
+<p><strong>Fixture matrix:</strong> <code>tests/fixtures/agent_mcp_cases.json</code><br>
+<strong>Test entrypoint:</strong> <code>tests/agent/mcp_instruction_behavior.test.ts</code><br>
+<strong>Command:</strong> <code>npm run test:agent-mcp</code></p>
+<p><strong>Required environment for headless runners:</strong></p>
+<ul>
+<li><code>AGENT_TEST_ENABLED=true</code> to enable the suite</li>
+<li><code>AGENT_TEST_RUNNER=claude_code</code> (default) or <code>cursor_cli</code></li>
+<li><code>AGENT_CLI_COMMAND</code> pointing to a wrapper command that reads:
+<ul>
+<li><code>AGENT_PROMPT_PATH</code> (prompt file)</li>
+<li><code>AGENT_ATTACHMENTS_PATH</code> (JSON attachments list)</li>
+<li><code>AGENT_TRACE_PATH</code> (write NDJSON tool-call trace)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Trace format:</strong>
+Each NDJSON line must be JSON with at least:</p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"tool"</span><span class="token operator">:</span><span class="token string">"store"</span><span class="token punctuation">,</span><span class="token property">"arguments"</span><span class="token operator">:</span><span class="token punctuation">{</span>...<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"result"</span><span class="token operator">:</span><span class="token punctuation">{</span>...<span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre></div>
+<p class="dv-note">The file ends with an “Agent Instructions” section written for coding agents. It is left out here; read it <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_overview.md#agent-instructions">on GitHub</a>.</p>
+</div>
+<nav class="dv-pager" aria-label="Previous and next document"><a class="prev" href="/pr-2727/docs/cli/" rel="prev"><span class="dv-mono">Previous</span>CLI reference</a><a class="next" href="/pr-2727/docs/rest-api/" rel="next"><span class="dv-mono">Next</span>REST API</a></nav>
+</article>
+</main>
+</div>
+<footer class="dv-foot">
+<p>Rendered from <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_overview.md">docs/developer/mcp_overview.md</a> at commit <code>782d6d1</code>. The file on GitHub is the source; edits there appear here at the next site deploy.</p>
+<p><a href="/pr-2727/">neotoma.io</a> · <a href="/pr-2727/privacy">Privacy</a> · <a href="/pr-2727/terms">Terms of use</a></p>
+</footer>
+</body>
+</html>

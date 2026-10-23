@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLI reference | Neotoma docs</title>
+<meta name="description" content="How to run the neotoma command, and what each command and option does.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://neotoma.io/docs/cli/">
+<link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/markmhendrickson/neotoma/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/cli_reference.md" title="Markdown source at 782d6d1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Neotoma">
+<meta property="og:title" content="CLI reference | Neotoma docs">
+<meta property="og:description" content="How to run the neotoma command, and what each command and option does.">
+<meta property="og:url" content="https://neotoma.io/docs/cli/">
+<meta property="og:image" content="https://neotoma.io/pr-2727/neotoma-og-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="docs-viewer-source" content="docs/developer/cli_reference.md">
+<meta name="docs-viewer-commit" content="782d6d1124712c30ecc0dc26fab3c0c847a340ad">
+<link rel="icon" href="/pr-2727/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/pr-2727/favicon.ico" sizes="any">
+<style>
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Instrument Serif Docs";src:url("/pr-2727/brand/october/instrument-serif.ttf") format("truetype");font-weight:400;font-display:swap}
+:root{color-scheme:light;
+--paper:#faf8f3;--sheet:#faf8f3;--ink:#172b39;--rust:#a14624;--muted:#52616a;--line:#d6d0c4;--band:#f1ece2;
+--doc:#faf8f3;--text:#172b39;--link:#a14624;--code-bg:#f1ece2;--code-line:#d6d0c4;
+--t-comment:#52616a;--t-keyword:#a14624;--t-string:#3f6259;--t-number:#79520c;--t-function:#22587a;--t-var:#6a3d99;--t-punct:#52616a;
+--serif:"Instrument Serif Docs",Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;--sans:"Instrument Sans Docs",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+--paper:#1d272c;--sheet:#1d272c;--ink:#eeeae0;--rust:#e5a17c;--muted:#b7c4ca;--line:#4b5050;--band:#303333;
+--doc:#1d272c;--text:#eeeae0;--link:#e5a17c;--code-bg:#303333;--code-line:#4b5050;
+--t-comment:#b7c4ca;--t-keyword:#e5a17c;--t-string:#abd1b9;--t-number:#e8c07d;--t-function:#8fc4e2;--t-var:#cdb0f2;--t-punct:#e0ddd5}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.dv-skip{position:absolute;left:12px;top:-60px;background:var(--paper);border:1px solid var(--ink);padding:8px 12px;z-index:10}
+.dv-skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.dv-mono{font:600 12px/1.4 var(--sans);letter-spacing:.09em;text-transform:uppercase}
+.dv-masthead{border-bottom:1px solid var(--line);background:var(--paper)}
+.dv-masthead-inner{max-width:1400px;margin:0 auto;padding:18px clamp(18px,5vw,80px);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+.dv-brand{display:inline-flex;gap:12px;align-items:center;min-height:44px;text-decoration:none}
+.dv-brand img{display:block;width:132px;height:28px}
+.dv-brand .dv-logo-dark{display:none}
+@media (prefers-color-scheme:dark){.dv-brand .dv-logo-light{display:none}.dv-brand .dv-logo-dark{display:block}}
+.dv-brand span{color:var(--rust)}
+.dv-masthead nav{display:flex;gap:8px 20px;flex-wrap:wrap}
+.dv-masthead nav a{display:inline-flex;align-items:center;min-height:32px;padding:4px 0;font:600 0.875rem/1.4 var(--sans);text-decoration:none}
+.dv-masthead nav a:hover,.dv-masthead nav a:focus-visible{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-layout{max-width:1400px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(18px,5vw,80px) 64px;display:grid;grid-template-columns:14rem minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:start}
+.dv-side{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:2px 0}
+.dv-side h2,.dv-mnav h2{margin:16px 0 6px;color:var(--rust)}
+.dv-side h2:first-child{margin-top:0}
+.dv-side ul,.dv-mnav ul{list-style:none;margin:0;padding:0}
+.dv-side li a,.dv-mnav li a{display:block;min-height:32px;padding:6px 0;text-decoration:none;font-size:.9375rem;line-height:1.35;border-left:2px solid transparent}
+.dv-side li a:hover,.dv-mnav li a:hover{text-decoration:underline}
+.dv-side li a[aria-current=page],.dv-mnav li a[aria-current=page]{border-left-color:var(--rust);padding-left:10px;font-weight:600}
+.dv-mnav{display:none;border-bottom:1px solid var(--line);margin-bottom:28px}
+.dv-mnav summary{cursor:pointer;padding:12px 0;list-style-position:inside}
+.dv-mnav div{padding:0 0 12px}
+.dv-sheet{position:relative;min-width:0;background:var(--doc)}
+.dv-head{padding:0 0 30px;border-bottom:1px solid var(--line)}
+.dv-kicker{margin:0 0 10px;color:var(--rust)}
+.dv-head h1{font:400 clamp(2.8rem,5vw,4.9rem)/1.04 var(--serif);letter-spacing:-.03em;margin:0 0 16px}
+.dv-summary{font:400 clamp(1.1rem,1.55vw,1.35rem)/1.48 var(--sans);margin:0 0 16px;max-width:48rem}
+.dv-applies{margin:0 0 12px;font-size:.9375rem}
+.dv-applies .dv-mono{color:var(--rust);margin-right:8px}
+.dv-meta{margin:0;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-meta a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);font-weight:600}
+.dv-meta code{font:inherit}
+.dv-preview{margin:0 0 18px;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem}
+.dv-toc{margin:16px 0 0}
+.dv-toc summary{cursor:pointer;color:var(--muted)}
+.dv-toc ol{margin:8px 0 0;padding-left:22px;columns:2 16rem;font-size:.9375rem}
+.dv-toc ol ol{columns:auto;margin:2px 0 4px;padding-left:18px;font-size:.875rem}
+.dv-toc li{margin:2px 0;break-inside:avoid}
+.dv-toc a{display:inline-block;min-height:32px;line-height:32px}
+.dv-note{margin:2rem 0 0;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem;color:var(--muted)}
+.dv-body{padding:36px 0 42px;color:var(--text);font:17px/1.65 var(--sans)}
+.dv-body>*{max-width:72ch}
+.dv-body>.dv-table,.dv-body>.dv-code{max-width:100%}
+.dv-body p,.dv-body li{overflow-wrap:anywhere}
+.dv-body td,.dv-body th{overflow-wrap:break-word}
+.dv-table code{white-space:nowrap}
+.dv-body a{color:var(--link);text-decoration-thickness:1px}
+.dv-body a:hover{color:var(--ink);text-decoration-color:var(--rust);text-decoration-thickness:2px}
+.dv-body h2,.dv-body h3,.dv-body h4,.dv-body h5,.dv-body h6{font-family:var(--serif);font-weight:400;color:var(--text);line-height:1.12;scroll-margin-top:24px}
+.dv-body h2{font-size:clamp(2rem,3.2vw,3rem);margin:3.2rem 0 1rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.dv-body h3{font-size:1.65rem;margin:2.2rem 0 .75rem}
+.dv-body h4,.dv-body h5,.dv-body h6{font:600 1rem/1.35 var(--sans);margin:1.7rem 0 .5rem}
+.dv-anchor{margin-left:.4em;color:var(--muted)!important;text-decoration:none;font-weight:400}
+.dv-anchor:hover,.dv-anchor:focus-visible{color:var(--link)!important}
+.dv-body code{font:.88em/1.5 var(--mono);background:var(--code-bg);border:1px solid var(--code-line);border-radius:3px;padding:.05em .3em}
+.dv-code{position:relative;margin:1.2rem 0}
+.dv-code-lang{position:absolute;right:10px;top:8px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dv-body pre{margin:0;overflow:auto;background:var(--code-bg);border:1px solid var(--code-line);border-radius:4px;padding:30px 16px 16px}
+.dv-body pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.55;white-space:pre}
+.dv-body blockquote{margin:1.5rem 0;padding:.2rem 1rem;border-left:3px solid var(--rust);color:var(--text)}
+.dv-body hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+.dv-body img{max-width:100%;height:auto}
+.dv-table{overflow-x:auto;margin:1.2rem 0;border:1px solid var(--code-line)}
+.dv-table table{border-collapse:collapse;font-size:.9375rem;line-height:1.5;min-width:100%}
+.dv-table th,.dv-table td{border:1px solid var(--code-line);padding:8px 10px;vertical-align:top;text-align:left;min-width:7rem}
+.dv-table th{background:var(--code-bg);font-weight:600}
+.dv-align-center{text-align:center!important}.dv-align-right{text-align:right!important}
+.token.comment,.token.prolog,.token.doctype,.token.cdata{color:var(--t-comment);font-style:italic}
+.token.keyword,.token.boolean,.token.important,.token.atrule,.token.builtin,.token.tag{color:var(--t-keyword)}
+.token.string,.token.char,.token.attr-value,.token.inserted,.token.url{color:var(--t-string)}
+.token.number,.token.constant,.token.symbol{color:var(--t-number)}
+.token.function,.token.class-name,.token.property,.token.attr-name{color:var(--t-function)}
+.token.variable,.token.parameter,.token.regex{color:var(--t-var)}
+.token.punctuation,.token.operator{color:var(--t-punct)}
+.token.deleted{color:var(--t-keyword)}
+.dv-pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:28px 0 0;border-top:1px solid var(--line);background:var(--sheet)}
+.dv-pager a{display:block;padding:8px 0;text-decoration:none}
+.dv-pager a:hover{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-pager .dv-mono{display:block;color:var(--rust);margin-bottom:2px}
+.dv-pager .next{text-align:right;grid-column:2}
+.dv-foot{max-width:1400px;margin:0 auto;padding:0 clamp(18px,5vw,80px) 48px;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-foot a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);text-decoration:none}
+.dv-foot a:hover,.dv-foot a:focus-visible{text-decoration:underline}
+@media (max-width:900px){
+.dv-layout{grid-template-columns:minmax(0,1fr);padding-top:28px;gap:0}
+.dv-side{display:none}
+.dv-mnav{display:block}
+.dv-head{padding:0 0 24px}
+.dv-body{padding:28px 0 32px;font-size:16px}
+.dv-pager{padding:20px 0 0;grid-template-columns:1fr}
+.dv-pager .next{grid-column:1}
+}
+</style>
+</head>
+<body>
+<a class="dv-skip" href="#dv-main">Skip to the document</a>
+<header class="dv-masthead"><div class="dv-masthead-inner">
+<a class="dv-brand" href="/pr-2727/" aria-label="Neotoma home"><img class="dv-logo-light" src="/pr-2727/brand/n2-nav-light.svg" alt="Neotoma" width="132" height="28"><img class="dv-logo-dark" src="/pr-2727/brand/n2-nav-dark.svg" alt="Neotoma" width="132" height="28"><span class="dv-mono">Docs</span></a>
+<nav aria-label="Site"><a href="/pr-2727/">Home</a><a href="/pr-2727/install">Install</a><a href="https://github.com/markmhendrickson/neotoma">GitHub</a></nav>
+</div></header>
+<div class="dv-layout">
+<nav class="dv-side" aria-label="Documentation"><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/" aria-current="page">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></nav>
+<main id="dv-main" tabindex="-1">
+<details class="dv-mnav"><summary class="dv-mono">Documents</summary><div><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/" aria-current="page">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></div></details>
+<article class="dv-sheet">
+<header class="dv-head">
+<p class="dv-preview">Pre-release review</p>
+<p class="dv-kicker dv-mono">Docs · Start here</p>
+<h1>CLI reference</h1>
+<p class="dv-summary">How to run the neotoma command, and what each command and option does.</p>
+<p class="dv-applies"><span class="dv-mono">Applies to</span>main. The latest release, v0.25.0, differs in four places, each marked where it appears: it has no array-item patch command and no --expected-version check on corrections create, it stores an omitted --observation-source as llm_summary, and its ingest --plan and store --plan still write a source row and the raw file.</p>
+<p class="dv-meta"><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/cli_reference.md">View and edit on GitHub</a> · <code>docs/developer/cli_reference.md</code> at <code>782d6d1</code></p>
+<details class="dv-toc"><summary class="dv-mono">On this page (12 sections)</summary><ol><li><a href="#scope">Scope</a></li><li><a href="#purpose">Purpose</a></li><li><a href="#invariants">Invariants</a></li><li><a href="#definitions">Definitions</a></li><li><a href="#running-the-cli">Running the CLI</a><ol><li><a href="#keeping-the-global-cli-in-sync">Keeping the global CLI in sync</a></li><li><a href="#dev-or-prod-http-at-login-macos">Dev or prod HTTP at login (macOS)</a></li><li><a href="#scheduled-github-issues-sync-macos">Scheduled GitHub issues sync (macOS)</a></li><li><a href="#environment-neotoma-dev--neotoma-prod">Environment: neotoma dev / neotoma prod</a></li><li><a href="#default-interactive-session-use-existing-only">Default: interactive session (use-existing only)</a></li></ol></li><li><a href="#npm-scripts-summary">npm scripts summary</a><ol><li><a href="#build-and-start">Build and start</a></li><li><a href="#development-watch-mode">Development (watch mode)</a></li><li><a href="#tunnel-and-setup">Tunnel and setup</a></li><li><a href="#test-and-quality">Test and quality</a></li><li><a href="#database-and-schema">Database and schema</a></li><li><a href="#docs-and-other">Docs and other</a></li></ol></li><li><a href="#command-reference">Command reference</a><ol><li><a href="#global-options">Global options</a></li><li><a href="#issues">Issues</a></li><li><a href="#plans">Plans</a></li><li><a href="#access-policies">Access Policies</a></li><li><a href="#instance-policy">Instance Policy</a></li><li><a href="#runtime-overrides-precedence-flag--env--default">Runtime overrides (precedence: flag &gt; env &gt; default)</a></li><li><a href="#peer-sync-and-http-api-server-process">Peer sync and HTTP API (server process)</a></li><li><a href="#sandbox-server-process">Sandbox (server process)</a></li><li><a href="#mcp--sse-transport-tuning-server-process">MCP / SSE transport tuning (server process)</a></li><li><a href="#mcp-signed-shim-mcpjson-not-cli-preaction">MCP signed shim (mcp.json, not CLI preAction)</a></li><li><a href="#update-check-stderr-notice">Update check (stderr notice)</a></li><li><a href="#session-interactive-prompt">Session (interactive prompt)</a></li><li><a href="#offline-support-matrix">Offline support matrix</a></li><li><a href="#initialization">Initialization</a></li><li><a href="#harness-setup">Harness setup</a></li><li><a href="#reporter">Reporter</a></li><li><a href="#preflight">Preflight</a></li><li><a href="#reset">Reset</a></li><li><a href="#authentication">Authentication</a></li><li><a href="#mcp-configuration">MCP configuration</a></li><li><a href="#cli-instructions-prefer-mcp-when-available-cli-as-backup">CLI instructions (prefer MCP when available, CLI as backup)</a></li><li><a href="#entities">Entities</a></li><li><a href="#sources">Sources</a></li><li><a href="#observations">Observations</a></li><li><a href="#relationship-types">Relationship Types</a></li><li><a href="#relationships">Relationships</a></li><li><a href="#timeline">Timeline</a></li><li><a href="#schemas">Schemas</a></li><li><a href="#peers">Peers</a></li><li><a href="#interpretations">Interpretations</a></li><li><a href="#store">Store</a></li><li><a href="#ingest">Ingest</a></li><li><a href="#mcpcli-parity-note">MCP/CLI parity note</a></li><li><a href="#upload">Upload</a></li><li><a href="#analyze">Analyze</a></li><li><a href="#stats">Stats</a></li><li><a href="#watch-local-backend-only">Watch (local backend only)</a></li><li><a href="#processes-local-os-only">Processes (local OS only)</a></li><li><a href="#mirror">Mirror</a></li><li><a href="#skills">Skills</a></li><li><a href="#edit">Edit</a></li><li><a href="#array-item-patch">Array item patch</a></li><li><a href="#memory-export">Memory export</a></li><li><a href="#storage">Storage</a></li><li><a href="#status">Status</a></li><li><a href="#snapshots">Snapshots</a></li><li><a href="#database-maintenance">Database maintenance</a></li><li><a href="#backup-and-restore">Backup and restore</a></li><li><a href="#logs">Logs</a></li><li><a href="#developer-scripts">Developer scripts</a></li><li><a href="#debugging-and-testing-eg-with-an-agent">Debugging and testing (e.g. with an agent)</a></li><li><a href="#openapi-request">OpenAPI request</a></li></ol></li><li><a href="#configuration-and-storage-paths">Configuration and storage paths</a></li><li><a href="#deterministic-output">Deterministic output</a></li><li><a href="#diagrams">Diagrams</a></li><li><a href="#examples">Examples</a><ol><li><a href="#request-by-openapi-operation-id">Request by OpenAPI operation ID</a></li><li><a href="#store-entities-from-a-file">Store entities from a file</a></li><li><a href="#stream-record-changes-alongside-mcp-actions">Stream record changes alongside MCP actions</a></li></ol></li><li><a href="#testing-requirements">Testing requirements</a></li></ol></details>
+</header>
+<div class="dv-body">
+<h2 id="scope">Scope<a href="#scope" class="dv-anchor" aria-label="Link to this section: Scope">#</a></h2>
+<p>This document covers CLI commands, options, configuration, and developer facing details. It does not cover MCP behavior or server side implementation beyond public API references.</p>
+<h2 id="purpose">Purpose<a href="#purpose" class="dv-anchor" aria-label="Link to this section: Purpose">#</a></h2>
+<p>Provide a complete CLI command reference and developer context for Neotoma CLI behavior.</p>
+<h2 id="invariants">Invariants<a href="#invariants" class="dv-anchor" aria-label="Link to this section: Invariants">#</a></h2>
+<ol>
+<li>Commands and options MUST match the CLI implementation.</li>
+<li>Output formatting MUST remain deterministic and stable.</li>
+<li>Configuration details MUST remain consistent with the CLI config module.</li>
+</ol>
+<h2 id="definitions">Definitions<a href="#definitions" class="dv-anchor" aria-label="Link to this section: Definitions">#</a></h2>
+<ul>
+<li><strong>Operation ID</strong>: OpenAPI operation identifier used by <code>neotoma request</code>.</li>
+<li><strong>Config path</strong>: The file path where CLI stores connection settings.</li>
+<li><strong>PKCE</strong>: OAuth Proof Key for Code Exchange used for login.</li>
+</ul>
+<h2 id="running-the-cli">Running the CLI<a href="#running-the-cli" class="dv-anchor" aria-label="Link to this section: Running the CLI">#</a></h2>
+<p>With the published package, install it with <code>npm install -g neotoma</code> and run <code>neotoma</code>. The rest of this section is for running from a source checkout.</p>
+<p>Run via npm scripts: <code>npm run cli</code> or <code>npm run cli:dev</code> (dev mode with immediate source changes). For global <code>neotoma</code> command: <code>npm run setup:cli</code> (build and link in one step), or manually <code>npm run build:server</code> then <code>npm install -g .</code> or <code>npm link</code>. If <code>neotoma</code> is not found, add <code>$(npm config get prefix)/bin</code> to PATH. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/getting_started.md#install">Install</a> in the getting started guide and <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/cli_overview.md#installation-and-setup">CLI overview</a> for full installation and troubleshooting details.</p>
+<h3 id="keeping-the-global-cli-in-sync">Keeping the global CLI in sync<a href="#keeping-the-global-cli-in-sync" class="dv-anchor" aria-label="Link to this section: Keeping the global CLI in sync">#</a></h3>
+<p>The global <code>neotoma</code> runs the built files in <code>dist/</code>, not the TypeScript source. After you change CLI code, either build once (<code>npm run build:server</code>) or run a watcher so the global install stays current:</p>
+<ul>
+<li><strong>One-off:</strong> <code>npm run build:server</code> after CLI changes.</li>
+<li><strong>Ongoing (terminal):</strong> Run <code>npm run dev:types</code> in a terminal. It runs <code>tsc --watch</code> so every save recompiles <code>dist/</code>; the next <code>neotoma</code> invocation uses the new code. With <code>npm link</code>, no re-link is needed.</li>
+<li><strong>Ongoing (after reboot):</strong> Run <code>npm run setup:launchd-cli-sync</code> once (alias: <code>setup:launchd-watch-build</code>). This installs a macOS LaunchAgent that re-links the global <code>neotoma</code> command to the current checkout, runs <code>tsc --watch</code> at login, and keeps it running so the global CLI stays in sync even after restart. The agent captures the current <code>node</code> / <code>npm</code> paths during setup; re-run the setup command after switching Node manager or Node version. Logs: <code>data/logs/launchd-watch-build.log</code>. Unload with <code>launchctl unload ~/Library/LaunchAgents/com.neotoma.watch-build.plist</code>.</li>
+</ul>
+<h3 id="dev-or-prod-http-at-login-macos">Dev or prod HTTP at login (macOS)<a href="#dev-or-prod-http-at-login-macos" class="dv-anchor" aria-label="Link to this section: Dev or prod HTTP at login (macOS)">#</a></h3>
+<ul>
+<li><strong>Dev API:</strong> <code>npm run setup:launchd-dev</code> (alias <code>setup:launchd-dev-server</code>) installs <code>com.neotoma.dev-server</code>, which runs <code>npm run dev:server</code>. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/launchd_dev_servers.md"><code>docs/developer/launchd_dev_servers.md</code></a>.</li>
+<li><strong>Built production-mode API:</strong> <code>npm run setup:launchd-prod-server</code> installs <code>com.neotoma.prod-server</code>, which runs <code>npm run start:server:prod</code>. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/launchd_prod_server.md"><code>docs/developer/launchd_prod_server.md</code></a>.</li>
+</ul>
+<h3 id="scheduled-github-issues-sync-macos">Scheduled GitHub issues sync (macOS)<a href="#scheduled-github-issues-sync-macos" class="dv-anchor" aria-label="Link to this section: Scheduled GitHub issues sync (macOS)">#</a></h3>
+<p>Run <code>npm run setup:launchd-issues-sync</code> once to install <code>com.neotoma.issues-sync</code>: it runs <code>neotoma issues sync</code> every 5 minutes (and once at login). Logs: <code>data/logs/launchd-issues-sync.log</code>. Optional env for launchd (not in your shell profile): copy <code>scripts/launchd-issues-sync.env.example</code> to <code>data/local/launchd-issues-sync.env</code>. Unload with <code>launchctl unload ~/Library/LaunchAgents/com.neotoma.issues-sync.plist</code>.</p>
+<p>One-off runs: <code>neotoma issues sync --repo &lt;owner/name&gt;</code> mirrors a different GitHub repo for that call only (server config is unchanged) and does <strong>not</strong> push local issues to it unless you add <code>--push</code>; <code>--dry-run</code> reports what would be created, updated and pushed and writes nothing; <code>--no-push</code> forces pull-only. The push leg stays on by default for the configured repo. A <code>--repo</code> other than the configured repo must be listed in <code>NEOTOMA_ISSUES_ALLOWED_REPOS</code> (comma-separated <code>owner/name</code>, or <code>issues.allowed_repos</code> in the config file) in the server's environment; otherwise the call is rejected. Allowlisting a repo enables more than reading it: the server's GitHub token is also used to comment on and close issues there. The GitHub token is the <code>NEOTOMA_ISSUES_GITHUB_TOKEN</code> setting in the environment of the process running the Neotoma server (or <code>gh auth login</code> as that user).</p>
+<h3 id="environment-neotoma-dev--neotoma-prod">Environment: <code>neotoma dev</code> / <code>neotoma prod</code><a href="#environment-neotoma-dev--neotoma-prod" class="dv-anchor" aria-label="Link to this section: Environment: neotoma dev / neotoma prod">#</a></h3>
+<p>To target a specific API environment, pass <code>dev</code> or <code>prod</code> as the first argument or use <code>--env</code>.</p>
+<ul>
+<li><code>neotoma dev</code>: development API (port 3080).</li>
+<li><code>neotoma prod</code>: production API (port 3180).</li>
+</ul>
+<p>Examples: <code>neotoma prod</code>, <code>neotoma dev</code>, <code>neotoma prod storage info</code>. Equivalent to using <code>--env</code>.</p>
+<h3 id="default-interactive-session-use-existing-only">Default: interactive session (use-existing only)<a href="#default-interactive-session-use-existing-only" class="dv-anchor" aria-label="Link to this section: Default: interactive session (use-existing only)">#</a></h3>
+<p>When you run <code>neotoma</code> with <strong>no arguments</strong>, source checkout selection follows this precedence:</p>
+<ol>
+<li>explicit CLI flags (for commands that accept root/path flags)</li>
+<li><code>NEOTOMA_REPO_ROOT</code></li>
+<li>directory-local checkout (walk up from current directory)</li>
+<li>saved config <code>project_root</code> (legacy <code>repo_root</code>) in <code>~/.config/neotoma/config.json</code></li>
+<li>user-level env at <code>~/.config/neotoma/.env</code> when no checkout is detected</li>
+</ol>
+<p>With a source checkout, the CLI:</p>
+<ol>
+<li>Uses <strong>use-existing</strong> policy only (no automatic server start).</li>
+<li>Discovers running API instances from session ports, default ports (<code>3080</code>, <code>3180</code>), remembered ports, and optional extra configured ports.</li>
+<li>Applies <code>--env</code> as a preference when selecting among multiple detected instances.</li>
+<li>If multiple candidates remain, prompts you to choose the instance.</li>
+<li>If none respond, shows fallback startup guidance and the command menu.</li>
+<li>Enters an <strong>interactive session</strong> with a <code>neotoma&gt; </code> prompt.</li>
+</ol>
+<p><strong>Non-interactive (e.g. agents):</strong> When stdout is not a TTY, the CLI does <strong>not</strong> prompt. It uses <strong>use-existing</strong> (connect only). If <strong>no command</strong> is given and stdout is not a TTY (e.g. an agent runs <code>neotoma</code> with no args), the CLI prints <code>No command given. Run neotoma &lt;command&gt; (e.g. neotoma entities list). Use neotoma --help for options.</code> and exits with code 1.</p>
+<p><strong>Direct invocation and session parity:</strong> Every action available at the interactive <code>neotoma&gt;</code> prompt is available as a direct CLI call: <code>neotoma &lt;top-level&gt; [subcommand] [options] [args]</code>. Examples: <code>neotoma entities list</code>, <code>neotoma relationships list &lt;entityId&gt;</code>, <code>neotoma storage info</code>. Agents and scripts should always use direct invocation; do not depend on entering the interactive session. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/cli_overview.md">CLI overview</a> and the command sections below for the full command tree.</p>
+<p>To show the intro and then a <strong>command menu</strong> (prompt <code>&gt; </code> and <code>? for shortcuts</code>; no servers), use:</p>
+<ul>
+<li><code>neotoma --no-session</code>
+You get the same intro panel, then an interactive prompt. Type a command, or <code>?</code> / <code>help</code> to list commands. Type <code>exit</code> or <code>quit</code>, or press Ctrl+D, to exit.</li>
+</ul>
+<p>To enter a session without starting any servers (connect to an already-running API):</p>
+<ul>
+<li><code>neotoma --no-servers</code> or <code>neotoma --servers=use-existing</code>
+Connect-only startup. Detects all available local API instances (not only <code>3080</code>/<code>3180</code>), prefers <code>--env</code> matches when available, and prompts when multiple candidates remain.</li>
+</ul>
+<p>To start the API in the <strong>background</strong>:</p>
+<ul>
+<li><code>neotoma api start --background --env dev</code> (or <code>--env prod</code>)
+Starts the selected environment only and writes env-specific PID/log files.</li>
+<li><code>neotoma api start --background --env dev --tunnel</code> (or <code>--env prod --tunnel</code>)
+Starts the API with an HTTPS tunnel (ngrok/cloudflared) for remote MCP access. Tunnel URL is written to <code>/tmp/ngrok-mcp-url.txt</code> when ready. Use <code>--tunnel-provider ngrok</code> or <code>--tunnel-provider cloudflare</code> to force a provider; otherwise the script auto-detects from installed tools.</li>
+<li><code>neotoma api start --env dev --tunnel</code> (or <code>--env prod --tunnel</code>, no <code>--background</code>)
+Runs the API and tunnel in the <strong>foreground</strong> in the current terminal (same as <code>npm run dev:server:tunnel</code>). Logs stream to the terminal; Ctrl+C stops both. Tunnel URL: <code>cat /tmp/ngrok-mcp-url.txt</code>.</li>
+</ul>
+<p><strong><code>--watch</code> flag (source checkouts).</strong> The product CLI command remains <code>neotoma api start</code>, but source-checkout npm spawn targets now use the <code>dev:server*</code> taxonomy. Production-env source checkouts route to <code>dev:server:prod</code>; installed-package production starts route to <code>start:server:prod</code>.</p>
+<ul>
+<li><code>neotoma api start --env prod --watch</code>: keeps source-checkout watch behavior explicit.</li>
+<li><code>neotoma api start --env prod --tunnel</code>: routes to <code>dev:server:prod:tunnel</code>.</li>
+</ul>
+<p>The flag is a no-op on <code>--env dev</code>, on installed-package checkouts without source watch scripts, and on the <code>--tunnel</code> path (the tunnel flow always wants the watcher). The deprecation line is suppressed under <code>--output json</code>.</p>
+<p>For a real <strong>headless / systemd</strong> production deployment, install the published npm package (<code>npm install -g neotoma</code>) and use the recipe in <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/install.md#production-deployment-headless--systemd">install.md § Production deployment (headless / systemd)</a> rather than <code>neotoma api start</code> on a source checkout.</p>
+<h2 id="npm-scripts-summary">npm scripts summary<a href="#npm-scripts-summary" class="dv-anchor" aria-label="Link to this section: npm scripts summary">#</a></h2>
+<p>All <code>npm run &lt;script&gt;</code> commands in one place. Scripts follow the taxonomy documented in <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/npm_scripts.md"><code>docs/developer/npm_scripts.md</code></a>: <code>dev:*</code> for local development and watch processes, <code>build:*</code> for one-shot builds, <code>start:*</code> for compiled-<code>dist</code> runners, and <code>info:*</code> for one-shot informational output. Old <code>watch:*</code>, <code>start:api*</code>, and pages-site names remain as one-release compatibility aliases.</p>
+<h3 id="build-and-start">Build and start<a href="#build-and-start" class="dv-anchor" aria-label="Link to this section: Build and start">#</a></h3>
+<div class="dv-table" tabindex="0" role="region" aria-label="Build and start"><table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build:server</code></td>
+<td>Compile server TypeScript (<code>tsc</code>) → MCP, API, CLI, services</td>
+</tr>
+<tr>
+<td><code>build:ui</code></td>
+<td>Build frontend (Vite)</td>
+</tr>
+<tr>
+<td><code>start:mcp</code></td>
+<td>Run built MCP server (stdio)</td>
+</tr>
+<tr>
+<td><code>start:server</code></td>
+<td>Run built HTTP Actions API</td>
+</tr>
+<tr>
+<td><code>start:api</code></td>
+<td>Deprecated alias for <code>start:server</code></td>
+</tr>
+<tr>
+<td><code>start:server:prod</code></td>
+<td>Run <code>build:server</code>, pick HTTP port from 3180, set <code>NEOTOMA_ENV=production</code>, then run <code>start:server</code> (same <code>node dist/actions.js</code> as <code>start:server</code>). Does not build UI or run MCP.</td>
+</tr>
+<tr>
+<td><code>start:api:prod</code></td>
+<td>Deprecated alias for <code>start:server:prod</code></td>
+</tr>
+<tr>
+<td><code>start:ws</code></td>
+<td>Run MCP WebSocket bridge</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="development-watch-mode">Development (watch mode)<a href="#development-watch-mode" class="dv-anchor" aria-label="Link to this section: Development (watch mode)">#</a></h3>
+<div class="dv-table" tabindex="0" role="region" aria-label="Development (watch mode)"><table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dev:mcp</code>, <code>watch</code></td>
+<td>none</td>
+<td>MCP stdio watch</td>
+</tr>
+<tr>
+<td><code>dev:server</code>, <code>watch:server</code></td>
+<td>3080</td>
+<td>HTTP Actions API + watch</td>
+</tr>
+<tr>
+<td><code>dev:ui</code>, <code>watch:ui</code></td>
+<td>Vite</td>
+<td>Frontend dev server</td>
+</tr>
+<tr>
+<td><code>dev:server:tunnel</code></td>
+<td>3080</td>
+<td>API + HTTPS tunnel (Cloudflare/ngrok)</td>
+</tr>
+<tr>
+<td><code>dev:server:tunnel:types</code></td>
+<td>3080</td>
+<td>API + tunnel + <code>tsc --watch</code></td>
+</tr>
+<tr>
+<td><code>dev</code>, <code>dev:full</code></td>
+<td>3080, Vite, WS</td>
+<td>API + UI + build + resource banner + Inspector live build into <code>dist/inspector</code> (<code>NEOTOMA_INSPECTOR_LIVE_BUILD=1</code>: no long cache + <strong>full page reload</strong> when build output mtimes change: <code>index.html</code> plus <code>assets/*</code>, so lazy chunks trigger reload). With out-of-package <code>dist/inspector</code>, Vite watch uses <strong>chokidar polling</strong> by default so LaunchAgents pick up saves (<code>NEOTOMA_INSPECTOR_BUILD_WATCH_POLL=0</code> disables).</td>
+</tr>
+<tr>
+<td><code>dev:full:prod</code></td>
+<td>3180, Vite, WS</td>
+<td>Same as <code>dev</code> with <code>NEOTOMA_ENV=production</code> and prod-scoped Inspector watch (<code>dev:inspector:prod</code>)</td>
+</tr>
+<tr>
+<td><code>dev:inspector</code>, <code>dev:inspector:prod</code></td>
+<td>none</td>
+<td>Inspector only: <code>vite build --watch</code> → repo <code>dist/inspector</code> (use with API already running, or rely on <code>dev</code> / <code>dev:full:prod</code>; polling applies when output is <code>../dist/inspector</code> per <code>inspector/vite.config.ts</code>)</td>
+</tr>
+<tr>
+<td><code>watch:mcp:dev-shim</code>, <code>dev:mcp:dev-shim</code></td>
+<td>none</td>
+<td>Stable stdio dev shim that restarts its MCP worker behind the client connection</td>
+</tr>
+<tr>
+<td><code>dev:mcp</code></td>
+<td>none</td>
+<td>MCP stdio watch</td>
+</tr>
+<tr>
+<td><code>dev:mcp:prod</code></td>
+<td>none</td>
+<td>MCP stdio, production env</td>
+</tr>
+<tr>
+<td><code>dev:server:mcp</code></td>
+<td>3080, 8280</td>
+<td>API + MCP HTTP + build</td>
+</tr>
+<tr>
+<td><code>dev:ws</code></td>
+<td>3080, 8280</td>
+<td>API + WebSocket bridge watch</td>
+</tr>
+<tr>
+<td><code>dev:server:prod</code></td>
+<td>3180</td>
+<td>API + build, production env</td>
+</tr>
+<tr>
+<td><code>dev:server:prod:tunnel</code></td>
+<td>3180</td>
+<td>API + tunnel + build, production env</td>
+</tr>
+</tbody>
+</table></div>
+<p>Scripts that start servers use the port(s) above when free; if a port is in use, they bind to the next available port (no process killing). See <code>scripts/pick-port.js</code>.</p>
+<h3 id="tunnel-and-setup">Tunnel and setup<a href="#tunnel-and-setup" class="dv-anchor" aria-label="Link to this section: Tunnel and setup">#</a></h3>
+<div class="dv-table" tabindex="0" role="region" aria-label="Tunnel and setup"><table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tunnel:https</code></td>
+<td>Start HTTPS tunnel only (Cloudflare or ngrok)</td>
+</tr>
+<tr>
+<td><code>setup:cli</code></td>
+<td>Build and link <code>neotoma</code> globally</td>
+</tr>
+<tr>
+<td><code>setup:env-hook</code></td>
+<td>Install git hook to copy <code>.env</code> into worktrees</td>
+</tr>
+<tr>
+<td><code>copy:env</code></td>
+<td>Copy env file into current worktree</td>
+</tr>
+<tr>
+<td><code>setup:worktree</code></td>
+<td>Cursor worktree init</td>
+</tr>
+<tr>
+<td><code>setup:data</code></td>
+<td>Data directory symlink</td>
+</tr>
+<tr>
+<td><code>setup:foundation</code></td>
+<td>Foundation submodule symlink</td>
+</tr>
+<tr>
+<td><code>setup:storage</code></td>
+<td>Create storage buckets</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="test-and-quality">Test and quality<a href="#test-and-quality" class="dv-anchor" aria-label="Link to this section: Test and quality">#</a></h3>
+<div class="dv-table" tabindex="0" role="region" aria-label="Test and quality"><table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test</code></td>
+<td>Run Vitest</td>
+</tr>
+<tr>
+<td><code>test:unit</code></td>
+<td>Vitest, unit/services/agent/contract/security/cli only (no integration dir)</td>
+</tr>
+<tr>
+<td><code>test:remote</code></td>
+<td>Vitest with remote DB tests (RUN_REMOTE_TESTS=1)</td>
+</tr>
+<tr>
+<td><code>test:frontend</code></td>
+<td>Vitest for frontend</td>
+</tr>
+<tr>
+<td><code>test:integration</code></td>
+<td>Integration tests</td>
+</tr>
+<tr>
+<td><code>test:agent-mcp</code></td>
+<td>Agent MCP tests</td>
+</tr>
+<tr>
+<td><code>test:coverage</code></td>
+<td>Vitest with coverage</td>
+</tr>
+<tr>
+<td><code>test:coverage:critical</code></td>
+<td>Coverage for critical paths</td>
+</tr>
+<tr>
+<td><code>test:e2e</code></td>
+<td>Playwright E2E</td>
+</tr>
+<tr>
+<td><code>test:e2e:headed</code></td>
+<td>Playwright E2E, headed browser</td>
+</tr>
+<tr>
+<td><code>lint</code></td>
+<td>ESLint (src)</td>
+</tr>
+<tr>
+<td><code>type-check</code></td>
+<td><code>tsc --noEmit</code></td>
+</tr>
+<tr>
+<td><code>validate:coverage</code></td>
+<td>Validate coverage map</td>
+</tr>
+<tr>
+<td><code>validate:doc-deps</code></td>
+<td>Validate doc dependencies</td>
+</tr>
+<tr>
+<td><code>validate:mdx-site</code></td>
+<td>Validate <code>docs/site/pages/**/*.meta.json</code> + MDX siblings and <code>ROUTE_METADATA</code> keys</td>
+</tr>
+<tr>
+<td><code>validate:routes</code></td>
+<td>Site route parity vs <code>seo_metadata</code> / <code>MainApp</code></td>
+</tr>
+<tr>
+<td><code>doctor</code></td>
+<td>Project health check (env, local SQLite hints)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="database-and-schema">Database and schema<a href="#database-and-schema" class="dv-anchor" aria-label="Link to this section: Database and schema">#</a></h3>
+<div class="dv-table" tabindex="0" role="region" aria-label="Database and schema"><table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>migrate</code></td>
+<td>Run migrations</td>
+</tr>
+<tr>
+<td><code>migrate:dry-run</code></td>
+<td>Migrations dry run</td>
+</tr>
+<tr>
+<td><code>migrate:plans</code></td>
+<td>Migrate plans</td>
+</tr>
+<tr>
+<td><code>migrate:plans:dry-run</code></td>
+<td>Migrate plans dry run</td>
+</tr>
+<tr>
+<td><code>schema:export</code></td>
+<td>Export schema snapshots</td>
+</tr>
+<tr>
+<td><code>schema:init</code></td>
+<td>Initialize schemas</td>
+</tr>
+<tr>
+<td><code>schema:init:dry-run</code></td>
+<td>Schema init dry run</td>
+</tr>
+<tr>
+<td><code>schema:icons:generate</code></td>
+<td>Generate schema icons</td>
+</tr>
+<tr>
+<td><code>schema:cleanup:test</code></td>
+<td>Cleanup test schemas</td>
+</tr>
+<tr>
+<td><code>recover:db</code></td>
+<td>Check dev SQLite integrity / recover copy</td>
+</tr>
+<tr>
+<td><code>recover:db:prod</code></td>
+<td>Check prod SQLite integrity / recover copy</td>
+</tr>
+<tr>
+<td><code>wipe:dev</code></td>
+<td>Wipe dev database</td>
+</tr>
+<tr>
+<td><code>wipe:prod</code></td>
+<td>Wipe prod database</td>
+</tr>
+<tr>
+<td><code>wipe:local</code></td>
+<td>Wipe local database</td>
+</tr>
+<tr>
+<td><code>wipe:*:storage</code></td>
+<td>Wipe + storage (e.g. <code>wipe:prod:storage</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="docs-and-other">Docs and other<a href="#docs-and-other" class="dv-anchor" aria-label="Link to this section: Docs and other">#</a></h3>
+<div class="dv-table" tabindex="0" role="region" aria-label="Docs and other"><table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cli</code>, <code>cli:dev</code></td>
+<td>Run Neotoma CLI (built / dev)</td>
+</tr>
+<tr>
+<td><code>docs:generate</code></td>
+<td>Generate docs</td>
+</tr>
+<tr>
+<td><code>build:docs</code>, <code>dev:docs</code>, <code>dev:docs:serve</code></td>
+<td>Docs site build/dev/serve</td>
+</tr>
+<tr>
+<td><code>openapi:generate</code></td>
+<td>Generate OpenAPI types</td>
+</tr>
+<tr>
+<td><code>branches:prune</code></td>
+<td>Prune merged branches</td>
+</tr>
+<tr>
+<td><code>parquet:samples</code></td>
+<td>Create sample parquet files</td>
+</tr>
+<tr>
+<td><code>sync:env</code></td>
+<td>Sync env from 1Password</td>
+</tr>
+</tbody>
+</table></div>
+<p>For environment and ports, see <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/getting_started.md#run-development-servers">Run development servers</a>.</p>
+<h2 id="command-reference">Command reference<a href="#command-reference" class="dv-anchor" aria-label="Link to this section: Command reference">#</a></h2>
+<h3 id="global-options">Global options<a href="#global-options" class="dv-anchor" aria-label="Link to this section: Global options">#</a></h3>
+<ul>
+<li><code>--base-url &lt;url&gt;</code>: Override API base URL.</li>
+<li><code>--env &lt;env&gt;</code>: Environment selector (<code>dev</code> or <code>prod</code>). Required for server commands such as <code>api start</code>, <code>api stop</code>, <code>api logs</code>, and <code>watch</code>.</li>
+<li><code>--offline</code>: Force in-process local transport for data commands (no external API process required).</li>
+<li><code>--api-only</code>: Force API-only mode; fail when API is unreachable (use when you want to avoid loading the local DB).</li>
+<li><code>--json</code>: Output machine readable JSON.</li>
+<li><code>--pretty</code>: Output formatted JSON.</li>
+<li><code>--no-session</code>: With no arguments, show intro then command menu (prompt <code>&gt; </code>, <code>? for shortcuts</code>). No servers started.</li>
+<li><code>--no-servers</code>: With no arguments, enter session with connect-only behavior.</li>
+<li><code>--tunnel</code>: Start HTTPS tunnel (ngrok/cloudflared) with server start commands.</li>
+<li><code>--tunnel-provider &lt;provider&gt;</code>: Force tunnel provider to <code>ngrok</code> or <code>cloudflare</code> when using <code>--tunnel</code>; default is auto-detect from installed tools.</li>
+<li><code>--no-update-check</code>: Disable the update availability check. When enabled (default), the CLI checks the npm registry for a newer version and, if available, prints a one-line notice to stderr. The notice is never shown when <code>--json</code> is used.</li>
+</ul>
+<h3 id="issues">Issues<a href="#issues" class="dv-anchor" aria-label="Link to this section: Issues">#</a></h3>
+<ul>
+<li>
+<p><code>neotoma issues create --title &lt;title&gt; --body &lt;body&gt; [--visibility public|private] [--labels a,b]</code>: submit an issue through the same orchestration as MCP <code>submit_issue</code>. <strong>Reporter environment is required</strong> (v0.12+): the underlying API requires at least one of <code>reporter_git_sha</code> or <code>reporter_app_version</code>; pass them via the HTTP body when scripting against <code>/issues/submit</code>, or set <code>--reporter-git-sha</code> / <code>--reporter-app-version</code> once the CLI exposes those flags. JSON output includes <code>guest_access_token</code> when the configured operator instance accepts the issue; treat that value as a credential for later token-scoped status or message calls. <strong>Cross-repo mirror:</strong> the <code>/issues/submit</code> body also accepts an optional <code>target_repo</code> (<code>owner/repo</code>) field that redirects the GitHub mirror destination for that one call. Use it to file an issue about a repo other than the one Neotoma is globally configured for (<code>NEOTOMA_ISSUES_REPO</code>). It overrides only the GitHub mirror; the Neotoma authoring home (operator instance) is unchanged, and the stored <code>issue</code> / <code>conversation</code> identity is namespaced to <code>target_repo</code>. A malformed value is rejected with a structured <code>owner/repo</code> validation error. Deprecated hidden alias: <code>--advisory</code> maps to <code>--visibility private</code> for one minor release and prints <code>visibility 'advisory' is deprecated; use 'private' instead.</code> to stderr outside JSON output.</p>
+</li>
+<li>
+<p><code>neotoma issues message [number] --body &lt;body&gt; [--entity-id &lt;id&gt;] [--guest-access-token &lt;token&gt;]</code>: append to an issue thread. Use the guest token when the local issue snapshot does not already carry the operator token. On public issue threads, supply at least one of <code>reporter_git_sha</code> / <code>reporter_app_version</code> to record the build the message was authored against (soft requirement; the server emits a warning when both are missing).</p>
+</li>
+<li>
+<p><code>neotoma issues status [--entity-id &lt;id&gt; | --issue-number &lt;n&gt;] [--skip-sync] [--guest-access-token &lt;token&gt;]</code>: print issue metadata and thread messages. At least one of <code>--entity-id</code> or <code>--issue-number</code> is required. The guest token is only needed for remote operator read-through when it is not already stored on the local issue row.</p>
+</li>
+<li>
+<p><code>neotoma issues import --from-jsonl &lt;path&gt; [--since &lt;iso8601&gt;] [--until &lt;iso8601&gt;] [--reporter-channel &lt;label&gt;] [--reporter-git-sha &lt;sha&gt;] [--reporter-app-version &lt;version&gt;] [--mode proactive|consent] [--dry-run] [--limit &lt;n&gt;]</code>: ingest an observer JSONL log and file or fold issues for detected anomalies. Each line is scanned against a fixed set of filter predicates (see below); matching lines are redacted with the same <code>runRedactionGuard</code> PII backstop used by <code>issues create</code>, then either filed as new issues or folded as thread messages on existing open issues with the same dedup key <code>(anomaly_class, command_prefix, reporter_channel)</code>. Options: <code>--from-jsonl &lt;path&gt;</code> (required) path to the JSONL file; <code>--since</code> / <code>--until</code> filter lines by ISO 8601 timestamp; <code>--reporter-channel</code> overrides the channel label stamped on every filed issue; <code>--reporter-git-sha &lt;sha&gt;</code> / <code>--reporter-app-version &lt;version&gt;</code> supply the reporter environment when the JSONL lines lack per-line <code>reporter_git_sha</code> / <code>reporter_app_version</code> fields and the CLI binary version is unavailable (dev builds); the import fails fast with an actionable error if neither the resolved version nor any per-line field is available; <code>--mode proactive</code> files immediately, <code>--mode consent</code> (default) prompts before each filing action; <code>--dry-run</code> emits a structured JSON sweep report and commits nothing; <code>--limit &lt;n&gt;</code> stops after extracting n anomalies. Sweep report (emitted at end, or as JSON with <code>--dry-run</code> or <code>--json</code>) includes: <code>lines_scanned</code>, <code>lines_unparseable</code>, <code>lines_skipped_by_filter</code>, <code>anomalies_extracted</code>, <code>issues_filed</code>, <code>issues_folded</code>, <code>issues_skipped</code>, and per-issue <code>outcomes</code>.</p>
+<p><strong>Filter predicates (hard-coded in <code>src/services/issues/observer_import.ts</code>):</strong></p>
+<ol>
+<li><code>exit_code != 0</code> AND <code>ERR_</code> class in <code>stderr</code> → <code>hard_error</code> (transport / execution failure)</li>
+<li><code>unknown_fields_count &gt; 0</code> → <code>schema_drift</code> (unknown response fields indicate schema projection drift)</li>
+<li><code>HEURISTIC_MERGE</code> in <code>stderr</code> → <code>heuristic_merge</code> (identity resolution warning)</li>
+<li><code>duration_ms &gt; 5000</code> on store/retrieve commands → <code>perf_regression</code></li>
+<li><code>ERR_STORE_RESOLUTION_FAILED</code> in any field → <code>resolver_bug</code></li>
+<li><code>database disk image is malformed</code> in any field → <code>sqlite_corruption</code></li>
+<li><code>ERR_REPORTER_ENVIRONMENT_REQUIRED</code> in any field → <code>reporter_env_required</code></li>
+<li><code>status_code == 404</code> (current) or <code>503</code> (legacy, pre-neotoma#1923) on <code>/mcp</code> path → <code>stale_mcp_session</code></li>
+</ol>
+<p>Clean lines (<code>exit_code == 0</code>, no warnings matching any predicate) are skipped silently. PII redaction runs in scan mode: UUIDs, email addresses, auth tokens, and home-directory paths are replaced with <code>&lt;LABEL:hash&gt;</code> placeholders before the title and body are filed; lines are never dropped for containing PII. Redaction can only fail if an unexpected exception is thrown by the guard itself (which would indicate a programming error); in that case the line is skipped with a <code>skipped</code> outcome and an error reason in the sweep report. Deduplication stamps a deterministic <code>observer-dedup:&lt;hash&gt;</code> label (derived from <code>(anomaly_class, command_prefix, reporter_channel)</code>) on every filed issue, loads the existing open GitHub issues (best-effort; proceeds without dedup if GitHub is unavailable), and folds via <code>issues add_message</code> when an existing issue carrying the exact same dedup label is found.</p>
+</li>
+</ul>
+<h3 id="plans">Plans<a href="#plans" class="dv-anchor" aria-label="Link to this section: Plans">#</a></h3>
+<ul>
+<li><code>neotoma plans capture &lt;file&gt; | --all</code>: persist a harness <code>.plan.md</code> file (raw markdown source + structured <code>plan</code> row + EMBEDS) into Neotoma via the canonical combined <code>store</code> path. <code>--all</code> walks <code>.cursor/plans/</code>, <code>.claude/plans/</code>, <code>.codex/plans/</code>, <code>.openclaw/plans/</code> under the current repo (or <code>--repository-root &lt;path&gt;</code>). Optional <code>--source-message-entity-id</code>, <code>--source-entity-id</code>, <code>--source-entity-type</code> link the plan to the prompting message and a source entity (e.g. an <code>issue</code>). See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/plans.md"><code>docs/subsystems/plans.md</code></a>.</li>
+<li><code>neotoma plans list [--source-entity-id &lt;id&gt;] [--status &lt;s&gt;] [--harness &lt;h&gt;] [--limit &lt;n&gt;]</code>: list <code>plan</code> entities filtered by source / status / harness. Wraps <code>POST /retrieve_entities</code>.</li>
+</ul>
+<h3 id="access-policies">Access Policies<a href="#access-policies" class="dv-anchor" aria-label="Link to this section: Access Policies">#</a></h3>
+<ul>
+<li><code>neotoma access list</code>: Show effective non-default guest access policies. Resolution follows env var &gt; SchemaMetadata &gt; deprecated config fallback &gt; default; text output includes the winning source.</li>
+<li><code>neotoma access set &lt;entity_type&gt; &lt;mode&gt;</code>: Set a schema metadata guest policy when the schema exists, falling back to the deprecated config file only when SchemaMetadata is unavailable.</li>
+<li><code>neotoma access reset &lt;entity_type&gt;</code>: Clear any deprecated config fallback for the entity type and set schema metadata to the default <code>closed</code> policy when the schema exists. If an environment override still wins, output reports the remaining effective mode/source.</li>
+<li><code>neotoma access enable-issues</code>: Set <code>issue</code>, <code>conversation</code>, and <code>conversation_message</code> to <code>submitter_scoped</code>.</li>
+<li><code>neotoma access disable-issues</code>: Reset <code>issue</code>, <code>conversation</code>, and <code>conversation_message</code> to effective <code>closed</code> policy, subject to any env override.</li>
+</ul>
+<h3 id="instance-policy">Instance Policy<a href="#instance-policy" class="dv-anchor" aria-label="Link to this section: Instance Policy">#</a></h3>
+<p>Inspect and configure this instance's data policy (#1974/#1975): what the instance is <em>for</em>, which entity types are in or out of scope, and which person-data gates it enforces on <code>store</code>/<code>correct</code>.</p>
+<ul>
+<li><code>neotoma instance-policy show</code>: Show the instance data policy, or report that none is configured (<code>{"policy": null}</code>, meaning unrestricted, not deny-all).</li>
+<li><code>neotoma instance-policy set --file &lt;path&gt; [--enforce | --advisory] [--dry-run]</code>: Create or update the instance policy from a JSON file (fields: <code>purpose</code>, <code>out_of_scope_entity_types</code>, <code>require_lawful_basis</code>, <code>require_provenance</code>, <code>max_sensitivity_class</code>). <code>--enforce</code> sets <code>enforcement: "enforced"</code> (reject violating writes); <code>--advisory</code> sets <code>enforcement: "advisory"</code> (declare only, do not reject; the default when unset on a new policy). <code>--enforce</code> and <code>--advisory</code> are mutually exclusive. <code>--dry-run</code> prints what would be written without persisting it.</li>
+</ul>
+<p><code>enforcement: "enforced"</code> covers structured <code>store</code>/<code>correct</code> calls (an <code>entities</code> array) on all three write paths: REST, CLI, and MCP. It does <strong>not</strong> cover raw/reference file uploads (<code>neotoma store --file &lt;path&gt;</code> with no <code>entities</code> array); see <code>docs/releases/in_progress/v0.22.0/security_review.md</code> for the known scope boundary.</p>
+<h3 id="runtime-overrides-precedence-flag--env--default">Runtime overrides (precedence: flag &gt; env &gt; default)<a href="#runtime-overrides-precedence-flag--env--default" class="dv-anchor" aria-label="Link to this section: Runtime overrides (precedence: flag &gt; env &gt; default)">#</a></h3>
+<p>CLI behavior can be pinned per invocation via flags or across invocations via environment variables. Every runtime override follows the same precedence: explicit flag &gt; environment variable &gt; default.</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Runtime overrides (precedence: flag &gt; env &gt; default)"><table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Environment variable</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--api-only</code></td>
+<td><code>NEOTOMA_API_ONLY</code></td>
+<td>Force API-only transport; fail if API is unreachable.</td>
+</tr>
+<tr>
+<td><code>--offline</code></td>
+<td><code>NEOTOMA_OFFLINE</code></td>
+<td>Force in-process local transport; do not contact a remote API.</td>
+</tr>
+<tr>
+<td><code>--env &lt;env&gt;</code></td>
+<td><code>NEOTOMA_ENV</code> (<code>development</code> / <code>production</code>)</td>
+<td>Environment selector for server lifecycle commands.</td>
+</tr>
+<tr>
+<td><code>--root &lt;path&gt;</code></td>
+<td><code>NEOTOMA_REPO_ROOT</code></td>
+<td>Source-checkout root when <code>neotoma</code> is run with no args.</td>
+</tr>
+<tr>
+<td><code>--user-id &lt;id&gt;</code></td>
+<td><code>NEOTOMA_USER_ID</code></td>
+<td>Pin the user scope for read-verb requests (<code>entities</code>, <code>observations</code>, <code>relationships</code>, <code>timeline</code>, <code>schemas</code>, <code>sources</code>, <code>stats</code>, <code>list-recent-changes</code> (alias <code>recent</code>), <code>memory-export</code>). The flag wins per call; the env var acts as a session-wide pin; the server falls back to the authenticated user when both are unset.</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>--offline</code> and <code>--api-only</code> are mutually exclusive; setting both (via flag or env) raises an error at startup.</p>
+<p><code>NEOTOMA_USER_ID</code> must be non-empty when set: an empty or whitespace-only value causes the CLI to fail fast with a clear error rather than silently falling back to the authenticated user. Resolution is performed by <code>resolveEffectiveUserId()</code> in <code>src/cli/index.ts</code>.</p>
+<p>Any new runtime override must follow this precedence model: add the env var read in the <code>preAction</code> hook in <code>src/cli/index.ts</code> alongside the existing transport variables, use a <code>NEOTOMA_</code>-prefixed name, let an explicit flag override it, and document it in the table above. See <code>docs/architecture/change_guardrails_rules.mdc</code> for the cross-cutting guardrails.</p>
+<h3 id="peer-sync-and-http-api-server-process">Peer sync and HTTP API (server process)<a href="#peer-sync-and-http-api-server-process" class="dv-anchor" aria-label="Link to this section: Peer sync and HTTP API (server process)">#</a></h3>
+<p>These are read by the Neotoma HTTP server (not the CLI <code>preAction</code> hook) for outbound peer sync and optional release-note enrichment:</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Peer sync and HTTP API (server process)"><table>
+<thead>
+<tr>
+<th>Environment variable</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEOTOMA_PUBLIC_BASE_URL</code></td>
+<td>Public base URL of this API (no trailing slash). Required for <code>POST /peers/{id}/sync</code> outbound <code>/sync/webhook</code> as <code>sender_peer_url</code>.</td>
+</tr>
+<tr>
+<td><code>NEOTOMA_LOCAL_PEER_ID</code></td>
+<td>Stable id this instance sends as <code>sender_peer_id</code>; must match the <code>peer_id</code> your counterparty stored for you.</td>
+</tr>
+<tr>
+<td><code>GITHUB_TOKEN</code></td>
+<td>Optional bearer for GitHub API when <code>npm_check_update</code> runs with <code>include_release_notes: true</code>.</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>GET /peers/{peer_id}</code> returns <code>remote_health</code> from probing <code>{peer_url}/health</code> and semver compat vs the local package version (same rules as <code>neotoma compat</code>). See <code>docs/subsystems/peer_sync.md</code>.</p>
+<h3 id="sandbox-server-process">Sandbox (server process)<a href="#sandbox-server-process" class="dv-anchor" aria-label="Link to this section: Sandbox (server process)">#</a></h3>
+<p>Read by the Neotoma HTTP server when running the public-sandbox profile; no paired CLI flag. Full runbook: <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/sandbox_deployment.md"><code>docs/subsystems/sandbox_deployment.md</code></a>.</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Sandbox (server process)"><table>
+<thead>
+<tr>
+<th>Environment variable</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEOTOMA_SANDBOX_MODE</code></td>
+<td>unset</td>
+<td>Truthy (<code>1</code>/<code>true</code>/<code>yes</code>) enables all sandbox-only behaviors (ephemeral sessions, anon writes, tighter limits). Also auto-enables tenant-scoped entity ids.</td>
+</tr>
+<tr>
+<td><code>NEOTOMA_TENANT_SCOPED_ENTITY_IDS</code></td>
+<td>follows <code>NEOTOMA_SANDBOX_MODE</code></td>
+<td>Truthy forces tenant-scoped deterministic entity ids (salt <code>generateEntityId</code> with <code>user_id</code>) independent of sandbox mode. Without it (and outside sandbox mode) entity ids are global <code>hash(entity_type, canonical_name)</code>, so per-tenant same-named entities collide on one row.</td>
+</tr>
+<tr>
+<td><code>NEOTOMA_SANDBOX_BASE_URL</code></td>
+<td><code>http://127.0.0.1:$HTTP_PORT</code></td>
+<td>Base URL the per-session pack seeder calls back into (<code>/sandbox/session/new</code> seeds over HTTP as the new bearer). Defaults to loopback on the server's own port.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="mcp--sse-transport-tuning-server-process">MCP / SSE transport tuning (server process)<a href="#mcp--sse-transport-tuning-server-process" class="dv-anchor" aria-label="Link to this section: MCP / SSE transport tuning (server process)">#</a></h3>
+<p>These are read by the Neotoma HTTP server when it serves the MCP StreamableHTTP transport at <code>/mcp</code>. They keep the long-lived SSE stream alive behind reverse proxies (Cloudflare Tunnel, nginx, ngrok) and clients with idle timeouts. This is a reliability/transport concern; see issue #1483 and the <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/releases/in_progress/v0.15.1/github_release_supplement.md">v0.15.1 release supplement</a>.</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="MCP / SSE transport tuning (server process)"><table>
+<thead>
+<tr>
+<th>Environment variable</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEOTOMA_MCP_SSE_KEEPALIVE_MS</code></td>
+<td><code>25000</code></td>
+<td>Interval (ms) between SSE comment heartbeat frames (<code>: hb\n\n</code>) on the MCP GET SSE stream. The frames keep proxies and clients from treating the stream as idle and silently closing it. Set to <code>0</code> (or any value <code>&lt;= 0</code>) to disable the heartbeat (restores prior behavior); an unset, empty, or non-numeric value uses the default. TCP keepalive on the socket stays enabled regardless.</td>
+</tr>
+<tr>
+<td><code>NEOTOMA_KEEPALIVE_TIMEOUT_MS</code></td>
+<td><code>120000</code></td>
+<td>Node HTTP <code>server.keepAliveTimeout</code> (ms). Extended from Node's 5 s default so idle keep-alive sockets are not closed before typical proxy idle windows (60 to 300 s), which otherwise surfaces as a mid-stream RST / 502 reconnect cycle.</td>
+</tr>
+<tr>
+<td><code>NEOTOMA_HEADERS_TIMEOUT_MS</code></td>
+<td><code>125000</code></td>
+<td>Node HTTP <code>server.headersTimeout</code> (ms). Must exceed <code>NEOTOMA_KEEPALIVE_TIMEOUT_MS</code> to avoid a Node bug where the socket is closed before the headers timeout fires.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The MCP transport tuning vars are server-process knobs read in <code>src/actions.ts</code>, not CLI <code>preAction</code> overrides; they have no paired flag.</p>
+<h3 id="mcp-signed-shim-mcpjson-not-cli-preaction">MCP signed shim (<code>mcp.json</code>, not CLI <code>preAction</code>)<a href="#mcp-signed-shim-mcpjson-not-cli-preaction" class="dv-anchor" aria-label="Link to this section: MCP signed shim (mcp.json, not CLI preAction)">#</a></h3>
+<p>Cursor reads these from the <strong><code>env</code></strong> block for <strong><code>run_neotoma_mcp_signed_stdio_dev_shim.sh</code></strong> (they are <strong>not</strong> parsed by <code>neotoma</code> CLI <code>preAction</code>; document them here for discoverability).</p>
+<ul>
+<li><code>NEOTOMA_MCP_USE_LOCAL_PORT_FILE</code> (<code>1</code> or <code>true</code>): the shim reads <code>&lt;repo&gt;/.dev-serve/local_http_port_&lt;dev|prod&gt;</code> (and the legacy <code>local_http_port</code> for dev) after the HTTP server binds, then sets <code>MCP_PROXY_DOWNSTREAM_URL</code> after a successful TCP probe. The CLI's <code>resolveBaseUrl()</code> uses the same rules and probe, after the session port env and before <code>config.json</code> <code>base_url</code>. Repo root order: <code>NEOTOMA_PROJECT_ROOT</code>, then <code>project_root</code> or <code>repo_root</code> in <code>~/.config/neotoma/config.json</code>, then <code>cwd</code>.</li>
+<li><code>NEOTOMA_MCP_LOCAL_HTTP_PORT_PROFILE</code> (<code>dev</code> or <code>prod</code>): which port file the shim and CLI prefer when <code>NEOTOMA_MCP_USE_LOCAL_PORT_FILE</code> is on; preset A sets this per MCP slot for parallel dev and prod APIs. If unset, the CLI infers it from <code>NEOTOMA_ENV</code>; the shim reads the legacy <code>local_http_port</code> only.</li>
+<li><code>NEOTOMA_MCP_PORT_PROBE_MS</code> (integer ms, 200 to 5000, default 1200): TCP probe timeout for the port file in both the shim and the CLI.</li>
+<li><code>MCP_PROXY_DOWNSTREAM_URL</code> (URL): explicit downstream <code>/mcp</code>, used when port-file mode is off, or as the fallback when the file is missing or the probe fails.</li>
+</ul>
+<p>Details, defaults, and verification steps: <strong><code>docs/developer/mcp/proxy.md</code></strong>.</p>
+<h3 id="update-check-stderr-notice">Update check (stderr notice)<a href="#update-check-stderr-notice" class="dv-anchor" aria-label="Link to this section: Update check (stderr notice)">#</a></h3>
+<p>When the CLI runs in an interactive context (TTY, not <code>--json</code>), it may check the npm registry for a newer version of the package. If an update is available, it writes one or two lines to <strong>stderr only</strong> (e.g. "Update available: neotoma 0.2.15 → 0.2.16" and "Run: npm i -g neotoma@latest"). The check is fire-and-forget and does not block startup. To disable: set <code>NO_UPDATE_NOTIFIER=1</code> or pass <code>--no-update-check</code>. The check is also skipped when <code>CI</code> is set. Cache: <code>~/.config/neotoma/update_check.json</code> with a 24-hour TTL so the registry is not queried on every run. The stdio MCP server runs its own check when a session starts and about every 6 hours after that, which <code>NO_UPDATE_NOTIFIER=1</code> turns off; the HTTP <code>/mcp</code> transport does not check. The request carries only the package name, and the registry sees ordinary connection metadata.</p>
+<h3 id="session-interactive-prompt">Session (interactive prompt)<a href="#session-interactive-prompt" class="dv-anchor" aria-label="Link to this section: Session (interactive prompt)">#</a></h3>
+<ul>
+<li>Run <code>neotoma</code> with no arguments in a terminal to start an interactive session with a persistent <code>neotoma&gt; </code> prompt. Run subcommands (e.g. <code>storage info</code>, <code>api status</code>) without restarting the CLI. It does <strong>not</strong> start servers automatically. There is no <code>neotoma session</code> command; <code>neotoma auth session</code> is a different command that reports the session's attribution tier.
+<ul>
+<li>Type <code>help</code> to list commands.</li>
+<li>Type <code>/</code> to open the live command list (command + description per line), and keep typing to filter matches.</li>
+<li>Type <code>exit</code> or <code>quit</code>, or press Ctrl+D, to end the session.</li>
+<li>Arguments with spaces can be quoted: <code>request --operation "GET /api/entities"</code>.</li>
+<li>Maintenance invariant (TTY redraw): slash suggestions are rendered on the next line with a leading newline, so cursor-up must move <code>rendered_lines + 1</code>. See <code>getSlashSuggestionCursorUpLines()</code> and <code>tests/cli/cli_session_startup_ux.test.ts</code> (regression guard).</li>
+</ul>
+</li>
+</ul>
+<h3 id="offline-support-matrix">Offline support matrix<a href="#offline-support-matrix" class="dv-anchor" aria-label="Link to this section: Offline support matrix">#</a></h3>
+<ul>
+<li><strong>Data commands (entities, relationships, sources, observations, timeline, store, schemas, stats, corrections, snapshots):</strong> offline-first in-process local transport by default (no API server required).</li>
+<li><strong>Explicit local path:</strong> pass <code>--offline</code>.</li>
+<li><strong>Strict remote path:</strong> pass <code>--api-only</code>.</li>
+<li><strong>Server lifecycle commands (<code>api start|stop|status|logs</code>):</strong> server-management behavior is unchanged and not redirected to local fallback.</li>
+<li><strong>Local OS inspection (<code>processes list|kill</code>):</strong> uses <code>ps</code> only; does not use the Neotoma API or offline SQLite transport.</li>
+<li><strong>Watch/storage/logs/backup:</strong> already local backend commands and continue to run without a running API.</li>
+</ul>
+<p><strong>Transport default rationale:</strong> The CLI defaults to offline-first so that data commands work without a running API (e.g. <code>neotoma entities list</code> works right after <code>neotoma init</code>). The native SQLite addon is lazy-loaded only when a data command actually uses the local DB, so entry points that never touch the DB (e.g. <code>neotoma --help</code>, <code>neotoma api start</code>) do not trigger macOS permission prompts. The first time a user runs a data command, the local DB may be opened and the OS may show a one-time permission prompt for the native addon; this is an accepted tradeoff for out-of-the-box usability. Use <code>--api-only</code> if you want to avoid loading the local DB and require the API instead.</p>
+<p><strong>Examples:</strong></p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash"><span class="token comment"># Interactive session that connects to an already-running API</span>
+neotoma --no-servers
+
+<span class="token comment"># Intro and command menu only</span>
+neotoma --no-session
+</code></pre></div>
+<p>At the <code>neotoma&gt;</code> prompt, type a command such as <code>storage info</code> or <code>api status</code>, and <code>exit</code> to leave.</p>
+<h3 id="initialization">Initialization<a href="#initialization" class="dv-anchor" aria-label="Link to this section: Initialization">#</a></h3>
+<ul>
+<li>
+<p><code>neotoma init</code>: Initialize Neotoma for first-time use. Creates data directories, initializes the SQLite database, and can prompt to create encryption keys for privacy-first mode. Default flow is auto-detection-first: if a source checkout is detected, init targets project <code>.env</code>; otherwise it configures user <code>.env</code> at <code>~/.config/neotoma/.env</code> without prompting for a source path. Source-path prompts only appear in personalization mode. In interactive mode (TTY), init can prompt to set <code>OPENAI_API_KEY</code> for LLM extraction. Init can also delegate harness setup through the same MCP and CLI instruction path used by <code>neotoma setup</code>.</p>
+<ul>
+<li><code>--data-dir &lt;path&gt;</code>: Custom data directory path. Default: <code>./data</code> (if in repo) or <code>~/neotoma/data</code> (if installed globally).</li>
+<li><code>--force</code>: Overwrite existing configuration.</li>
+<li><code>--skip-db</code>: Skip database initialization.</li>
+<li><code>--skip-env</code>: Skip interactive <code>.env</code> creation and variable prompts (e.g. for CI or non-interactive use).</li>
+<li><code>--project-local</code>: Store the Neotoma config in <code>.neotoma/config.json</code> in the current directory (project-scoped) instead of the user-level <code>~/.config/neotoma/config.json</code>. The CLI reads this project-local config automatically for all subsequent commands run from that directory via <code>readEffectiveConfig</code>, which checks for <code>.neotoma/config.json</code> before falling back to the user-level config. Trust boundary: project-local config is only loaded when the containing directory is owned by the current user (prevents untrusted directories from silently overriding user settings). Use this when you want per-project Neotoma configuration independent of the user-level setup.</li>
+<li><code>--safe</code>: Dry-run mode. Reports what <code>init</code> would do (create directories, write config, run migrations) without writing any files or making any changes. Output lists each planned action with a check mark or blocker reason. Exit code is 0 if all planned actions would succeed; exit code 1 if any blocker is detected (e.g. config already exists without <code>--force</code>, parent directory not writable). Combine with <code>--json</code> to get machine-readable output. Note: <code>--safe</code> checks the filesystem layout planned by <code>init</code>; it does not simulate authentication or preflight steps.</li>
+</ul>
+</li>
+<li>
+<p><code>neotoma init --import-transcripts</code>: After init, discover and import harness transcripts. Each imported file stores the raw transcript <strong>plus</strong> an <code>agent_session</code> and <code>session_transcript</code> row carrying the session's <code>cwd</code>, native id, and <code>content_hash</code>, the metadata needed to locate or resume it later. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/cli/transcript_ingestion.md"><code>docs/developer/cli/transcript_ingestion.md</code></a>.</p>
+<ul>
+<li><code>--transcript-harness &lt;claude-code|codex|cursor&gt;</code>: Limit to one harness.</li>
+<li><code>--transcript-limit &lt;n&gt;</code>: Cap files per harness (most recently modified first).</li>
+</ul>
+<p>Scanned locations:</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Initialization"><table>
+<thead>
+<tr>
+<th>Harness</th>
+<th>Scanned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>claude-code</td>
+<td><code>~/.claude/projects/**/*.jsonl</code></td>
+</tr>
+<tr>
+<td>codex</td>
+<td><code>~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl</code> (live) <strong>and</strong> <code>~/.codex/archived_sessions/*.jsonl</code> (legacy)</td>
+</tr>
+<tr>
+<td>cursor</td>
+<td><code>~/.cursor/chats/&lt;md5(cwd)&gt;/&lt;chatId&gt;/store.db</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Codex writes <em>live</em> sessions to the date-partitioned <code>sessions/</code> tree; <code>archived_sessions/</code> holds older ones. Both are scanned, and the scan line reports them separately:</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma init --import-transcripts --transcript-harness codex
+</code></pre></div>
+<div class="dv-code"><span class="dv-code-lang">text</span><pre tabindex="0"><code class="language-text">[onboarding] scan: codex — 88 transcript(s) (58 live, 30 archived)
+</code></pre></div>
+<p>Verify what was stored:</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma entities list <span class="token parameter variable">--type</span> agent_session <span class="token parameter variable">--limit</span> <span class="token number">5</span>
+</code></pre></div>
+<p>Each row should carry a non-empty <code>cwd</code>. Files stored without session identity are reported on <code>session_identity_degraded</code> and summarised on stdout; those transcripts are stored but not resumable.</p>
+</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash"><span class="token comment"># Basic initialization</span>
+neotoma init
+
+<span class="token comment"># Initialize with custom data directory</span>
+neotoma init --data-dir /path/to/data
+
+<span class="token comment"># Store config in current project directory instead of user home</span>
+neotoma init --project-local
+
+<span class="token comment"># Preview what init would do without making any changes</span>
+neotoma init <span class="token parameter variable">--safe</span>
+
+<span class="token comment"># Dry-run with machine-readable output</span>
+neotoma init <span class="token parameter variable">--safe</span> <span class="token parameter variable">--json</span>
+
+<span class="token comment"># Combine: dry-run scoped to current project</span>
+neotoma init <span class="token parameter variable">--safe</span> --project-local
+</code></pre></div>
+<p><strong>What it creates:</strong></p>
+<ul>
+<li>Data directories: <code>&lt;data-dir&gt;/</code>, <code>&lt;data-dir&gt;/sources/</code>, <code>&lt;data-dir&gt;/logs/</code> (event log is <code>&lt;data-dir&gt;/logs/events.log</code>)</li>
+<li>SQLite database: <code>&lt;data-dir&gt;/neotoma.db</code> (with WAL mode enabled)</li>
+<li>Encryption key (if user chooses key-derived auth when prompted): <code>~/.config/neotoma/keys/neotoma.key</code> (mode 0600).</li>
+<li>Environment file target: project <code>&lt;checkout&gt;/.env</code> when checkout is detected, otherwise <code>~/.config/neotoma/.env</code></li>
+<li>Config file: <code>~/.config/neotoma/config.json</code> (default) or <code>.neotoma/config.json</code> in the current directory when <code>--project-local</code> is given.</li>
+</ul>
+<p><strong>Runtime overrides</strong> for <code>neotoma init</code>:</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Initialization (table 2)"><table>
+<thead>
+<tr>
+<th>Precedence</th>
+<th>Source</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 (highest)</td>
+<td><code>--data-dir</code> flag</td>
+<td>Explicit data directory path</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>NEOTOMA_DATA_DIR</code> env var</td>
+<td>Environment variable override</td>
+</tr>
+<tr>
+<td>3 (default)</td>
+<td>Auto-detected or <code>~/neotoma/data</code></td>
+<td>Resolved at startup</td>
+</tr>
+</tbody>
+</table></div>
+<p>Config scope for <code>neotoma init</code> is a binary switch: <code>--project-local</code> writes to <code>.neotoma/config.json</code> in cwd; without the flag, init writes to <code>~/.config/neotoma/config.json</code>. All subsequent commands that call <code>readEffectiveConfig</code> will read the project-local file when present (and owned by the current user).</p>
+<h3 id="harness-setup">Harness setup<a href="#harness-setup" class="dv-anchor" aria-label="Link to this section: Harness setup">#</a></h3>
+<ul>
+<li><code>neotoma setup</code>: One-shot, idempotent harness setup. It runs init when needed, configures MCP entries, applies agent CLI instruction files, installs lifecycle hooks or the Claude Code plugin for the selected harness, then patches permission allowlists where the harness supports them.
+<ul>
+<li><code>--tool &lt;claude-code|cursor|codex|openclaw|claude-desktop&gt;</code>: Target harness. If omitted, <code>neotoma status</code> supplies the current tool hint when available. The MCP step places a new config for Claude Code (<code>.mcp.json</code> in the project) and Codex (<code>~/.codex/config.toml</code>); for every other value it creates Cursor's <code>.cursor/mcp.json</code> when no MCP config exists in the install scope. It also adds Neotoma entries to MCP config files it already finds in the chosen <code>--install-scope</code>, which in <code>user</code> scope can include existing Claude Desktop, Windsurf, and Continue files. Windsurf, Continue, VS Code, and IronClaw are not <code>--tool</code> targets: configure their MCP entry by hand (see the per-host guides under <code>docs/developer/</code>). The CLI accepts <code>windsurf</code>, <code>continue</code>, and <code>vscode</code> without an error, but setup then writes <code>.cursor/mcp.json</code>, not that tool's config.</li>
+<li><code>--install-scope &lt;project|user|both&gt;</code>: Scope for MCP entries and agent CLI instruction files.</li>
+<li><code>--scope &lt;project|user|both&gt;</code>: Permission-file scope only. This is intentionally separate from <code>--install-scope</code>.</li>
+<li><code>--mcp-transport &lt;a|b|c|d|e&gt;</code>: Same transport presets as <code>neotoma mcp config</code>.</li>
+<li><code>--rewrite-neotoma-mcp</code>: Rewrite existing Neotoma MCP entries in the selected install scope.</li>
+<li><code>--skip-hooks</code>: Skip lifecycle hook/plugin installation.</li>
+<li><code>--all-harnesses</code>: Infer hook-capable harnesses from MCP configs and install hooks for all of them. The default remains one harness via <code>--tool</code> or the <code>neotoma status</code> hint.</li>
+<li><code>--dry-run</code>: Plan the setup without writing files.</li>
+<li><code>--yes</code>: Suppress prompts in init, MCP config, CLI instruction config, and hook install paths.</li>
+<li><code>--skip-permissions</code>: Skip permission-file writes.</li>
+</ul>
+</li>
+</ul>
+<p><code>neotoma setup</code> writes a structured report when the global <code>--output json</code> flag is active. The report includes <code>steps[]</code>, <code>permission_patches</code>, <code>doctor_before</code>, <code>doctor_after</code>, <code>overall_ok</code>, <code>verify_line</code>, and <code>privacy_transport_summary</code>, which lets agent-led installs show exactly what changed.</p>
+<p>After the JSON report, <code>neotoma setup</code> always emits two plain-text lines to stdout (regardless of <code>--json</code> / <code>--pretty</code> mode):</p>
+<ol>
+<li><strong>Install-verification line</strong>: a single grep-able line confirming the binary path, version manager, version, data directory, and MCP transport. Format: <code>Neotoma installed at &lt;path&gt; (resolved via &lt;manager&gt;; v&lt;version&gt;; data_dir=&lt;dir&gt;; mcp=&lt;transport&gt;)</code>. Agent harnesses grep this line to confirm install succeeded without parsing JSON.</li>
+<li><strong>Transport summary</strong>: the fixed line begins <code>Transport: local stdio MCP</code> and is printed whatever transport was chosen. Its claim of zero network traffic describes only the local stdio MCP transport: the CLI and the stdio MCP server still check the npm registry for updates, which the registry sees with ordinary connection metadata. Set <code>NO_UPDATE_NOTIFIER=1</code> to disable those checks (see <a href="#update-check-stderr-notice">Update check</a>). The printed <code>http</code> suggestion is inaccurate: <code>http</code> is not an accepted <code>--mcp-transport</code> value; the signed HTTP proxy preset is <code>a</code>.</li>
+</ol>
+<p>Use <code>neotoma setup --tool &lt;harness&gt; --yes</code> for the normal greenfield path. Use <code>neotoma mcp config</code> or <code>neotoma cli config</code> when only one layer needs repair.</p>
+<h3 id="reporter">Reporter<a href="#reporter" class="dv-anchor" aria-label="Link to this section: Reporter">#</a></h3>
+<p>One-shot onboarding for friction reporters (testers or user agents who file issues via Neotoma):</p>
+<ul>
+<li><code>neotoma reporter setup</code>: Orchestrate the full reporter setup in one command.
+<ul>
+<li><code>--tool &lt;tool&gt;</code>: Target harness (<code>claude-code|cursor|codex|openclaw|claude-desktop</code>). Auto-detected from cwd when omitted.</li>
+<li><code>--git-sha &lt;sha&gt;</code>: Default <code>reporter_git_sha</code> embedded in every submitted issue.</li>
+<li><code>--app-version &lt;version&gt;</code>: Default <code>reporter_app_version</code> embedded in every submitted issue.</li>
+<li><code>--default-visibility &lt;public|private&gt;</code>: Default issue visibility (default: <code>public</code>).</li>
+<li><code>--dry-run</code>: Plan the setup without writing files or applying changes.</li>
+<li><code>--print-block</code>: Print a copy-pastable env-var block instead of writing the project config file.</li>
+</ul>
+</li>
+</ul>
+<p>The command runs four steps in sequence: (1) version check, which warns when the installed CLI is older than the minimum required version; (2) preflight, which applies harness permission-file allowlist entries via <code>neotoma preflight --apply</code>; (3) config write, which persists the reporter defaults to <code>.neotoma/reporter.json</code> in the project root so subsequent <code>neotoma issues create</code> calls pick them up automatically; (4) smoke-test hint, which prints a ready-to-run dry-run command. The structured JSON report includes <code>tool</code>, <code>dry_run</code>, <code>installed_version</code>, <code>version_ok</code>, <code>steps[]</code>, <code>reporter_config</code>, <code>reporter_config_path</code>, <code>smoke_test_command</code>, <code>overall_ok</code>, and <code>summary</code>.</p>
+<h3 id="preflight">Preflight<a href="#preflight" class="dv-anchor" aria-label="Link to this section: Preflight">#</a></h3>
+<ul>
+<li><code>neotoma preflight</code>: Check or apply harness permission-file entries for Neotoma.
+<ul>
+<li><code>--tool &lt;tool&gt;</code>: Target harness. Accepted values: <code>claude-code</code>, <code>cursor</code>, <code>codex</code>, <code>openclaw</code>, <code>claude-desktop</code>, <code>windsurf</code>, <code>continue</code>, <code>vscode</code>.</li>
+<li><code>--apply</code>: Write the allowlist file(s) directly instead of printing a copy-paste block. Only has effect for <code>claude-code</code>, <code>cursor</code>, and <code>codex</code>; other harnesses do not expose a writable allowlist file.</li>
+<li><code>--scope &lt;project|user|both&gt;</code>: Permission scope for <code>claude-code</code> (default: <code>both</code> when <code>--apply</code> is set).</li>
+<li><code>--dry-run</code>: Plan the write without modifying files.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Allowlist-capable harnesses</strong> (<code>claude-code</code>, <code>cursor</code>, <code>codex</code>): without <code>--apply</code>, prints a copy-paste block; with <code>--apply</code>, writes the allowlist file(s) directly. <code>claude-code</code> writes both project (<code>.claude/settings.local.json</code>) and user (<code>~/.claude/settings.json</code>) scopes by default. <code>neotoma setup</code> calls the same write path, so running preflight before setup is only necessary when you need the allowlist entry in place before <code>npm install -g neotoma</code> runs.</p>
+<p><strong>Harnesses without an allowlist file</strong> (<code>claude-desktop</code>, <code>openclaw</code>, <code>windsurf</code>, <code>continue</code>, <code>vscode</code>): passing <code>--apply</code> is accepted but writes nothing, and preflight prints a message that names <code>neotoma setup --tool &lt;tool&gt;</code>. Setup only writes into a Claude Desktop, Windsurf, or Continue config that already exists, and only with <code>--install-scope user</code> (or <code>both</code>); in the default project scope it writes <code>.cursor/mcp.json</code> (see <a href="#harness-setup">Harness setup</a>). For OpenClaw, the plugin (<code>openclaw plugins install clawhub:neotoma</code>) is the primary path. Otherwise add the entry by hand, or run <code>neotoma mcp config --user-level</code> once the host's config file exists.</p>
+<p>The structured report includes <code>tool</code>, <code>apply</code>, <code>dry_run</code>, <code>patches[]</code>, <code>already_ok</code>, <code>copy_paste_block</code>, and <code>overall_ok</code>.</p>
+<h3 id="reset">Reset<a href="#reset" class="dv-anchor" aria-label="Link to this section: Reset">#</a></h3>
+<ul>
+<li><code>neotoma reset</code>: Reset local Neotoma state to a clean slate.
+<ul>
+<li>Backs up and removes local Neotoma state (config/env/keys/instructions and known local data directories).</li>
+<li>Always backs up a data directory before removing it.</li>
+<li>If <code>.env</code> sets <code>NEOTOMA_DATA_DIR</code>, that configured data directory is protected: reset does not back it up or remove it.</li>
+<li>Cleans Neotoma MCP entries from user/project MCP configs.</li>
+<li>Attempts global uninstall via <code>npm uninstall -g neotoma</code> (best effort; failures are reported but do not roll back completed local cleanup).</li>
+<li><code>-y, --yes</code>: Skip confirmation prompt.</li>
+</ul>
+</li>
+</ul>
+<h3 id="authentication">Authentication<a href="#authentication" class="dv-anchor" aria-label="Link to this section: Authentication">#</a></h3>
+<p>CLI uses the same auth patterns as MCP and REST API. Local CLI commands can run without login in development, but MCP OAuth now requires key-auth preflight.</p>
+<ul>
+<li>
+<p><code>neotoma auth status</code>: Show auth mode (none, dev-token, key-derived) and user details. Works without prior login.</p>
+</li>
+<li>
+<p><code>neotoma auth login</code>: OAuth PKCE flow for MCP Connect (Cursor) setup. Browser flow requires key authentication (<code>/mcp/oauth/key-auth</code>) first. Use <code>--tunnel</code> to read the API base URL from <code>/tmp/ngrok-mcp-url.txt</code> (for testing OAuth when the API is behind a tunnel).</p>
+</li>
+<li>
+<p><code>neotoma auth logout</code>: Clear stored OAuth credentials (MCP Connect only).</p>
+</li>
+<li>
+<p><code>neotoma auth mcp-token</code>: Print MCP auth token derived from private key (when encryption is enabled). Add to mcp.json headers.</p>
+</li>
+<li>
+<p>If key-authenticated OAuth is unavailable, configure <code>Authorization: Bearer &lt;NEOTOMA_BEARER_TOKEN&gt;</code> for MCP instead of OAuth.</p>
+</li>
+<li>
+<p><code>neotoma inspector admin unlock</code>: Redeem a feedback-admin challenge via the same CLI AAuth signer used for signed API traffic; prints an Inspector URL to <strong><code>/feedback/admin-unlock?challenge=…</code></strong> (and optional <code>--open</code>). Omit <code>--challenge</code> to mint one from the API. When the Inspector dev server runs on another origin, set <code>NEOTOMA_INSPECTOR_BASE_URL</code> or pass <code>--inspector-base</code>. Use <code>--skip-browser-url</code> to suppress the printed link in text mode. When the HTTP API binds a non-default port, set <strong><code>NEOTOMA_MCP_USE_LOCAL_PORT_FILE=1</code></strong> and <strong><code>NEOTOMA_MCP_LOCAL_HTTP_PORT_PROFILE</code></strong> when needed (same rules as the MCP signed shim) so <code>--base-url</code> resolution reads the matching <code>.dev-serve/local_http_port_*</code> file after a successful TCP probe; set <strong><code>NEOTOMA_PROJECT_ROOT</code></strong> if the file lives outside <code>cwd</code>.</p>
+</li>
+</ul>
+<h3 id="mcp-configuration">MCP configuration<a href="#mcp-configuration" class="dv-anchor" aria-label="Link to this section: MCP configuration">#</a></h3>
+<p>Commands for managing MCP server configuration files (Cursor, Claude Code, Windsurf, etc.). The CLI uses symmetric verbs: <code>guide</code> is read-only guidance; <code>config</code> mutates files.</p>
+<ul>
+<li>
+<p><code>neotoma mcp guide</code>: Show MCP configuration guidance for Cursor and other clients.</p>
+<ul>
+<li><code>--no-check</code>: Skip checking for existing MCP config files (default: check and suggest <code>mcp config</code> if servers are missing).</li>
+<li>Prints example JSON config for Cursor with URL or stdio server entries.</li>
+<li>After printing config, scans current directory for MCP config files and suggests running <code>neotoma mcp config</code> if dev or prod servers are missing.</li>
+</ul>
+</li>
+<li>
+<p><code>neotoma mcp config</code>: Scan for MCP config files in current directory and subdirectories, detect whether dev and prod Neotoma servers are configured, and offer to install missing servers.</p>
+<ul>
+<li><code>--rewrite-neotoma-mcp</code>: After you pick install scope and transport, rewrite <strong>existing</strong> <code>neotoma-dev</code> / <code>neotoma</code> (or Claude Desktop <code>mcpsrv_*</code>) entries in that scope to match the preset. Without this flag, configs that already have both slots are skipped so transport changes only apply where something was still missing.</li>
+<li><code>--user-level</code>: Include user-level MCP config paths (e.g. <code>~/.cursor/mcp.json</code>, Claude, Windsurf) in scan (default: project-local only).</li>
+<li><code>--install-hooks</code> / <code>--no-hooks</code>: Install or skip matching Neotoma lifecycle hooks when a configured MCP path maps to a hook-capable harness. Hook installation is enabled by default for non-JSON runs; use <code>--no-hooks</code> to limit the command to MCP config only.</li>
+<li><code>--yes</code>: Skip hook installation confirmation prompts. MCP server config prompts still follow the normal interactive flow.</li>
+<li><code>--mcp-transport &lt;a|b|c|d|e&gt;</code>: Transport preset. TTY installs prompt when omitted; non-TTY defaults to <code>b</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>MCP transport presets:</strong></p>
+<div class="dv-table" tabindex="0" role="region" aria-label="MCP configuration"><table>
+<thead>
+<tr>
+<th>Preset</th>
+<th>Use when</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a</code></td>
+<td>You want signed HTTP <code>/mcp</code> proxy entries with AAuth attribution.</td>
+<td>Requires a reachable Neotoma API for each configured slot (<code>neotoma-dev</code> → dev, <code>neotoma</code> → prod).</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>You want the lowest-friction local MCP setup.</td>
+<td>Default. Packaged npm installs launch Neotoma directly over stdio; source checkouts use the unsigned dev shim.</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>You explicitly want direct stdio entries.</td>
+<td>Best for simple local clients that do not need HTTP proxy parity.</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>You want both MCP slots to point at prod HTTP <code>/mcp</code>.</td>
+<td>Signed proxy path; requires prod API reachability.</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>You want both MCP slots to point at prod HTTP <code>/mcp</code> using the local port file.</td>
+<td>Signed proxy using <code>NEOTOMA_MCP_USE_LOCAL_PORT_FILE=1</code> + <code>NEOTOMA_MCP_LOCAL_HTTP_PORT_PROFILE=prod</code>. Requires prod API reachable on the port recorded by the local port file.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Scans for known config file patterns:
+<ul>
+<li><strong>Cursor:</strong> <code>.cursor/mcp.json</code>, <code>.mcp.json</code> (project), <code>~/.cursor/mcp.json</code> (user-level with <code>--user-level</code>)</li>
+<li><strong>Claude Desktop:</strong> <code>claude_desktop_config.json</code> (project or user-level with <code>--user-level</code>; the scanner's internal label for this file is "Claude Code"):
+<ul>
+<li>macOS: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
+<li>Linux: <code>~/.config/Claude/claude_desktop_config.json</code></li>
+<li>Windows: <code>%APPDATA%\Claude\claude_desktop_config.json</code></li>
+</ul>
+</li>
+<li><strong>Windsurf:</strong> <code>mcp_config.json</code> (project or user-level with <code>--user-level</code>):
+<ul>
+<li>macOS/Linux: <code>~/.codeium/windsurf/mcp_config.json</code></li>
+<li>Windows: <code>%APPDATA%\Codeium\Windsurf\mcp_config.json</code></li>
+</ul>
+</li>
+<li><strong>Continue:</strong> <code>config.json</code> (user-level with <code>--user-level</code>):
+<ul>
+<li>All platforms: <code>~/.continue/config.json</code></li>
+</ul>
+</li>
+<li><strong>VS Code (Copilot Chat MCP):</strong> <code>.vscode/mcp.json</code> (project-level, picked up by directory scan)</li>
+</ul>
+</li>
+<li>For each found config, checks for <code>neotoma-dev</code> and <code>neotoma</code> server entries (based on <code>command</code> script names or <code>url</code> patterns). In Claude Desktop's <code>claude_desktop_config.json</code>, new entries use <code>mcpsrv_neotoma_dev</code> and <code>mcpsrv_neotoma</code>, and legacy <code>neotoma-dev</code> / <code>neotoma</code> keys are reported for repair because Claude Desktop validates server IDs as UUIDs or <code>mcpsrv_*</code> tags.</li>
+<li>If any config is missing dev or prod servers, prompts to add them with absolute script paths.</li>
+<li>If no config files found, offers to create <code>.cursor/mcp.json</code> in current directory.</li>
+<li>Uses Neotoma source root (from <code>findRepoRoot</code>, config, or <code>NEOTOMA_REPO_ROOT</code>) to resolve absolute script paths for the selected transport. Preset <code>a</code> emits signed shim / <code>mcp proxy --aauth</code> with dev+prod downstreams as above; <code>b</code> emits unsigned dev shim; <code>c</code> emits direct stdio scripts; <code>d</code> emits signed shim with prod downstream for both MCP server entries.</li>
+<li>After install, verifies or installs lifecycle hooks for hook-capable harnesses inferred from the configured MCP paths (for example <code>.cursor/mcp.json</code> → Cursor hooks, <code>.codex/config.toml</code> → Codex hooks). Harnesses without an auto-installer print the matching manual instruction.</li>
+<li>After install, shows a reminder to run <code>neotoma cli config</code>; when MCP servers are installed interactively, it can also prompt to add CLI instructions if missing.</li>
+<li><code>neotoma mcp check</code> is retained as a deprecated alias for <code>neotoma mcp config</code> during the migration window.</li>
+</ul>
+<p><strong>MCP transport presets:</strong></p>
+<ul>
+<li><strong>A:</strong> signed shim + AAuth. Installs <strong>both</strong> <code>neotoma-dev</code> and <code>neotoma</code>: dev slot → dev API <code>http://127.0.0.1:3080/mcp</code> (default when <code>neotoma-dev</code> omits <code>MCP_PROXY_DOWNSTREAM_URL</code>, matching <code>run_neotoma_mcp_signed_stdio_dev_shim.sh</code>), prod slot → prod API <code>http://127.0.0.1:3180/mcp</code> (via <code>scripts/run_neotoma_mcp_signed_stdio_dev_shim.sh</code> or packaged <code>neotoma mcp proxy --aauth</code>). Requires matching API processes to be reachable.</li>
+<li><strong>B (default):</strong> unsigned/local stdio. Packaged npm installs launch <code>dist/index.js</code> directly over stdio so local MCP does not require a separate API process; source checkouts use <code>scripts/run_neotoma_mcp_stdio_dev_shim.sh</code>, and prod entries add <code>NEOTOMA_ENV=production</code>.</li>
+<li><strong>C:</strong> direct stdio. Uses <code>scripts/run_neotoma_mcp_stdio.sh</code> for dev and <code>scripts/run_neotoma_mcp_stdio_prod.sh</code> for prod. Reconnect the MCP client after code changes.</li>
+<li><strong>D:</strong> signed prod parity. Signed shim with <code>MCP_PROXY_DOWNSTREAM_URL=http://127.0.0.1:3180/mcp</code> for <strong>both</strong> slots (including <code>neotoma-dev</code>), so both MCP entries hit the prod HTTP <code>/mcp</code> when the prod API is on the default port.</li>
+</ul>
+<p><strong>Dev vs Prod detection patterns:</strong></p>
+<ul>
+<li><strong>Dev:</strong> <code>command</code> contains <code>run_neotoma_mcp_stdio.sh</code>, <code>run_neotoma_mcp_stdio_dev_watch.sh</code>, <code>run_neotoma_mcp_stdio_dev_shim.sh</code>, <code>run_neotoma_mcp_signed_stdio_dev_shim.sh</code>, <code>run_neotoma_mcp_unsigned_stdio_dev_shim.sh</code>, or the legacy forwarder <code>run_neotoma_mcp_unsigned_stdio_proxy.sh</code> under a dev server id, or <code>url</code> contains <code>localhost:3080/mcp</code> or <code>127.0.0.1:3080/mcp</code>. During connect-only sessions, the currently selected instance port is also considered for dev if the active env is dev.</li>
+<li><strong>Prod:</strong> <code>command</code> contains <code>run_neotoma_mcp_stdio_prod.sh</code>, <code>run_neotoma_mcp_stdio_prod_watch.sh</code>, <code>run_neotoma_mcp_signed_stdio_dev_shim.sh</code>, <code>run_neotoma_mcp_unsigned_stdio_dev_shim.sh</code>, or the legacy forwarder <code>run_neotoma_mcp_unsigned_stdio_proxy.sh</code> under a prod server id / prod downstream URL, or <code>url</code> contains <code>localhost:3180/mcp</code>, <code>127.0.0.1:3180/mcp</code>, or the literal pattern <code>neotoma.fly.dev/mcp</code> that the scanner recognizes. During connect-only sessions, the currently selected instance port is also considered for prod if the active env is prod.</li>
+</ul>
+<p><strong>Example workflow:</strong></p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash"><span class="token comment"># Show config guidance and check if servers are configured</span>
+neotoma mcp guide
+
+<span class="token comment"># Scan project-local MCP configs and add missing servers</span>
+neotoma mcp config
+
+<span class="token comment"># Scan including user-level configs (Cursor, Claude, Windsurf)</span>
+neotoma mcp config --user-level
+
+<span class="token comment"># Deterministically install direct stdio entries without the transport prompt</span>
+neotoma mcp config --user-level --mcp-transport c
+
+<span class="token comment"># Configure MCP and install matching hooks without hook prompts</span>
+neotoma mcp config --user-level <span class="token parameter variable">--yes</span>
+
+<span class="token comment"># Interactive: refresh user-level Cursor/Claude JSON entries to transport D even when dev+prod already exist</span>
+neotoma mcp config --rewrite-neotoma-mcp
+</code></pre></div>
+<h3 id="cli-instructions-prefer-mcp-when-available-cli-as-backup">CLI instructions (prefer MCP when available, CLI as backup)<a href="#cli-instructions-prefer-mcp-when-available-cli-as-backup" class="dv-anchor" aria-label="Link to this section: CLI instructions (prefer MCP when available, CLI as backup)">#</a></h3>
+<p>Commands to ensure agent instructions tell agents to use the Neotoma CLI when running locally and MCP when remote. Like MCP, <code>guide</code> is read-only and <code>config</code> mutates files:</p>
+<ul>
+<li><code>neotoma cli guide</code>: Show guidance for adding the "prefer MCP when available, CLI as backup" rule to Cursor, Claude, and Codex (project: <code>.cursor/rules/</code>, <code>.claude/rules/</code>, <code>.codex/</code>; user: <code>~/.cursor/rules/</code>, <code>~/.claude/rules/</code>, <code>~/.codex/</code>). Does not modify files.</li>
+<li><code>neotoma cli config</code>: Scan only paths that each IDE actually loads (applied paths). Reports Cursor, Claude, and Codex separately and, with <code>--yes</code>, writes missing or stale files to the selected scope.
+<ul>
+<li><code>--scope &lt;project|user|both&gt;</code>: Choose where to apply instruction files. This is separate from <code>neotoma setup --scope</code>, which controls permission-file patches.</li>
+<li><code>--yes</code>: Apply without prompting. Without <code>--yes</code>, the command reports what would change.</li>
+<li><code>--user-level</code> / <code>--no-user-level</code>: Include or exclude user-level paths in the scan (default: include).</li>
+</ul>
+</li>
+<li><code>neotoma cli-instructions config</code> and <code>neotoma cli-instructions check</code> are deprecated aliases for <code>neotoma cli guide</code> and <code>neotoma cli config</code>.</li>
+<li><code>neotoma instructions print</code>: Print the first fenced code block from <code>docs/developer/mcp/instructions.md</code> bundled with this package (same text MCP sends to clients). Use <code>--format md</code> to wrap output in a markdown fence, or <code>--json</code> with global JSON output mode for <code>{ path, body }</code>.</li>
+</ul>
+<p>See <code>docs/developer/agent_cli_configuration.md</code> for the rule text and strategy.</p>
+<h3 id="entities">Entities<a href="#entities" class="dv-anchor" aria-label="Link to this section: Entities">#</a></h3>
+<ul>
+<li><code>neotoma entities list</code>:
+<ul>
+<li><code>--type &lt;entityType&gt;</code></li>
+<li><code>--search &lt;query&gt;</code></li>
+<li><code>--limit &lt;n&gt;</code></li>
+<li><code>--offset &lt;n&gt;</code></li>
+<li><code>--include-merged</code></li>
+<li><code>--status &lt;value&gt;</code>: Server-side exact-match filter on the snapshot <code>status</code> field. Returns only entities whose <code>snapshot.status</code> equals the given value (e.g. <code>--status active</code>). Applied before pagination. Each returned entity includes <code>status</code> in its snapshot projection even without <code>--include-snapshots</code>. Passing <code>--status ""</code> is not meaningful; omit the flag to return all statuses.</li>
+<li><code>--updated-since &lt;iso&gt;</code> / <code>--since &lt;iso&gt;</code>: Return only entities whose <code>updated_at</code> is &gt;= this ISO 8601 timestamp.</li>
+<li><code>--created-since &lt;iso&gt;</code>: Return only entities whose <code>created_at</code> is &gt;= this ISO 8601 timestamp.</li>
+</ul>
+</li>
+<li><code>neotoma entities get &lt;id&gt;</code></li>
+<li><code>neotoma entities search [identifier]</code>:
+<ul>
+<li>Preferred: positional <code>identifier</code> or <code>--identifier &lt;id&gt;</code></li>
+<li>Compatibility alias: <code>--query &lt;id&gt;</code> (equivalent to <code>--identifier</code>)</li>
+<li>If both <code>--identifier</code> and <code>--query</code> are provided, they must match</li>
+</ul>
+</li>
+<li><code>neotoma entities import &lt;file&gt;</code>: bulk-import entities from a JSONL file (one entity JSON object per line) by chunking them into batched <code>POST /store</code> calls.
+<ul>
+<li><code>--batch-size &lt;n&gt;</code>: entities per store call (default <code>200</code>). Lower it if a request exceeds the server body limit.</li>
+<li><code>--idempotency-prefix &lt;prefix&gt;</code>: prefix for the per-chunk idempotency key (default derived from the file name). Re-running with the same prefix and file is a safe no-op, so a large backfill can be replayed without duplicating data.</li>
+<li><code>--user-id &lt;userId&gt;</code>: store under a specific user.</li>
+<li><code>--commit</code>: actually write. Without it the command runs in dry-run/plan mode.</li>
+<li>This command owns file reading, chunking, and per-chunk idempotency. <code>/store</code> is not one database transaction. On main, a same-key replay finishes an interrupted write (completion is recorded on the source row); in v0.25.0 a replay of an interrupted keyed write can report success without finishing it (#2144). For very large backfills, this is the supported "replay from an external source" path.</li>
+</ul>
+</li>
+<li><code>neotoma entities export</code>: the inverse of <code>entities import</code>. It pages through all entities and emits import-compatible JSONL (one object per line, <code>entity_type</code> plus the snapshot fields at the top level), so an instance can be exported and rebuilt with a matched command pair. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/exit_rebuild_test.md"><code>exit_rebuild_test.md</code></a> for the leave-and-rebuild protocol this supports.
+<ul>
+<li><code>--type &lt;entityType&gt;</code>: only export this entity type.</li>
+<li><code>--out &lt;path&gt;</code>: write JSONL here (default: stdout).</li>
+<li><code>--with-relationships</code>: also write a companion <code>&lt;out&gt;.relationships.json</code> of typed edges that <code>relationships create --file</code> re-imports, for a full entities-plus-edges round-trip.</li>
+<li><code>--page-size &lt;n&gt;</code>: entities fetched per page (default <code>500</code>).</li>
+<li><code>--include-merged</code>: include merged entities (default: exclude).</li>
+<li><code>--user-id &lt;userId&gt;</code>: export under a specific user scope.</li>
+<li>Export reflects only what the snapshot captured: fields an entity's registered schema does not declare are not in the snapshot and do not survive this path. Declare every field that matters before relying on export for a rebuild.</li>
+</ul>
+</li>
+</ul>
+<h3 id="sources">Sources<a href="#sources" class="dv-anchor" aria-label="Link to this section: Sources">#</a></h3>
+<ul>
+<li><code>neotoma sources list</code>:
+<ul>
+<li><code>--search &lt;query&gt;</code></li>
+<li><code>--mime-type &lt;mimeType&gt;</code></li>
+<li><code>--limit &lt;n&gt;</code></li>
+<li><code>--offset &lt;n&gt;</code></li>
+</ul>
+</li>
+<li><code>neotoma sources get &lt;id&gt;</code> (or <code>--source-id &lt;id&gt;</code>): Get a source's <strong>metadata</strong>: <code>content_hash</code>, <code>original_filename</code>/<code>mime_type</code>, <code>file_size</code>, etc. Does NOT return the source's byte content; use <code>sources content</code> for that.</li>
+<li><code>neotoma sources content &lt;id&gt;</code> (or <code>--source-id &lt;id&gt;</code>): Print a source's <strong>raw byte content</strong> to stdout, via the authenticated <code>GET /sources/:id/content</code> endpoint, the same download path <code>neotoma skills sync --include-instance-scripts</code> uses internally to fetch script attachments. This is the CLI-native way to review a script's actual bytes (e.g. an instance-script attachment blocked pending <code>--approve-scripts</code>) before deciding to trust it; see the worked example under <a href="#skills">Skills</a> below. Pipe to a pager or file (<code>neotoma sources content &lt;id&gt; | less</code>, <code>neotoma sources content &lt;id&gt; &gt; script.sh</code>). Content is treated as untrusted: if the bytes are not valid UTF-8, a warning is printed to stderr (not to stdout) before the raw bytes are still written, so redirection/piping is never corrupted by the warning text. <code>--json</code> emits <code>{ id, size, is_utf8, content_base64 }</code> instead of raw bytes on stdout.</li>
+</ul>
+<h3 id="observations">Observations<a href="#observations" class="dv-anchor" aria-label="Link to this section: Observations">#</a></h3>
+<ul>
+<li><code>neotoma observations list</code>:
+<ul>
+<li><code>--entity-id &lt;id&gt;</code></li>
+<li><code>--entity-type &lt;type&gt;</code></li>
+<li><code>--limit &lt;n&gt;</code></li>
+<li><code>--offset &lt;n&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="relationship-types">Relationship Types<a href="#relationship-types" class="dv-anchor" aria-label="Link to this section: Relationship Types">#</a></h3>
+<p>The relationship-type vocabulary is a runtime registry, not a fixed enum. Discover what an instance accepts before using an unfamiliar edge type, and register new types through this command family rather than assuming a type exists.</p>
+<ul>
+<li><code>neotoma relationship-types list</code>:
+<ul>
+<li><code>--keyword &lt;text&gt;</code>: filter names and descriptions.</li>
+<li><code>--scope &lt;scope&gt;</code>: filter to <code>user</code> or <code>global</code> scope.</li>
+<li><code>--include-edge-count</code>: include counts of written edge rows per type.</li>
+<li>An empty result does not mean no vocabulary exists: the response's <code>empty_reason</code> distinguishes <code>registry_unseeded</code> (the built-in types failed to seed for this process and self-repair on the next read; retry) from <code>filtered_to_empty</code> (your <code>--keyword</code> matched nothing; retry without it).</li>
+</ul>
+</li>
+<li><code>neotoma relationship-types register --relationship-type &lt;type&gt;</code>:
+<ul>
+<li><code>--description &lt;text&gt;</code>: meaning of the edge.</li>
+<li><code>--scope &lt;scope&gt;</code>: <code>user</code> (default) or <code>global</code>; <code>global</code> requires an explicit global permission in the caller's registration grant; an absent grant is refused.</li>
+<li><code>--acyclic</code>: refuse writes that would create a cycle among edges of this type, scoped to the registering tenant and depth-bounded (see <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/relationships.md"><code>docs/subsystems/relationships.md</code></a> § 8 Cycle Detection).</li>
+<li><code>--inverse &lt;type&gt;</code>: advisory inverse type name (not enforced).</li>
+<li><code>--symmetric</code>: advisory symmetry flag (not enforced).</li>
+<li><code>--source-entity-types &lt;types&gt;</code> / <code>--target-entity-types &lt;types&gt;</code>: comma-separated advisory entity-type hints for each endpoint (not enforced).</li>
+</ul>
+</li>
+</ul>
+<h3 id="relationships">Relationships<a href="#relationships" class="dv-anchor" aria-label="Link to this section: Relationships">#</a></h3>
+<ul>
+<li><code>neotoma relationships create --source-entity-id &lt;id&gt; --target-entity-id &lt;id&gt; --relationship-type &lt;type&gt;</code>: Create one relationship. Both <code>--source-entity-id</code> and <code>--target-entity-id</code> must be entities you own; an endpoint that does not exist and one owned by another user are refused identically.
+<ul>
+<li><code>--metadata &lt;json&gt;</code>: attach relationship metadata.</li>
+<li><code>--file &lt;path&gt;</code>: create a batch from a JSON array, or an object with <code>relationships: [...]</code>. Each entry uses <code>relationship_type</code>, <code>source_entity_id</code>, <code>target_entity_id</code>, and optional <code>metadata</code>.</li>
+</ul>
+</li>
+<li><code>neotoma relationships list &lt;entityId&gt;</code>:
+<ul>
+<li><code>--direction &lt;direction&gt;</code>: inbound, outbound, or both</li>
+</ul>
+</li>
+<li><code>neotoma relationships get-snapshot &lt;relationshipType&gt; &lt;sourceEntityId&gt; &lt;targetEntityId&gt;</code>: Get relationship snapshot with provenance (observations). Relationship type is any type registered on the instance (the vocabulary is a runtime registry); call <code>list_relationship_types</code> to read what an instance accepts, and <code>register_relationship_type</code> to add to it.</li>
+<li><code>neotoma relationships restore &lt;relationshipType&gt; &lt;sourceEntityId&gt; &lt;targetEntityId&gt;</code>: Restore a deleted relationship (creates restoration observation). Optional: <code>--reason &lt;reason&gt;</code>.</li>
+</ul>
+<h3 id="timeline">Timeline<a href="#timeline" class="dv-anchor" aria-label="Link to this section: Timeline">#</a></h3>
+<ul>
+<li><code>neotoma timeline list</code>:
+<ul>
+<li><code>--start-date &lt;date&gt;</code></li>
+<li><code>--end-date &lt;date&gt;</code></li>
+<li><code>--event-type &lt;type&gt;</code></li>
+<li><code>--entity-id &lt;id&gt;</code>: Filter by entity ID</li>
+<li><code>--user-id &lt;userId&gt;</code>: Filter by user ID (default: authenticated user)</li>
+<li><code>--limit &lt;n&gt;</code></li>
+<li><code>--offset &lt;n&gt;</code></li>
+<li><code>--order-by &lt;column&gt;</code>: <code>event_timestamp</code> (default, document dates) or <code>created_at</code> (when the timeline row was written)</li>
+</ul>
+</li>
+</ul>
+<h3 id="schemas">Schemas<a href="#schemas" class="dv-anchor" aria-label="Link to this section: Schemas">#</a></h3>
+<ul>
+<li><code>neotoma schemas list</code></li>
+<li><code>neotoma schemas get &lt;entityType&gt;</code></li>
+<li><code>neotoma schemas audit-fragments [entityType]</code>: Report undeclared <code>raw_fragments</code> awaiting schema declaration (fields stored on observations but excluded from the entity snapshot because no active schema declares them). Read-only. Outputs, per type, the undeclared <code>fragment_key</code>s with occurrence / affected-entity counts and a <code>schema_missing</code> flag, plus <code>total_entity_types</code> / <code>total_undeclared_fields</code> rollups. Optional positional <code>entityType</code> (or <code>--entity-type &lt;type&gt;</code>) scopes the audit to one type; <code>--user-id &lt;id&gt;</code> overrides the resolved user. Maps to <code>POST /audit_undeclared_fragments</code> / MCP <code>audit_undeclared_fragments</code>.</li>
+</ul>
+<h3 id="peers">Peers<a href="#peers" class="dv-anchor" aria-label="Link to this section: Peers">#</a></h3>
+<p>Cross-instance peer sync. Backed by <code>src/services/sync/</code> and the HTTP <code>/peers</code> surface; see <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/peer_sync.md"><code>docs/subsystems/peer_sync.md</code></a> for the underlying model and the env vars (<code>NEOTOMA_PUBLIC_BASE_URL</code>, <code>NEOTOMA_LOCAL_PEER_ID</code>) required on the API process.</p>
+<ul>
+<li><code>neotoma peers add --peer-id &lt;id&gt; --name &lt;name&gt; --url &lt;url&gt; --types &lt;csv&gt;</code>: Register a peer.
+<ul>
+<li><code>--direction &lt;push|pull|bidirectional&gt;</code> (default <code>bidirectional</code>).</li>
+<li><code>--sync-scope &lt;all|tagged&gt;</code> (default <code>all</code>). With <code>tagged</code>, only entities whose snapshot lists this peer in <code>sync_peers</code> are eligible.</li>
+<li><code>--auth-method &lt;shared_secret|aauth&gt;</code> (default <code>shared_secret</code>).</li>
+<li><code>--shared-secret &lt;secret&gt;</code>: HMAC peer secret when <code>auth-method=shared_secret</code>.</li>
+<li><code>--peer-public-key-thumbprint &lt;thumbprint&gt;</code>: Expected AAuth thumbprint when <code>auth-method=aauth</code>.</li>
+<li><code>--conflict-strategy &lt;last_write_wins|source_priority|manual&gt;</code> (default <code>last_write_wins</code>).</li>
+<li><code>--target-user-id &lt;id&gt;</code>: Receiver <code>user_id</code> on the peer instance.</li>
+</ul>
+</li>
+<li><code>neotoma peers list</code>: List configured peers.</li>
+<li><code>neotoma peers status &lt;peer_id&gt;</code>: Show peer config plus <code>remote_health</code> (probed <code>{peer_url}/health</code>) and semver compatibility vs the local package version.</li>
+<li><code>neotoma peers sync &lt;peer_id&gt;</code>: Run a bounded bilateral catch-up against the peer (push local changed observations, pull remote snapshots through <code>/sync/entities</code>).
+<ul>
+<li><code>--limit &lt;n&gt;</code>: Cap observations / snapshots per direction.</li>
+</ul>
+</li>
+<li><code>neotoma peers remove &lt;peer_id&gt;</code>: Deactivate the peer (does not delete prior <code>observation_source: "sync"</code> rows).</li>
+</ul>
+<h3 id="interpretations">Interpretations<a href="#interpretations" class="dv-anchor" aria-label="Link to this section: Interpretations">#</a></h3>
+<ul>
+<li><code>neotoma interpretations list</code>: List interpretation runs.
+<ul>
+<li><code>--source-id &lt;id&gt;</code>: Filter by source.</li>
+<li><code>--limit &lt;n&gt;</code> / <code>--offset &lt;n&gt;</code>: Pagination.</li>
+</ul>
+</li>
+<li><code>neotoma interpretations create --source-id &lt;id&gt; --entities &lt;path&gt;</code>: Create an interpretation row for an existing source from agent-extracted flat entities.
+<ul>
+<li><code>--interpretation-config &lt;json&gt;</code>: Audit configuration such as extractor type/version, model, prompt hash, schema version, and agent notes.</li>
+<li><code>--relationships &lt;path&gt;</code>: Optional JSON array of relationship refs to create after entity observations.</li>
+<li><code>--idempotency-key &lt;key&gt;</code>: Optional replay-safe operation key.</li>
+</ul>
+</li>
+</ul>
+<h3 id="store">Store<a href="#store" class="dv-anchor" aria-label="Link to this section: Store">#</a></h3>
+<ul>
+<li><code>neotoma store</code>:
+<ul>
+<li>Preferred structured input: <code>--entities &lt;json&gt;</code> or <code>--file &lt;path&gt;</code></li>
+<li>Compatibility alias: <code>--json=&lt;json&gt;</code> maps to structured <code>--entities</code> for backward compatibility.
+<ul>
+<li>Use <code>--json=</code> (equals, no space) so the payload is parsed as entities input.</li>
+<li>Bare <code>--json</code> (without <code>=</code>) remains the global output-format flag.</li>
+</ul>
+</li>
+<li><code>--file &lt;path&gt;</code>: Path to JSON file containing entity array. Use for long payloads.</li>
+<li><code>--observation-source &lt;kind&gt;</code>: Classify the <em>kind</em> of write. Closed enum: <code>sensor | llm_summary | workflow_state | human | import | sync | unspecified</code>. On main, when omitted the server stores <code>unspecified</code> and the output carries an <code>OBSERVATION_SOURCE_OMITTED</code> entry in <code>store_warnings</code>. In v0.25.0 the enum has no <code>unspecified</code> value and an omitted source is stored as <code>llm_summary</code>. Pass <code>llm_summary</code> explicitly for model-authored content. <strong>Breaking change in v0.18.x (was open in v0.17):</strong> arbitrary strings are rejected. Put custom v0.17 labels (e.g. <code>cboe_live</code>, <code>stale_cache</code>) in the free-form <code>data_source</code> field and map the closest enum value here. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/fleet_onboarding.md#migrating-observation_source-from-v017-to-v018">Migrating from v0.17 to v0.18</a>.</li>
+<li><code>--interpretation-source-id &lt;id&gt;</code> / <code>--interpretation-source-ref &lt;structured|unstructured&gt;</code> plus <code>--interpretation-config &lt;json&gt;</code>: Opt into Source -&gt; Interpretation -&gt; Observation provenance for source-derived extraction. Omit for ordinary already-structured/chat-native facts.</li>
+<li>Silent-failure guard (v0.5.1+): when a commit-mode store returns <code>entities_created=0</code>, no resolved entities, and is not an idempotency replay (<code>replayed: true</code>), the CLI emits a non-fatal stderr warning so agents/humans don't mistake an empty result for success. Typical root cause: fields nested under <code>attributes</code> (see v0.5.0 breaking change) or mismatched <code>user_id</code> scope.</li>
+<li>Idempotency replays: <code>POST /store</code> returns <code>replayed: true</code> when a request is a deterministic re-commit of a previously committed <code>(user_id, idempotency_key)</code> tuple. Use this to distinguish "same call, no new work" from "call produced zero entities."</li>
+</ul>
+</li>
+</ul>
+<h3 id="ingest">Ingest<a href="#ingest" class="dv-anchor" aria-label="Link to this section: Ingest">#</a></h3>
+<ul>
+<li><code>neotoma ingest</code>: Atomic structured-entities + source-file ingest (composes <code>/store</code>).
+<ul>
+<li><code>--entities &lt;path&gt;</code> (required): JSON file containing the entity array extracted by the caller.</li>
+<li><code>--source-file &lt;path&gt;</code> (required): Raw source artifact (PDF, transcript, CSV, etc.) attached as provenance.</li>
+<li><code>--user-id &lt;id&gt;</code> / <code>--idempotency-key &lt;key&gt;</code> / <code>--file-idempotency-key &lt;key&gt;</code>: same semantics as <code>neotoma store</code>.</li>
+<li><code>--plan</code> / <code>--dry-run</code>: Preview planned actions without committing. On main nothing is persisted: no source row, no stored file, no observations and no entities are written, and <code>source_id</code> is <code>null</code> in the response. In v0.25.0, <code>--plan</code> still writes the source row and the raw file (fixed in #2471).</li>
+<li><code>--strict</code>: Refuse silent merges (schema <code>canonical_name_fields</code> must match, or <code>--target-id</code> must be supplied).</li>
+<li><code>--source-upload</code> (v0.5.1+): Force base64 upload of the source file via <code>file_content</code>. Use this when the CLI and API run on different machines so the server can't read the CLI's local filesystem.</li>
+<li><code>--source-content</code> (v0.5.1+): Alias for <code>--source-upload</code>.</li>
+<li>Auto-upload (v0.5.1+): when the resolved base URL is non-localhost (anything other than <code>localhost</code>, <code>127.0.0.1</code>, <code>::1</code>, <code>0.0.0.0</code>), the CLI automatically switches from <code>file_path</code> to <code>file_content</code> so remote deployments work without any flag. Localhost base URLs continue to send <code>file_path</code> so the server reads the artifact directly from disk.</li>
+<li>Upload size limit: the server caps JSON bodies at 10 MB (<code>express.json({ limit: "10mb" })</code>). Accounting for base64 overhead (~1.37×), the CLI refuses to upload source files larger than ~7.5 MB with a clear error pointing operators at a localhost API as the alternative.</li>
+</ul>
+</li>
+</ul>
+<h3 id="mcpcli-parity-note">MCP/CLI parity note<a href="#mcpcli-parity-note" class="dv-anchor" aria-label="Link to this section: MCP/CLI parity note">#</a></h3>
+<p>For chat persistence recipes, MCP and CLI use the same underlying store contract. In CLI examples:</p>
+<ul>
+<li>entity lookup supports positional identifier, <code>--identifier</code>, and compatibility alias <code>--query</code></li>
+<li>structured store supports preferred <code>--entities</code>/<code>--file</code> and compatibility alias <code>--json=&lt;json&gt;</code></li>
+</ul>
+<h3 id="upload">Upload<a href="#upload" class="dv-anchor" aria-label="Link to this section: Upload">#</a></h3>
+<ul>
+<li><code>neotoma upload &lt;path&gt;</code>: Store an unstructured file as a source. Neotoma does not extract fields from it; send extracted entities with <code>neotoma store</code> or <code>neotoma interpretations create</code>. Without <code>--local</code>, the CLI sends the file's path, so the API must run on the same machine.
+<ul>
+<li><code>--idempotency-key &lt;key&gt;</code>: Idempotency key (default: content hash).</li>
+<li><code>--mime-type &lt;type&gt;</code>: MIME type (default: inferred from extension).</li>
+<li><code>--local</code>: Store the file in-process without starting or connecting to the API server. Uses the same <code>.env</code>, database, and storage backend as the server. Requires <code>neotoma init</code> to have been run. Encryption-off only (local dev user) for MVP. Example: <code>neotoma upload --local invoice.pdf</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="analyze">Analyze<a href="#analyze" class="dv-anchor" aria-label="Link to this section: Analyze">#</a></h3>
+<ul>
+<li><code>neotoma schemas analyze [entityType]</code>: Analyze raw fragments for an entity type to find schema candidate fields.
+<ul>
+<li><code>--min-confidence &lt;n&gt;</code> (default <code>0.8</code>) and <code>--min-frequency &lt;n&gt;</code> (default <code>5</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="stats">Stats<a href="#stats" class="dv-anchor" aria-label="Link to this section: Stats">#</a></h3>
+<ul>
+<li><code>neotoma stats</code></li>
+</ul>
+<h3 id="watch-local-backend-only">Watch (local backend only)<a href="#watch-local-backend-only" class="dv-anchor" aria-label="Link to this section: Watch (local backend only)">#</a></h3>
+<ul>
+<li><code>neotoma watch</code>: Stream record changes (entities, observations, sources, etc.) as they happen. Uses local dev user when encryption is off (no login needed).
+<ul>
+<li><code>--interval &lt;ms&gt;</code>: Polling interval in ms (default: 400).</li>
+<li><code>--json</code>: Output NDJSON (one JSON object per line).</li>
+<li><code>--human</code>: Output one sentence per change (e.g. "Created person "George"", "Updated relationship "wife" for person "Alice" with person "Bob""). No timestamps, emoji, or IDs.</li>
+<li><code>--tail</code>: Only show changes from now (skip existing records).</li>
+<li>When encryption is on, set <code>NEOTOMA_KEY_FILE_PATH</code> or <code>NEOTOMA_MNEMONIC</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="processes-local-os-only">Processes (local OS only)<a href="#processes-local-os-only" class="dv-anchor" aria-label="Link to this section: Processes (local OS only)">#</a></h3>
+<ul>
+<li><code>neotoma processes list</code> (default for <code>neotoma processes</code>): Scan <code>ps</code> for processes whose argv matches Neotoma checkout paths, <code>tsx watch src/actions.ts</code>, <code>run-neotoma-api-node-watch.sh</code> / <code>node --watch-path</code> + <code>src/actions.ts</code>, <code>run_neotoma_mcp*.sh</code>, <code>run_watch_build_launchd.sh</code>, <code>mcp proxy</code>, orchestrator (<code>pick-port</code> / <code>concurrently</code>), <code>tsc --watch</code>, <code>esbuild</code>, Cursor hooks under the repo, etc. <strong>TCP listen ports</strong> per PID come from a single <code>lsof -nP -iTCP -sTCP:LISTEN -F pn</code> pass (comma-separated in the PORTS column, <code>-</code> when none); if <code>lsof</code> is missing or fails, PORTS stays <code>-</code>. Text mode adds <strong>ENV</strong> (<code>dev</code> | <code>prod</code> | <code>mix</code> | <code>?</code>) and <strong>CAT</strong> (comma-separated tags: <code>server</code>, <code>mcp</code>, <code>build</code>, <code>orchestrator</code>, <code>tunnel</code>, <code>tooling</code>, <code>other</code>) inferred heuristically from argv and listen ports; a footer line explains the encoding. The full <code>ps</code> command line is <strong>word-wrapped within the COMMAND column</strong> to the current terminal width (continuation lines are blank under the fixed columns so COMMAND stays aligned). <code>--json</code> prints <code>{ "processes": [...] }</code> with <code>ports</code> (number array), <code>env_hint</code>, <code>categories</code> (string array), and each full <code>command</code> on one line.</li>
+<li><code>neotoma processes servers</code>: Same <code>ps</code> + <code>lsof</code> scan as <code>list</code>, but only rows with category <strong><code>server</code></strong> (not limited to default HTTP ports). Rows are <strong>deduplicated by server stack</strong>: all processes in a connected parent-child chain that share the same stack context are collapsed into a single row showing the PID that actually holds the TCP listener (or the deepest child when no listener is detected). Prints a compact table: <strong>PID</strong> (the representative listener PID for the stack), <strong>ENV</strong> (resolved <code>NEOTOMA_ENV</code> when readable, otherwise inherited from the nearest connected server/orchestrator stack when the stack is unambiguous, else the same heuristic as <code>list</code>), <strong>PORT</strong> (all TCP listen ports visible anywhere in that connected server stack, comma-separated, with <strong><code>3080</code></strong> / <strong><code>3180</code></strong> listed first when present; <code>-</code> when none of the connected rows expose a listener), <strong>LAUNCHAGENT</strong> (macOS LaunchAgent label inferred from the process ancestry, plist path, or known launchd wrapper / <code>npm run ...</code> entrypoint such as <code>com.neotoma.dev-server</code>; <code>-</code> when not inferable), <strong>DATA_DIR</strong> (<code>NEOTOMA_DATA_DIR</code> from procfs or argv on the PID itself, otherwise inherited from the connected server stack when available, else <code>-</code>), <strong>LOGS</strong> (best-effort deduped paths: default event log per <code>src/config.ts</code> when data dir / <code>NEOTOMA_EVENT_LOG_*</code> overrides are known, app <strong><code>NEOTOMA_LOGS_DIR</code></strong> or data-relative <code>logs</code> / <code>logs_prod</code> when distinct from the parent directory of the event log, <strong><code>~/.config/neotoma/logs/api.log</code></strong> (dev) or <strong><code>logs_prod/api.log</code></strong> (prod) for <code>neotoma api start --background</code>, optional repo <strong><code>data/logs/session.log</code></strong> / <code>session.prod.log</code> when <strong><code>NEOTOMA_PROJECT_ROOT</code></strong> is set). <code>--watch</code> keeps the table running and refreshes it every few seconds until interrupted; use <code>--interval &lt;ms&gt;</code> to override the default 3000 ms cadence. In <code>--json --watch</code> mode it emits one JSON object per refresh line with <code>refreshed_at</code>. Plain <code>--json</code> prints <code>{ "servers": [ { "pid", "neotoma_env", "port", "launchagent", "data_dir", "log_paths" } ] }</code> (<code>log_paths</code> is a string array; <code>port</code> is comma-separated).</li>
+<li><code>neotoma processes kill &lt;pids...&gt;</code>: One or more PIDs as separate tokens (e.g. <code>neotoma processes kill 92450 18852</code>) or a single comma/space string in quotes. Re-runs the same classifier; <strong>only PIDs that appear in a fresh scan</strong> are signalled (prevents typos from killing unrelated processes). Default signal is <strong>SIGTERM</strong>; use <code>--signal SIGKILL</code> when needed. <code>--dry-run</code> prints the plan. On a TTY, prompts once unless <code>--force</code>. Non-TTY requires <code>--force</code>.</li>
+</ul>
+<h3 id="mirror">Mirror<a href="#mirror" class="dv-anchor" aria-label="Link to this section: Mirror">#</a></h3>
+<ul>
+<li><code>neotoma mirror enable</code>: Enable the markdown mirror under <code>&lt;NEOTOMA_DATA_DIR&gt;/mirror/</code> and run an initial rebuild.
+<ul>
+<li><code>--path &lt;dir&gt;</code>: Override mirror root.</li>
+<li><code>--git</code>: Enable git-backed history (<code>git init</code> on the mirror path, one commit per write batch). Requires the optional <code>simple-git</code> dependency (installed by default).</li>
+<li><code>--kinds &lt;list&gt;</code>: Comma-separated kinds to mirror (<code>entities,relationships,sources,timeline,schemas</code>, default all).</li>
+<li><code>--gitignore</code>: After enabling, append the resolved mirror path to the enclosing git repo's <code>.gitignore</code> (idempotent). No-op when the mirror path is not inside a repo. Equivalent to running <code>neotoma mirror gitignore</code> after <code>enable</code>.</li>
+<li><code>--no-gitignore</code>: Explicit form for <code>--yes</code> scripts that want to leave <code>.gitignore</code> alone (default).</li>
+</ul>
+</li>
+<li><code>neotoma mirror disable</code>: Disable mirror write-through. Does not delete existing files.</li>
+<li><code>neotoma mirror rebuild</code>: Regenerate the mirror from SQLite.
+<ul>
+<li><code>--kind &lt;entities|relationships|sources|timeline|schemas|all&gt;</code> (default <code>all</code>).</li>
+<li><code>--entity-type &lt;type&gt;</code>, <code>--entity-id &lt;id&gt;</code>: Scope rebuild to a type or single record.</li>
+<li><code>--clean</code>: Remove stale mirror files within the targeted scope that this rebuild did not produce.</li>
+</ul>
+</li>
+<li><code>neotoma mirror push [profile]</code>: Write on-disk mirror edits BACK into Neotoma as corrections, the inverse of <code>rebuild</code>. <strong>Opt-in and gated:</strong> only runs for profiles with <code>allow_disk_writeback: true</code>, and is a no-op otherwise. Pull-based (explicit invocation, no background watcher): for each mirrored file it 3-way compares the editable fields (last-synced base / on-disk / current canonical) and applies changed fields as <code>correct()</code> calls; managed/generated regions (frontmatter, "do not edit" headers) are never written back. When both the file and canonical changed since the base, it surfaces a conflict instead of overwriting.
+<ul>
+<li><code>--check</code> / <code>--dry-run</code>: Show the corrections that would be applied, without writing.</li>
+<li><code>--target &lt;path&gt;</code>: Restrict the push to a specific mirror file or directory.</li>
+<li><code>--verbose</code>: Print per-field diffs and per-file outcomes.</li>
+<li>Example (dry-run): <code>neotoma mirror push --dry-run</code> lists files with pending edits and the field-level corrections each would produce.</li>
+<li>See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/markdown_mirror.md"><code>docs/subsystems/markdown_mirror.md</code></a> for 3-way-diff semantics.</li>
+</ul>
+</li>
+<li><code>neotoma mirror status</code>: Print current mirror config, file counts per kind, and whether git is enabled.</li>
+<li><code>neotoma mirror gitignore</code>: Idempotently append the resolved mirror path to the enclosing git repo's <code>.gitignore</code>, under a <code># Neotoma markdown mirror</code> comment. The helper walks up from the mirror path to find the enclosing <code>.git</code> directory; it never prompts for a path and never writes to a repo it did not detect. When the mirror path is not inside a repo, it exits 0 with a "not inside a git repo" message. Use <code>--json</code> to get the structured result (<code>repo_root</code>, <code>gitignore_path</code>, <code>entry</code>, <code>added</code>, <code>already_present</code>).</li>
+</ul>
+<p>The mirror is a derived artifact: SQLite is the only source of truth. Mirror files carry a header warning that manual edits are overwritten on the next write, <strong>unless</strong> the profile opts into write-back (<code>allow_disk_writeback: true</code>), in which case <code>neotoma mirror push</code> (above) is the supported path to flow on-disk edits back as corrections. To edit an entity directly, use <code>neotoma edit &lt;id&gt;</code> or the Inspector (see below). The mirror defaults to disabled; activation offers it as an opt-in (see <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/install.md#activation-step-66-offer-markdown-mirror-opt-in"><code>install.md</code></a>). See <code>docs/subsystems/markdown_mirror.md</code> for layout, determinism, and git semantics.</p>
+<h3 id="skills">Skills<a href="#skills" class="dv-anchor" aria-label="Link to this section: Skills">#</a></h3>
+<ul>
+<li><code>neotoma skills sync</code>: Mirror the published skills (<code>skills/</code> shipped with the package) into every installed harness's skills directory. This is the same reconciler <code>neotoma setup</code> uses for skill installation, run across all harnesses at once.
+<ul>
+<li><code>--scope &lt;user|project&gt;</code> (default <code>user</code>): Mirror into the home-directory harness dirs (<code>~/.claude/skills</code>, <code>~/.cursor/skills</code>, <code>~/.codex/skills</code>, <code>~/.openclaw/skills</code>) or into the project's <code>.&lt;harness&gt;/skills</code>.</li>
+<li><code>--json</code>: Emit the machine-readable report (<code>source</code>, <code>source_present</code>, <code>scope</code>, per-harness <code>results</code>, <code>changed</code>, <code>has_errors</code>) instead of the human summary.</li>
+<li>Targets a harness only when its <strong>base</strong> directory exists (e.g. <code>~/.cursor</code>), and creates the <code>skills</code> subdirectory if missing, so a harness installed later is picked up on the next sync. Cursor uses <code>.cursor/skills</code> (not Cursor's separate built-in <code>.cursor/skills-cursor</code> root).</li>
+<li>Reconciliation: a single whole-directory symlink when the target is absent or already ours; a per-skill symlink fallback that preserves any foreign content when the target holds non-Neotoma skills. Foreign content is never overwritten or deleted.</li>
+<li>Exit code <code>1</code> when the source is missing or any per-skill link fails (errors are surfaced per harness in both pretty and <code>--json</code> output); otherwise <code>0</code>.</li>
+<li><code>--include-instance-skills</code>: Opt-in, <strong>CLI-only</strong> capability with no MCP equivalent (materialization writes to the invoking machine's local filesystem, which has no server-side analog). Also fetch every <code>enabled: true</code> <code>skill</code> entity visible to the authenticated user on the connected instance and materialize them as real <code>SKILL.md</code> files under <code>~/.neotoma/instance-skills/&lt;instance-host&gt;/</code>, then link them into harnesses via the same per-skill-symlink mechanism as package skills. Package-shipped skills always win on a name collision: an instance skill whose slug collides is skipped with a warning, never overwritten. Idempotent: re-running updates changed rows and prunes materialized dirs whose row is gone or disabled, but only dirs carrying Neotoma's own provenance marker, so a user-authored directory that happens to share a slug is never touched. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/skills/skill_strategy.md"><code>docs/skills/skill_strategy.md</code></a> for the full design.</li>
+<li><code>--include-instance-scripts</code> (implies <code>--include-instance-skills</code>): Additionally fetch script attachments (<code>file_asset</code> entities a skill row <code>EMBEDS</code>), verify each download's SHA-256 against the recorded <code>content_hash</code>, and write approved ones to <code>&lt;skill&gt;/scripts/&lt;filename&gt;</code>. Gated by a hash-pin consent manifest at <code>~/.neotoma/instance-skills/approvals.json</code> (<code>&lt;instance&gt;/&lt;skill&gt;/&lt;filename&gt;</code> → approved sha256): a script whose hash is not yet approved, or whose hash changed since a prior approval, is refused (not written) and reported, not silently skipped. <code>original_filename</code> is treated as hostile input at this boundary: it is rejected outright (never rewritten) if it is empty, absolute, contains a path separator, is <code>.</code>/<code>..</code>, or contains a null byte, and the write additionally asserts the resolved path stays inside the skill's <code>scripts/</code> directory before writing.</li>
+<li><code>--approve-scripts</code>: Trust these specific instance-script hashes to be written to disk and pin them as approved for future <code>--include-instance-scripts</code> runs. This is the one flag in <code>skills sync</code> that changes a security posture. It is not a generic "confirm the sync" switch, it is an execution-trust decision scoped to the exact script bytes hashed on this run. Without this flag, unapproved or changed-hash scripts are reported as blocked and not written. This module only downloads, verifies, and writes files; it never executes, spawns, or evaluates anything. (<code>--approve</code> is a deprecated, hidden alias kept for backward compatibility; prefer <code>--approve-scripts</code>.)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Worked example: the two-step consent flow</strong></p>
+<p>A collaborator on a shared instance runs <code>skills sync</code> with instance scripts enabled for the first time. The script is blocked pending review; after reading it, they re-run with <code>--approve-scripts</code> to pin the hash and write the file.</p>
+<p>Step 1: fetch instance skills and their script attachments. On the first run nothing is approved yet, so any script attachment is reported as blocked and not written to <code>&lt;skill&gt;/scripts/</code>; the bytes are downloaded only in memory to compute the hash.</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma skills <span class="token function">sync</span> --include-instance-scripts
+</code></pre></div>
+<div class="dv-code"><span class="dv-code-lang">text</span><pre tabindex="0"><code class="language-text">Skills source: /usr/local/lib/node_modules/neotoma/skills (scope=user)
+  claude-code: up-to-date (whole-dir-symlink, dir-symlink) → ~/.claude/skills
+All harnesses already up-to-date.
+Instance skills: 3 fetched → ~/.neotoma/instance-skills/&lt;instance-host&gt;
+  updated: deploy-helper
+  claude-code: 3 instance skill link(s) → ~/.claude/skills
+  ⚠ script not written (unapproved): deploy-helper/scripts/rollout.sh (sha256:9f86d081884c) — review with `neotoma sources content src_a1b2c3d4`, then re-run with --approve-scripts
+</code></pre></div>
+<p>Step 2: review the script before trusting it. The blocked message names the <code>sources.id</code> (<code>src_a1b2c3d4</code> above). <code>neotoma sources get &lt;id&gt;</code> returns only metadata (hash, filename); <code>sources content</code> prints the bytes:</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma sources content src_a1b2c3d4
+</code></pre></div>
+<div class="dv-code"><span class="dv-code-lang">text</span><pre tabindex="0"><code class="language-text">#!/bin/sh
+echo "rolling out release..."
+...
+</code></pre></div>
+<p>Step 3: when satisfied, re-run with <code>--approve-scripts</code> to pin the hash and write the file:</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma skills <span class="token function">sync</span> --include-instance-scripts --approve-scripts
+</code></pre></div>
+<div class="dv-code"><span class="dv-code-lang">text</span><pre tabindex="0"><code class="language-text">Instance skills: 3 fetched → ~/.neotoma/instance-skills/&lt;instance-host&gt;
+  claude-code: 3 instance skill link(s) → ~/.claude/skills
+  script written: deploy-helper/scripts/rollout.sh (hash approved and recorded)
+</code></pre></div>
+<p>On every later sync, as long as the script's content hasn't changed, it is written silently (no re-approval needed; the <code>(hash approved and recorded)</code> suffix only appears the run a hash is newly pinned). If the script's content ever changes, the new hash is blocked again with the same two-step flow: review, then re-run with <code>--approve-scripts</code>.</p>
+<p>For continuous mirroring, install the <code>com.neotoma.skills-sync</code> LaunchAgent with <code>npm run setup:launchd-skills-sync</code> (macOS; watches <code>skills/</code> and re-runs <code>neotoma skills sync</code> on change). See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/npm_scripts.md#macos-launchagents"><code>npm_scripts.md</code></a>.</p>
+<h3 id="edit">Edit<a href="#edit" class="dv-anchor" aria-label="Link to this section: Edit">#</a></h3>
+<ul>
+<li><code>neotoma edit &lt;id&gt;</code>: Open the entity snapshot as YAML in an editor, diff on save, and submit the changed fields as one batch correction.
+<ul>
+<li><code>--editor &lt;cmd&gt;</code>: Editor command. Without it, the CLI uses <code>$EDITOR</code>, then <code>$VISUAL</code>, then <code>vi</code>.</li>
+<li><code>--overwrite</code>: Apply even if the entity changed since you opened it.</li>
+<li><code>--user-id &lt;userId&gt;</code>: User scope.</li>
+<li>Conflicts: the CLI records <code>last_observation_at</code> when it loads the entity. If the entity changed before you save, it prints a warning, re-fetches the entity, re-applies your changed fields on top, and reopens the editor, up to five times.</li>
+<li>A validation failure prints the failing fields and exits non-zero; the edit buffer is not kept.</li>
+</ul>
+</li>
+</ul>
+<p>The CLI and the Inspector share one <code>applyBatchCorrection</code> backend (<code>src/services/batch_correction.ts</code>), so both surfaces have identical semantics.</p>
+<h3 id="array-item-patch">Array item patch<a href="#array-item-patch" class="dv-anchor" aria-label="Link to this section: Array item patch">#</a></h3>
+<p>Main only; not in v0.25.0.</p>
+<ul>
+<li><code>neotoma array-item patch &lt;entityId&gt; &lt;entityType&gt; &lt;field&gt; &lt;keyField&gt; &lt;keyValue&gt;</code>: Atomically patch one item of a structured array field by key, instead of read-modify-full-array-write.
+<ul>
+<li><code>keyValue</code> must parse as a portable non-null JSON scalar (string, boolean, or finite number within the inclusive safe-integer range); objects, arrays, null, and unsafe numbers are rejected.</li>
+<li><code>--item-json &lt;json&gt;</code>: JSON object of fields to set on the item (merged onto the existing item, or used to create it if the key is not yet present).</li>
+<li><code>--expected-item-version &lt;version&gt;</code>: Content-hash version of the item as last observed (from a prior patch's <code>item_version</code>). A stale value refuses with a structured conflict (<code>status: "conflict"</code>, <code>current_item</code> / <code>current_item_version</code> in the output, non-zero exit code) instead of overwriting; nothing is written.</li>
+<li><code>--expected-item-absent</code>: Create only if the keyed item is absent. Two concurrent creators produce exactly one success and one structured conflict.</li>
+<li>Two patches against DIFFERENT keys on the same field both succeed regardless of ordering. This is the fix for the lost-update pattern where a caller reads the whole array, edits one row locally, and writes the full array back, which can silently discard a concurrent writer's disjoint row.</li>
+<li>Only applies to array fields whose active schema declares <code>merge_policies.&lt;field&gt;.strategy: "merge_array_by_key"</code> with the same <code>key_field</code> (see <code>docs/subsystems/reducer.md</code> §3.5); missing or mismatched policy fails closed before any write.</li>
+</ul>
+</li>
+</ul>
+<p>For non-array fields, <code>neotoma corrections create &lt;entityId&gt; --field-name &lt;field&gt; --corrected-value &lt;value&gt; --expected-version &lt;entity_version&gt;</code> provides entity-level CAS (main only; v0.25.0 has no <code>--expected-version</code>). The CLI resolves the stored entity type when <code>--entity-type</code> is omitted. A stale token exits non-zero with <code>ERR_FIELD_VERSION_CONFLICT</code>, the stored token, and retry guidance; an identical idempotency replay returns the original observation and value before evaluating the now-stale CAS token.</p>
+<h3 id="memory-export">Memory export<a href="#memory-export" class="dv-anchor" aria-label="Link to this section: Memory export">#</a></h3>
+<ul>
+<li><code>neotoma memory-export</code>: Write a single <code>MEMORY.md</code> file with bounded, deterministic contents for agent harnesses that consume file-based memory.
+<ul>
+<li><code>--path &lt;path&gt;</code> (default <code>MEMORY.md</code>): Output path.</li>
+<li><code>--limit-lines &lt;n&gt;</code> (default 200): Hard line cap. When exceeded, output is truncated with a <code>&lt;!-- fold: N entities not shown --&gt;</code> marker. Set to <code>0</code> to include every entity with no line cap.</li>
+<li><code>--include-types &lt;list&gt;</code>: Comma-separated entity types to include. Omit to include all types (minus bookkeeping).</li>
+<li><code>--exclude-types &lt;list&gt;</code>: Comma-separated entity types to exclude. Applied on top of the default bookkeeping filter.</li>
+<li><code>--include-bookkeeping</code>: Include chat bookkeeping (<code>conversation</code>, <code>agent_message</code>). Excluded by default because they are noise in a memory manifest and already live in conversation history.</li>
+<li><code>--max-field-chars &lt;n&gt;</code> (default 400): Per-field character cap for long string values. Long bodies (posts, notes, transcripts) are truncated with a deterministic <code>… (&lt;N&gt; chars truncated)</code> suffix so one long entity cannot consume the entire line budget. Set to <code>0</code> to emit full values.</li>
+<li><code>--order &lt;importance|recency&gt;</code> (default <code>importance</code>): Sort strategy.
+<ul>
+<li><code>importance</code>: type-weighted signal score <code>typeWeight × log2(observation_count + 2) × recency_decay</code> (half-life 30 days). Tier-1 types (<code>task</code>, <code>contact</code>, <code>event</code>, <code>transaction</code>, <code>business_opportunity</code>, <code>issue</code>, <code>user_persona_insight</code>, <code>life_tenets</code>, <code>architectural_decision</code>, <code>agent_decision</code>, <code>release</code>, <code>feature_unit</code>) rank above Tier-2 durable artifacts (<code>note</code>, <code>post</code>, <code>meeting_transcription</code>, <code>email_message</code>, <code>location</code>, <code>file_asset</code>, etc.). Bookkeeping types score 0 when included explicitly.</li>
+<li><code>recency</code>: <code>last_observation_at desc</code>, ties broken by <code>entity_id asc</code>.</li>
+</ul>
+</li>
+<li><code>--user-id &lt;id&gt;</code>: Scope to a specific user. Defaults to the active local dev user when encryption is off.</li>
+</ul>
+</li>
+</ul>
+<p><code>MEMORY.md</code> is regenerated automatically after each mirror batch when <code>mirror.memory_export.enabled</code> is set in <code>~/.config/neotoma/config.json</code>.</p>
+<h3 id="storage">Storage<a href="#storage" class="dv-anchor" aria-label="Link to this section: Storage">#</a></h3>
+<ul>
+<li><code>neotoma storage info</code>: Show where CLI config and server data are stored (file paths and backend).
+<ul>
+<li>Local backend (only supported backend): prints <code>data_dir</code>, <code>sqlite_db</code> (default <code>data/neotoma.db</code> in development, <code>data/neotoma.prod.db</code> in production), <code>raw_sources</code> (e.g. <code>data/sources</code>), <code>event_log</code> (e.g. <code>data/logs/events.log</code>), <code>logs</code> (e.g. <code>data/logs</code>). Paths are resolved from current directory when run from a Neotoma source checkout, or from <code>NEOTOMA_PROJECT_ROOT</code> / <code>NEOTOMA_DATA_DIR</code> and other env overrides.</li>
+</ul>
+</li>
+<li><code>neotoma storage set-data-dir &lt;dir&gt;</code>: Update repo <code>.env</code> with <code>NEOTOMA_DATA_DIR=&lt;dir&gt;</code>, and optionally copy SQLite DB files (<code>neotoma.db</code>, <code>neotoma.prod.db</code>, and <code>-wal</code>/<code>-shm</code> sidecars) from the old data directory.
+<ul>
+<li>For durable SQLite storage on macOS, prefer a local-only path such as <code>~/Library/Application Support/neotoma/data</code> over iCloud-synced <code>Documents</code>, <code>Desktop</code>, or <code>iCloud Drive</code> folders.</li>
+<li>Interactive mode asks whether to copy DB files.</li>
+<li>When DB files exist in both old and new directories, conflict handling is:
+<ul>
+<li><code>merge</code>: back up target DB files, then insert missing rows from old DBs into target DBs.</li>
+<li><code>overwrite</code>: back up target DB files, then replace target DB files with old DB files.</li>
+<li><code>use-new</code>: keep target DB files unchanged and only switch <code>NEOTOMA_DATA_DIR</code>.</li>
+</ul>
+</li>
+<li>Old directory files are always preserved (copy/merge only, never delete old DB files).</li>
+<li>Options:
+<ul>
+<li><code>--move-db-files</code> / <code>--no-move-db-files</code></li>
+<li><code>--on-conflict &lt;merge|overwrite|use-new&gt;</code></li>
+<li><code>--yes</code> (skip prompts)</li>
+</ul>
+</li>
+<li><code>--json</code> output includes backup paths, copied files, conflict strategy, and merge stats.</li>
+</ul>
+</li>
+<li><code>neotoma storage merge-db</code>: Merge one SQLite DB file into another.
+<ul>
+<li>Required:
+<ul>
+<li><code>--source &lt;path&gt;</code>: Source DB file.</li>
+<li><code>--target &lt;path&gt;</code>: Target DB file.</li>
+</ul>
+</li>
+<li>Options:
+<ul>
+<li><code>--mode &lt;safe|keep-target|keep-source&gt;</code>:
+<ul>
+<li><code>safe</code> (default): fail when matching primary keys contain differing row values.</li>
+<li><code>keep-target</code>: insert missing rows; keep target rows on conflicts (<code>INSERT OR IGNORE</code> behavior).</li>
+<li><code>keep-source</code>: insert/replace source rows into target (<code>INSERT OR REPLACE</code> behavior).</li>
+</ul>
+</li>
+<li><code>--dry-run</code>: Analyze conflicts and merge impact without writing the target DB.</li>
+<li><code>--no-recompute-snapshots</code>: Skip post-merge snapshot recomputation.</li>
+</ul>
+</li>
+<li>Behavior notes:
+<ul>
+<li>Default mode is safety-first (<code>safe</code>) to avoid silent row loss on conflicts.</li>
+<li>Post-merge recomputation rebuilds <code>entity_snapshots</code> and <code>relationship_snapshots</code> when those tables exist.</li>
+<li>This command merges DB rows only; it does not copy <code>sources/</code> files or log directories. Use backup/restore or storage migration workflows when file assets must move with DB content.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>neotoma storage recover-db</code>: Check SQLite integrity and optionally write a recovered copy via <code>sqlite3 .recover</code>.
+<ul>
+<li>Default: check only. Exits non-zero when corruption is detected.</li>
+<li><code>--recover</code>: write a new sibling file such as <code>neotoma.prod.recovered-&lt;timestamp&gt;.db</code>.</li>
+<li><code>--output &lt;path&gt;</code>: explicit recovered DB path.</li>
+<li>Behavior notes:
+<ul>
+<li>Requires <code>sqlite3</code> on <code>PATH</code>.</li>
+<li>Does not replace the live DB automatically.</li>
+<li>Stop Neotoma (MCP/API) before running <code>--recover</code>.</li>
+<li>After a successful recover, manually archive the live <code>.db</code> / <code>-wal</code> / <code>-shm</code> and then copy the recovered file into place.</li>
+<li>If corruption recurs, run <code>neotoma status --json</code>; the <code>data.risks</code> block flags cloud-synced data directories and prior repair artifacts.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="status">Status<a href="#status" class="dv-anchor" aria-label="Link to this section: Status">#</a></h3>
+<ul>
+<li>
+<p><code>neotoma status</code> (alias: <code>neotoma doctor</code>): Check Neotoma configuration and connectivity. Verifies that the global CLI is on <code>PATH</code>, that <code>NEOTOMA_DATA_DIR</code> and the SQLite db are usable, whether a local API process is running, which MCP server entries the configured harnesses expose, and whether the data directory is on a high-risk filesystem.</p>
+<ul>
+<li>The <code>doctor</code> name is a deprecated alias retained for backward compatibility; prefer <code>neotoma status</code>. The <code>--json</code> payload shape is unchanged.</li>
+<li>The global <code>--json</code> flag emits a structured report instead of the human summary, for agent-led installs and CI or operator scripts. <code>status</code> takes no options of its own; the <code>current_tool_hint</code> it reports is what <code>neotoma setup</code> uses when <code>--tool</code> is omitted.</li>
+</ul>
+<p><strong><code>--json</code> shape (v0.25.0 and main):</strong></p>
+<div class="dv-code"><span class="dv-code-lang">jsonc</span><pre tabindex="0"><code class="language-jsonc"><span class="token punctuation">{</span>
+  <span class="token property">"neotoma"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"installed"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.25.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"node_on_path"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"neotoma_on_path"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"resolved_via"</span><span class="token operator">:</span> <span class="token string">"mise"</span> | <span class="token string">"nvm"</span> | <span class="token string">"fnm"</span> | <span class="token string">"npm"</span> | <span class="token string">"path"</span> | <span class="token string">"unknown"</span><span class="token punctuation">,</span>
+    <span class="token property">"which_neotoma"</span><span class="token operator">:</span> <span class="token string">"/usr/local/bin/neotoma"</span> | <span class="token null keyword">null</span><span class="token punctuation">,</span>
+    <span class="token property">"global_bin"</span><span class="token operator">:</span> <span class="token string">"/usr/local/bin"</span><span class="token punctuation">,</span>
+    <span class="token property">"global_package_dir"</span><span class="token operator">:</span> <span class="token string">"/usr/local/lib/node_modules/neotoma"</span><span class="token punctuation">,</span>
+    <span class="token property">"npm_global_root"</span><span class="token operator">:</span> <span class="token string">"/usr/local/lib/node_modules"</span><span class="token punctuation">,</span>
+    <span class="token property">"path_fix_hint"</span><span class="token operator">:</span> <span class="token null keyword">null</span> | <span class="token string">"&lt;how to put neotoma on PATH&gt;"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"config_dir"</span><span class="token operator">:</span> <span class="token string">"&lt;path&gt;"</span><span class="token punctuation">,</span>
+    <span class="token property">"data_dir"</span><span class="token operator">:</span> <span class="token string">"&lt;path&gt;"</span><span class="token punctuation">,</span>
+    <span class="token property">"data_dir_source"</span><span class="token operator">:</span> <span class="token string">"&lt;where data_dir came from&gt;"</span><span class="token punctuation">,</span>
+    <span class="token property">"global_default_data_dir"</span><span class="token operator">:</span> <span class="token string">"&lt;path&gt;"</span><span class="token punctuation">,</span>
+    <span class="token property">"db_exists"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"initialized"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"env_split_warning"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+    <span class="token property">"risks"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token comment">// 0..N entries; see the data.risks entry shape below</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"suggested_safe_data_dir"</span><span class="token operator">:</span> <span class="token string">"&lt;path&gt;"</span> | <span class="token null keyword">null</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"api"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"running"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"env"</span><span class="token operator">:</span> <span class="token string">"dev"</span> | <span class="token string">"prod"</span> | <span class="token null keyword">null</span><span class="token punctuation">,</span>
+    <span class="token property">"port"</span><span class="token operator">:</span> <span class="token number">3080</span><span class="token punctuation">,</span>
+    <span class="token property">"pid"</span><span class="token operator">:</span> <span class="token number">12345</span><span class="token punctuation">,</span>
+    <span class="token property">"base_url"</span><span class="token operator">:</span> <span class="token string">"http://127.0.0.1:3080"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"mcp_servers_detected"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"&lt;harness&gt;"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"path"</span><span class="token operator">:</span> <span class="token string">"&lt;config path&gt;"</span> | <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token property">"has_neotoma"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token property">"has_neotoma_dev"</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"cli_instructions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"project"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"cursor"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token property">"claude"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token property">"codex"</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"user"</span><span class="token operator">:</span>    <span class="token punctuation">{</span> <span class="token property">"cursor"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token property">"claude"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token property">"codex"</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"permission_files"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// claude_code_project, claude_code_user, codex_user, cursor_project:</span>
+    <span class="token comment">// { "path", "exists", "has_neotoma_allow", "has_npm_install_allow" }</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"current_tool_hint"</span><span class="token operator">:</span> <span class="token string">"cursor"</span> | <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">"hooks"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"eligible_for_offer"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token property">"supported_by_tool"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token property">"installed"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token comment">/* per harness */</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"mirror"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"eligible_for_offer"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token property">"path"</span><span class="token operator">:</span> <span class="token string">"&lt;path&gt;"</span><span class="token punctuation">,</span> <span class="token property">"inside_git_repo"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token property">"git_repo_root"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token property">"gitignored"</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"suggested_next_step"</span><span class="token operator">:</span>
+    <span class="token string">"install"</span> | <span class="token string">"init"</span> | <span class="token string">"configure-mcp"</span> | <span class="token string">"configure-cli-instructions"</span> |
+    <span class="token string">"configure-permissions"</span> | <span class="token string">"activate"</span> | <span class="token string">"offer-hooks"</span> | <span class="token string">"offer-mirror"</span> | <span class="token string">"ready"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p>With the global <code>--json</code> flag the CLI also adds a <code>_neotoma</code> object describing the transport it used.</p>
+<p><strong><code>data.risks[]</code> entry shape:</strong></p>
+<div class="dv-code"><span class="dv-code-lang">jsonc</span><pre tabindex="0"><code class="language-jsonc"><span class="token punctuation">{</span>
+  <span class="token property">"code"</span><span class="token operator">:</span> <span class="token string">"icloud_drive"</span>
+        | <span class="token string">"macos_synced_desktop_or_documents"</span>
+        | <span class="token string">"prior_sqlite_repair_artifacts"</span><span class="token punctuation">,</span>
+  <span class="token property">"severity"</span><span class="token operator">:</span> <span class="token string">"warn"</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"&lt;human-readable description&gt;"</span><span class="token punctuation">,</span>
+  <span class="token property">"suggested_action"</span><span class="token operator">:</span> <span class="token string">"&lt;single concrete next command&gt;"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p>The risk detector (<code>detectDataDirRisks</code> in <code>src/cli/doctor.ts</code>) covers three classes:</p>
+<ul>
+<li><strong><code>icloud_drive</code></strong>: <code>NEOTOMA_DATA_DIR</code> resolves inside <code>~/Library/Mobile Documents/</code>. iCloud Drive can re-upload <code>neotoma.db</code>, <code>neotoma.db-wal</code>, and <code>neotoma.db-shm</code> while Neotoma is writing, which is the corruption shape behind the SQLite <code>recover-db</code> flow. <code>suggested_action</code> points at the suggested local-only path returned by <code>suggested_safe_data_dir</code>.</li>
+<li><strong><code>macos_synced_desktop_or_documents</code></strong>: data dir sits under <code>~/Documents</code> or <code>~/Desktop</code>, both of which macOS enables for iCloud Drive sync by default. <code>suggested_action</code> is the matching <code>neotoma storage set-data-dir "&lt;safe path&gt;" --move-db-files</code> invocation.</li>
+<li><strong><code>prior_sqlite_repair_artifacts</code></strong>: the data directory contains marker files (<code>repair_backups/</code>, <code>repair_swaps/</code>, <code>recover-errors.log</code>, or <code>db_corrupt_before_swap_*</code>) left behind by a previous <code>neotoma storage recover-db</code> run. A recurrence is a signal to move the data dir to local-only storage.</li>
+</ul>
+<p><strong><code>suggested_safe_data_dir</code></strong> is computed by <code>suggestSafeDataDir(os.homedir())</code>. On macOS it is <code>~/Library/Application Support/neotoma/data</code>; on other platforms it returns <code>null</code> and the report only contains <code>risks</code> without a generated suggestion. The field is <code>null</code> whenever <code>data.risks</code> is empty.</p>
+<p><strong>Migration command</strong>: when <code>data.risks</code> is non-empty, an operator (or <code>neotoma setup</code> acting on their behalf) can move the data dir with:</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma storage set-data-dir <span class="token string">"&lt;suggested_safe_data_dir&gt;"</span> --move-db-files
+</code></pre></div>
+<p>Cross-references: <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/security/threat_model.md#operator-hardening-knobs-v012"><code>docs/security/threat_model.md</code></a> (Operator hardening knobs) and the <code>recover:db</code> script under <a href="#database-and-schema">Database and schema</a> above.</p>
+</li>
+</ul>
+<h3 id="snapshots">Snapshots<a href="#snapshots" class="dv-anchor" aria-label="Link to this section: Snapshots">#</a></h3>
+<p>Fleet-general write-integrity tooling built on the canonical snapshot layer. <code>snapshots check</code> / <code>snapshots request</code> operate on the runtime snapshot tables; <code>snapshots export</code>, <code>snapshots diff</code>, and <code>snapshots parsers</code> power the fleet-neutral drift workflow described in <code>docs/releases/in_progress/v0.6.0/</code> (item 3: snapshot export + drift comparison).</p>
+<ul>
+<li><code>neotoma snapshots check</code>: Check for stale entity snapshots.
+<ul>
+<li><code>--auto-fix</code>: Also recompute stale snapshots in place.</li>
+</ul>
+</li>
+<li><code>neotoma snapshots request</code>: Request snapshot recomputation for stale snapshots.
+<ul>
+<li><code>--dry-run</code>: Check only; do not recompute.</li>
+</ul>
+</li>
+<li><code>neotoma snapshots export</code>: Export entity snapshots as fleet-neutral JSON (schema_version <code>0.1.0</code>) with per-field provenance, an <code>observation_source</code> histogram, and an <code>attribution_fingerprint</code> roll-up per entity.
+<ul>
+<li><code>--entity-types &lt;csv&gt;</code>: Restrict to comma-separated entity types (e.g. <code>agent_task,agent_attempt</code>).</li>
+<li><code>--agent-sub &lt;sub&gt;</code>: Restrict to a single AAuth <code>agent_sub</code>.</li>
+<li><code>--attribution-tier &lt;tier&gt;</code>: Restrict to one tier: <code>hardware | software | unverified_client | anonymous</code>.</li>
+<li><code>--observation-source &lt;kind&gt;</code>: Restrict to one write kind: <code>sensor | llm_summary | workflow_state | human | import | sync | unspecified</code>.</li>
+<li><code>--since &lt;iso&gt;</code>: ISO-8601 lower bound on <code>last_observation_at</code>.</li>
+<li><code>--limit &lt;n&gt;</code>: Cap on returned entities (default: 500).</li>
+<li><code>--out &lt;path&gt;</code>: Write the export to this file instead of stdout.</li>
+<li><code>--user-id &lt;id&gt;</code>: Override user scope (flag &gt; <code>NEOTOMA_USER_ID</code> &gt; authenticated user).</li>
+<li>Output shape: <code>{ schema_version, exported_at, filter, total_entities, entities[] }</code>.</li>
+</ul>
+</li>
+<li><code>neotoma snapshots diff</code>: Compare a Neotoma export against an external-state snapshot via a pluggable <code>ExternalParser</code>. Defaults to the identity <code>json</code> parser; fleet-specific parsers register via <code>registerExternalParser</code> in <code>src/services/drift_comparison.ts</code>.
+<ul>
+<li><code>--neotoma &lt;path&gt;</code> (required): Path to a <code>snapshots export</code> JSON file.</li>
+<li><code>--external &lt;path&gt;</code> (required): Path to the external-state snapshot file.</li>
+<li><code>--parser &lt;name&gt;</code>: External parser name (default: <code>json</code>; list via <code>snapshots parsers</code>).</li>
+<li><code>--out &lt;path&gt;</code>: Write the drift report to this file instead of stdout.</li>
+<li>Report shape: <code>{ summary, missing_in_neotoma[], missing_in_external[], field_diffs[], provenance_gaps[] }</code>. <code>provenance_gaps</code> flags entities with unclassified <code>observation_source</code> or anonymous / unverified_client attribution even when field values agree.</li>
+</ul>
+</li>
+<li><code>neotoma snapshots parsers</code>: List registered external parsers available to <code>snapshots diff</code>.</li>
+</ul>
+<p>Fleet round-trip example (AIBTC Lumen, LangGraph, custom adapters all follow the same shape):</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma snapshots <span class="token builtin class-name">export</span> --entity-types agent_task,agent_attempt <span class="token parameter variable">--out</span> ./neotoma.json
+<span class="token comment"># produce a NormalizedExternalSnapshot from whatever your fleet keeps on disk</span>
+neotoma snapshots <span class="token function">diff</span> <span class="token parameter variable">--neotoma</span> ./neotoma.json <span class="token parameter variable">--external</span> ./fleet.json <span class="token parameter variable">--parser</span> json
+</code></pre></div>
+<h3 id="database-maintenance">Database maintenance<a href="#database-maintenance" class="dv-anchor" aria-label="Link to this section: Database maintenance">#</a></h3>
+<ul>
+<li>
+<p><code>neotoma db migrate-encryption &lt;encrypt|decrypt&gt;</code>: Bulk-encrypt or bulk-decrypt the sensitive columns in the local SQLite database. Operates on the closed database file directly (the server must not be running). Safe to re-run.</p>
+<ul>
+<li><code>encrypt</code>: Encrypt plaintext values in the covered columns of <code>observations</code>, <code>entity_snapshots</code>, <code>relationship_snapshots</code>, <code>raw_fragments</code>, <code>schema_recommendations</code>, and <code>auto_enhancement_queue</code>.</li>
+<li><code>decrypt</code>: Reverse the encryption on the covered columns.</li>
+<li><code>--dry-run</code>: Report how many rows would change without writing.</li>
+<li><code>--db-path &lt;path&gt;</code>: SQLite file (default: resolved from the environment).</li>
+<li>Key source (one is required): prefer a key file, through <code>NEOTOMA_KEY_FILE_PATH</code> or <code>--key-file &lt;path&gt;</code>, or the <code>NEOTOMA_MNEMONIC</code> and <code>NEOTOMA_MNEMONIC_PASSPHRASE</code> environment variables. <code>--mnemonic &lt;phrase&gt;</code> and <code>--mnemonic-passphrase &lt;passphrase&gt;</code> also exist, but they put the secret on the command line, where shell history and process listings (<code>ps</code>) can show it; avoid them outside a throwaway environment.</li>
+</ul>
+</li>
+<li>
+<p><code>neotoma db repair-schema-lag [--dry-run] [--types &lt;entity_types&gt;] [--rollback &lt;run_id&gt;]</code>: Audit and repair <code>raw_fragments</code> rows that were misrouted due to the schema-projection-lag bug (issue #142). Rows in <code>raw_fragments</code> whose <code>fragment_key</code> now matches a declared field in the active schema for their entity type are promoted to observations, and affected entity snapshots are recomputed. Safe to re-run: it uses deterministic observation IDs.</p>
+<ul>
+<li><code>--dry-run</code>: Report affected entity types and fragment counts without writing any rows.</li>
+<li><code>--types &lt;entity_types&gt;</code>: Comma-separated list of entity types to limit the repair scope (default: all).</li>
+<li><code>--rollback &lt;run_id&gt;</code>: Roll back a prior repair run by its <code>run_id</code>. Deletes the observations inserted by that run and recomputes affected snapshots.</li>
+<li>Every observation inserted by <code>repair-schema-lag</code> carries a <code>_migration_run_id</code> field in its <code>fields</code> JSON, making runs fully rollback-safe.</li>
+<li>After a repair, the command prints the <code>run_id</code> with a copy-paste rollback hint.</li>
+</ul>
+</li>
+</ul>
+<h3 id="backup-and-restore">Backup and restore<a href="#backup-and-restore" class="dv-anchor" aria-label="Link to this section: Backup and restore">#</a></h3>
+<ul>
+<li><code>neotoma backup create</code>: Create a backup of the local database, sources, and logs.
+<ul>
+<li><code>--output &lt;dir&gt;</code>: Output directory (default: <code>./backups</code>).</li>
+<li><code>--tar</code>: After the directory backup is verified, also create <code>&lt;backup-folder-name&gt;.tar.gz</code> in the same parent directory as the backup folder (GNU/BSD <code>tar</code> on <code>PATH</code> required). The timestamped directory is kept; the archive is an additional artifact for transport.</li>
+<li>Creates a timestamped subdirectory with <code>neotoma.db</code>, WAL file, <code>sources/</code>, <code>logs/</code> (includes <code>events.log</code>), and a <code>manifest.json</code> with checksums.</li>
+<li><strong>Human output</strong> prints <strong>backup size</strong> first (total bytes on disk for the backup directory, file count, and raw byte count; with <code>--tar</code>, the same line also includes the <code>.tar.gz</code> size). Then <strong>Backed up from</strong>, <strong>Contents</strong>, <strong>Sizes</strong> (per-component breakdown; the directory total is labeled <strong>total (directory)</strong>), <strong>db_checksum</strong> when recorded. With <code>--tar</code>, also an <strong>Archive</strong> line for the <code>.tar.gz</code> path and size.</li>
+<li><strong>JSON output</strong> (<code>--json</code>) includes <strong><code>backup_size</code></strong>: <code>{ bytes, files, human }</code> for the backup directory walk (same totals as <code>sizes.total_backup_bytes</code> / <code>total_backup_files</code>, plus a single <code>human</code> summary string). With <code>--tar</code>, <code>backup_size</code> also has <code>archive_bytes</code> and <code>human</code> includes the archive. Other fields: <code>manifest_path</code>, <code>backed_up_from</code>, <code>sizes</code>, and with <code>--tar</code> <code>archive_path</code>, <code>archive_bytes</code>, <code>sizes.archive_bytes</code>.</li>
+<li>Exits non-zero if the database copy is missing or under 1 KiB after write, or if <code>--tar</code> was set and creating the archive failed.</li>
+<li>If encryption is enabled, data in the backup remains encrypted. Preserve the key file or mnemonic for restore.</li>
+</ul>
+</li>
+<li><code>neotoma backup verify &lt;dir&gt;</code>: Verify a backup directory (manifest, DB size, optional SHA-256 vs manifest). Exits non-zero if invalid. <strong>Human</strong> and <strong><code>--json</code></strong> both include <strong><code>backup_size</code></strong> (<code>bytes</code>, <code>files</code>, <code>human</code>) for the full directory tree on disk.</li>
+<li><code>neotoma backup restore</code>: Restore a backup into the data directory.
+<ul>
+<li><code>--from &lt;dir&gt;</code>: Backup directory to restore from (required).</li>
+<li><code>--target &lt;dir&gt;</code>: Target data directory (default: <code>NEOTOMA_DATA_DIR</code> or <code>./data</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="logs">Logs<a href="#logs" class="dv-anchor" aria-label="Link to this section: Logs">#</a></h3>
+<ul>
+<li><code>neotoma logs tail</code>: Read persistent log files.
+<ul>
+<li><code>--decrypt</code>: Decrypt encrypted log lines using <code>NEOTOMA_KEY_FILE_PATH</code> or <code>NEOTOMA_MNEMONIC</code>.</li>
+<li><code>--lines &lt;n&gt;</code>: Number of lines to show (default: 50).</li>
+<li><code>--file &lt;path&gt;</code>: Specific log file (default: latest in env-specific <code>data/logs</code>; prod uses <code>data/logs_prod</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="developer-scripts">Developer scripts<a href="#developer-scripts" class="dv-anchor" aria-label="Link to this section: Developer scripts">#</a></h3>
+<ul>
+<li><code>neotoma dev list</code>: List available npm scripts from <code>package.json</code>.</li>
+<li><code>neotoma dev &lt;script&gt;</code>: Run a script from <code>package.json</code> (equivalent to <code>npm run &lt;script&gt;</code>).</li>
+<li><code>neotoma dev run &lt;script&gt;</code>: Run a script by name (same as <code>neotoma dev &lt;script&gt;</code>).</li>
+<li>Use <code>-- &lt;args&gt;</code> to pass through extra arguments to the npm script.</li>
+<li>The source checkout is found by: explicit CLI inputs (where supported), then <code>NEOTOMA_REPO_ROOT</code>, then walking up from the current directory, then saved config <code>project_root</code> (legacy <code>repo_root</code> is still read).</li>
+</ul>
+<h3 id="debugging-and-testing-eg-with-an-agent">Debugging and testing (e.g. with an agent)<a href="#debugging-and-testing-eg-with-an-agent" class="dv-anchor" aria-label="Link to this section: Debugging and testing (e.g. with an agent)">#</a></h3>
+<ul>
+<li><strong>When debugging CLI-related issues, always check the CLI log first.</strong> In dev the default path is <code>~/.config/neotoma/cli.log</code>. If the user passed <code>--log-file</code>, check that path. For session server output, check <code>&lt;repo&gt;/data/logs/session.log</code> (dev) or <code>session.prod.log</code> (prod). The same file is used whether the API was started by the CLI or by the MCP server (both append); look for "started by MCP" in the log to see who started a given run. For background API, check <code>neotoma api logs</code> or <code>~/.config/neotoma/logs/api.log</code>. See <strong>Where to look for what (logs)</strong> in <code>docs/operations/troubleshooting.md</code> for a per-component log map.</li>
+<li><strong>Dev</strong> (default): CLI appends stdout and stderr to <code>~/.config/neotoma/cli.log</code>. Use <code>--no-log-file</code> to disable.</li>
+<li><strong>Prod</strong> (<code>NEOTOMA_ENV=production</code>): No log file by default; use <code>--log-file &lt;path&gt;</code> to enable.</li>
+<li><code>--log-file &lt;path&gt;</code>: Append CLI output to this path (overrides env default).</li>
+<li><code>--no-log-file</code>: Do not write to the log file (dev only; prod has no default log file).</li>
+<li><code>--debug</code>: Emit detailed initialization logs to stderr when starting a session.</li>
+</ul>
+<h3 id="openapi-request">OpenAPI request<a href="#openapi-request" class="dv-anchor" aria-label="Link to this section: OpenAPI request">#</a></h3>
+<ul>
+<li><code>neotoma request --operation &lt;id&gt;</code>:
+<ul>
+<li><code>--params &lt;json&gt;</code>: JSON object with <code>{ path, query, body }</code>.</li>
+<li><code>--body &lt;json&gt;</code>: JSON body override.</li>
+<li><code>--query &lt;json&gt;</code>: JSON query override.</li>
+<li><code>--path &lt;json&gt;</code>: JSON path override.</li>
+<li><code>--guest-access-token &lt;token&gt;</code>: Use an entity-scoped guest bearer token instead of the configured owner token. It cannot be combined with <code>--skip-auth</code> or <code>--aauth</code>.</li>
+<li><code>--skip-auth</code>: Skip auth token for public endpoints.</li>
+<li><code>--aauth</code>: Sign the request with the configured AAuth key instead of a bearer token.</li>
+<li><code>eventsStream</code> writes raw SSE frames to stdout until the server closes the stream. Example: <code>neotoma request --operation eventsStream --guest-access-token &lt;token&gt; --query '{"subscription_id":"&lt;id&gt;"}'</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="configuration-and-storage-paths">Configuration and storage paths<a href="#configuration-and-storage-paths" class="dv-anchor" aria-label="Link to this section: Configuration and storage paths">#</a></h2>
+<p>The CLI stores configuration in:</p>
+<ul>
+<li><code>~/.config/neotoma/config.json</code></li>
+</ul>
+<p>To see where server data is stored (SQLite path, raw sources dir, etc.), run:</p>
+<ul>
+<li><code>neotoma storage info</code></li>
+</ul>
+<p>Fields:</p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"base_url"</span><span class="token operator">:</span> <span class="token string">"http://localhost:3080"</span><span class="token punctuation">,</span>
+  <span class="token property">"access_token"</span><span class="token operator">:</span> <span class="token string">"redacted"</span><span class="token punctuation">,</span>
+  <span class="token property">"token_type"</span><span class="token operator">:</span> <span class="token string">"bearer"</span><span class="token punctuation">,</span>
+  <span class="token property">"expires_at"</span><span class="token operator">:</span> <span class="token string">"2026-02-01T12:00:00Z"</span><span class="token punctuation">,</span>
+  <span class="token property">"connection_id"</span><span class="token operator">:</span> <span class="token string">"redacted"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<h2 id="deterministic-output">Deterministic output<a href="#deterministic-output" class="dv-anchor" aria-label="Link to this section: Deterministic output">#</a></h2>
+<p>The CLI sorts object keys before outputting JSON. This keeps output stable between runs.</p>
+<h2 id="diagrams">Diagrams<a href="#diagrams" class="dv-anchor" aria-label="Link to this section: Diagrams">#</a></h2>
+<div class="dv-code"><span class="dv-code-lang">text</span><pre tabindex="0"><code class="language-text">CLI --read config--&gt; ~/.config/neotoma/config.json
+CLI --request-----&gt; HTTP API (or in-process local transport)
+HTTP API --JSON---&gt; CLI
+</code></pre></div>
+<h2 id="examples">Examples<a href="#examples" class="dv-anchor" aria-label="Link to this section: Examples">#</a></h2>
+<h3 id="request-by-openapi-operation-id">Request by OpenAPI operation ID<a href="#request-by-openapi-operation-id" class="dv-anchor" aria-label="Link to this section: Request by OpenAPI operation ID">#</a></h3>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma request <span class="token parameter variable">--operation</span> listEntities <span class="token parameter variable">--params</span> <span class="token string">'{"query":{"limit":5}}'</span> <span class="token parameter variable">--pretty</span>
+</code></pre></div>
+<h3 id="store-entities-from-a-file">Store entities from a file<a href="#store-entities-from-a-file" class="dv-anchor" aria-label="Link to this section: Store entities from a file">#</a></h3>
+<p><code>--file</code> takes a JSON array of entities. This example writes one, then stores it:</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">&gt;</span> tasks.json <span class="token operator">&lt;&lt;</span><span class="token string">'EOF'
+[
+  { "entity_type": "task", "title": "Draft the release notes", "status": "open" },
+  { "entity_type": "task", "title": "Review the docs PR", "status": "open" }
+]
+EOF</span>
+neotoma store <span class="token parameter variable">--file</span> tasks.json --observation-source human
+</code></pre></div>
+<h3 id="stream-record-changes-alongside-mcp-actions">Stream record changes alongside MCP actions<a href="#stream-record-changes-alongside-mcp-actions" class="dv-anchor" aria-label="Link to this section: Stream record changes alongside MCP actions">#</a></h3>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash">neotoma <span class="token function">watch</span> <span class="token parameter variable">--tail</span> <span class="token parameter variable">--json</span>   <span class="token comment"># NDJSON, only new changes</span>
+neotoma <span class="token function">watch</span> <span class="token parameter variable">--tail</span> <span class="token parameter variable">--human</span>  <span class="token comment"># Plain one-line-per-change, only new</span>
+neotoma <span class="token function">watch</span> <span class="token parameter variable">--tail</span>          <span class="token comment"># Human-readable, only new changes</span>
+neotoma <span class="token function">watch</span> <span class="token parameter variable">--human</span>         <span class="token comment"># Plain one-line-per-change, no technical formatting</span>
+neotoma <span class="token function">watch</span>                 <span class="token comment"># Human-readable, includes existing records on startup</span>
+</code></pre></div>
+<h2 id="testing-requirements">Testing requirements<a href="#testing-requirements" class="dv-anchor" aria-label="Link to this section: Testing requirements">#</a></h2>
+<ol>
+<li>Verify each command prints deterministic JSON output.</li>
+<li>Validate auth login flow against local server.</li>
+</ol>
+<p class="dv-note">The file ends with an “Agent Instructions” section written for coding agents. It is left out here; read it <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/cli_reference.md#agent-instructions">on GitHub</a>.</p>
+</div>
+<nav class="dv-pager" aria-label="Previous and next document"><a class="prev" href="/pr-2727/docs/readme/" rel="prev"><span class="dv-mono">Previous</span>README</a><a class="next" href="/pr-2727/docs/mcp/" rel="next"><span class="dv-mono">Next</span>MCP overview</a></nav>
+</article>
+</main>
+</div>
+<footer class="dv-foot">
+<p>Rendered from <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/cli_reference.md">docs/developer/cli_reference.md</a> at commit <code>782d6d1</code>. The file on GitHub is the source; edits there appear here at the next site deploy.</p>
+<p><a href="/pr-2727/">neotoma.io</a> · <a href="/pr-2727/privacy">Privacy</a> · <a href="/pr-2727/terms">Terms of use</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REST API | Neotoma docs</title>
+<meta name="description" content="How to call Neotoma&#39;s HTTP API: base URL, authentication, the MCP OAuth endpoints, a few utility routes, and where the full route list lives.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://neotoma.io/docs/rest-api/">
+<link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/markmhendrickson/neotoma/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/api/rest_api.md" title="Markdown source at 782d6d1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Neotoma">
+<meta property="og:title" content="REST API | Neotoma docs">
+<meta property="og:description" content="How to call Neotoma&#39;s HTTP API: base URL, authentication, the MCP OAuth endpoints, a few utility routes, and where the full route list lives.">
+<meta property="og:url" content="https://neotoma.io/docs/rest-api/">
+<meta property="og:image" content="https://neotoma.io/pr-2727/neotoma-og-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="docs-viewer-source" content="docs/api/rest_api.md">
+<meta name="docs-viewer-commit" content="782d6d1124712c30ecc0dc26fab3c0c847a340ad">
+<link rel="icon" href="/pr-2727/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/pr-2727/favicon.ico" sizes="any">
+<style>
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Instrument Serif Docs";src:url("/pr-2727/brand/october/instrument-serif.ttf") format("truetype");font-weight:400;font-display:swap}
+:root{color-scheme:light;
+--paper:#faf8f3;--sheet:#faf8f3;--ink:#172b39;--rust:#a14624;--muted:#52616a;--line:#d6d0c4;--band:#f1ece2;
+--doc:#faf8f3;--text:#172b39;--link:#a14624;--code-bg:#f1ece2;--code-line:#d6d0c4;
+--t-comment:#52616a;--t-keyword:#a14624;--t-string:#3f6259;--t-number:#79520c;--t-function:#22587a;--t-var:#6a3d99;--t-punct:#52616a;
+--serif:"Instrument Serif Docs",Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;--sans:"Instrument Sans Docs",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+--paper:#1d272c;--sheet:#1d272c;--ink:#eeeae0;--rust:#e5a17c;--muted:#b7c4ca;--line:#4b5050;--band:#303333;
+--doc:#1d272c;--text:#eeeae0;--link:#e5a17c;--code-bg:#303333;--code-line:#4b5050;
+--t-comment:#b7c4ca;--t-keyword:#e5a17c;--t-string:#abd1b9;--t-number:#e8c07d;--t-function:#8fc4e2;--t-var:#cdb0f2;--t-punct:#e0ddd5}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.dv-skip{position:absolute;left:12px;top:-60px;background:var(--paper);border:1px solid var(--ink);padding:8px 12px;z-index:10}
+.dv-skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.dv-mono{font:600 12px/1.4 var(--sans);letter-spacing:.09em;text-transform:uppercase}
+.dv-masthead{border-bottom:1px solid var(--line);background:var(--paper)}
+.dv-masthead-inner{max-width:1400px;margin:0 auto;padding:18px clamp(18px,5vw,80px);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+.dv-brand{display:inline-flex;gap:12px;align-items:center;min-height:44px;text-decoration:none}
+.dv-brand img{display:block;width:132px;height:28px}
+.dv-brand .dv-logo-dark{display:none}
+@media (prefers-color-scheme:dark){.dv-brand .dv-logo-light{display:none}.dv-brand .dv-logo-dark{display:block}}
+.dv-brand span{color:var(--rust)}
+.dv-masthead nav{display:flex;gap:8px 20px;flex-wrap:wrap}
+.dv-masthead nav a{display:inline-flex;align-items:center;min-height:32px;padding:4px 0;font:600 0.875rem/1.4 var(--sans);text-decoration:none}
+.dv-masthead nav a:hover,.dv-masthead nav a:focus-visible{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-layout{max-width:1400px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(18px,5vw,80px) 64px;display:grid;grid-template-columns:14rem minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:start}
+.dv-side{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:2px 0}
+.dv-side h2,.dv-mnav h2{margin:16px 0 6px;color:var(--rust)}
+.dv-side h2:first-child{margin-top:0}
+.dv-side ul,.dv-mnav ul{list-style:none;margin:0;padding:0}
+.dv-side li a,.dv-mnav li a{display:block;min-height:32px;padding:6px 0;text-decoration:none;font-size:.9375rem;line-height:1.35;border-left:2px solid transparent}
+.dv-side li a:hover,.dv-mnav li a:hover{text-decoration:underline}
+.dv-side li a[aria-current=page],.dv-mnav li a[aria-current=page]{border-left-color:var(--rust);padding-left:10px;font-weight:600}
+.dv-mnav{display:none;border-bottom:1px solid var(--line);margin-bottom:28px}
+.dv-mnav summary{cursor:pointer;padding:12px 0;list-style-position:inside}
+.dv-mnav div{padding:0 0 12px}
+.dv-sheet{position:relative;min-width:0;background:var(--doc)}
+.dv-head{padding:0 0 30px;border-bottom:1px solid var(--line)}
+.dv-kicker{margin:0 0 10px;color:var(--rust)}
+.dv-head h1{font:400 clamp(2.8rem,5vw,4.9rem)/1.04 var(--serif);letter-spacing:-.03em;margin:0 0 16px}
+.dv-summary{font:400 clamp(1.1rem,1.55vw,1.35rem)/1.48 var(--sans);margin:0 0 16px;max-width:48rem}
+.dv-applies{margin:0 0 12px;font-size:.9375rem}
+.dv-applies .dv-mono{color:var(--rust);margin-right:8px}
+.dv-meta{margin:0;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-meta a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);font-weight:600}
+.dv-meta code{font:inherit}
+.dv-preview{margin:0 0 18px;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem}
+.dv-toc{margin:16px 0 0}
+.dv-toc summary{cursor:pointer;color:var(--muted)}
+.dv-toc ol{margin:8px 0 0;padding-left:22px;columns:2 16rem;font-size:.9375rem}
+.dv-toc ol ol{columns:auto;margin:2px 0 4px;padding-left:18px;font-size:.875rem}
+.dv-toc li{margin:2px 0;break-inside:avoid}
+.dv-toc a{display:inline-block;min-height:32px;line-height:32px}
+.dv-note{margin:2rem 0 0;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem;color:var(--muted)}
+.dv-body{padding:36px 0 42px;color:var(--text);font:17px/1.65 var(--sans)}
+.dv-body>*{max-width:72ch}
+.dv-body>.dv-table,.dv-body>.dv-code{max-width:100%}
+.dv-body p,.dv-body li{overflow-wrap:anywhere}
+.dv-body td,.dv-body th{overflow-wrap:break-word}
+.dv-table code{white-space:nowrap}
+.dv-body a{color:var(--link);text-decoration-thickness:1px}
+.dv-body a:hover{color:var(--ink);text-decoration-color:var(--rust);text-decoration-thickness:2px}
+.dv-body h2,.dv-body h3,.dv-body h4,.dv-body h5,.dv-body h6{font-family:var(--serif);font-weight:400;color:var(--text);line-height:1.12;scroll-margin-top:24px}
+.dv-body h2{font-size:clamp(2rem,3.2vw,3rem);margin:3.2rem 0 1rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.dv-body h3{font-size:1.65rem;margin:2.2rem 0 .75rem}
+.dv-body h4,.dv-body h5,.dv-body h6{font:600 1rem/1.35 var(--sans);margin:1.7rem 0 .5rem}
+.dv-anchor{margin-left:.4em;color:var(--muted)!important;text-decoration:none;font-weight:400}
+.dv-anchor:hover,.dv-anchor:focus-visible{color:var(--link)!important}
+.dv-body code{font:.88em/1.5 var(--mono);background:var(--code-bg);border:1px solid var(--code-line);border-radius:3px;padding:.05em .3em}
+.dv-code{position:relative;margin:1.2rem 0}
+.dv-code-lang{position:absolute;right:10px;top:8px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dv-body pre{margin:0;overflow:auto;background:var(--code-bg);border:1px solid var(--code-line);border-radius:4px;padding:30px 16px 16px}
+.dv-body pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.55;white-space:pre}
+.dv-body blockquote{margin:1.5rem 0;padding:.2rem 1rem;border-left:3px solid var(--rust);color:var(--text)}
+.dv-body hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+.dv-body img{max-width:100%;height:auto}
+.dv-table{overflow-x:auto;margin:1.2rem 0;border:1px solid var(--code-line)}
+.dv-table table{border-collapse:collapse;font-size:.9375rem;line-height:1.5;min-width:100%}
+.dv-table th,.dv-table td{border:1px solid var(--code-line);padding:8px 10px;vertical-align:top;text-align:left;min-width:7rem}
+.dv-table th{background:var(--code-bg);font-weight:600}
+.dv-align-center{text-align:center!important}.dv-align-right{text-align:right!important}
+.token.comment,.token.prolog,.token.doctype,.token.cdata{color:var(--t-comment);font-style:italic}
+.token.keyword,.token.boolean,.token.important,.token.atrule,.token.builtin,.token.tag{color:var(--t-keyword)}
+.token.string,.token.char,.token.attr-value,.token.inserted,.token.url{color:var(--t-string)}
+.token.number,.token.constant,.token.symbol{color:var(--t-number)}
+.token.function,.token.class-name,.token.property,.token.attr-name{color:var(--t-function)}
+.token.variable,.token.parameter,.token.regex{color:var(--t-var)}
+.token.punctuation,.token.operator{color:var(--t-punct)}
+.token.deleted{color:var(--t-keyword)}
+.dv-pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:28px 0 0;border-top:1px solid var(--line);background:var(--sheet)}
+.dv-pager a{display:block;padding:8px 0;text-decoration:none}
+.dv-pager a:hover{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-pager .dv-mono{display:block;color:var(--rust);margin-bottom:2px}
+.dv-pager .next{text-align:right;grid-column:2}
+.dv-foot{max-width:1400px;margin:0 auto;padding:0 clamp(18px,5vw,80px) 48px;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-foot a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);text-decoration:none}
+.dv-foot a:hover,.dv-foot a:focus-visible{text-decoration:underline}
+@media (max-width:900px){
+.dv-layout{grid-template-columns:minmax(0,1fr);padding-top:28px;gap:0}
+.dv-side{display:none}
+.dv-mnav{display:block}
+.dv-head{padding:0 0 24px}
+.dv-body{padding:28px 0 32px;font-size:16px}
+.dv-pager{padding:20px 0 0;grid-template-columns:1fr}
+.dv-pager .next{grid-column:1}
+}
+</style>
+</head>
+<body>
+<a class="dv-skip" href="#dv-main">Skip to the document</a>
+<header class="dv-masthead"><div class="dv-masthead-inner">
+<a class="dv-brand" href="/pr-2727/" aria-label="Neotoma home"><img class="dv-logo-light" src="/pr-2727/brand/n2-nav-light.svg" alt="Neotoma" width="132" height="28"><img class="dv-logo-dark" src="/pr-2727/brand/n2-nav-dark.svg" alt="Neotoma" width="132" height="28"><span class="dv-mono">Docs</span></a>
+<nav aria-label="Site"><a href="/pr-2727/">Home</a><a href="/pr-2727/install">Install</a><a href="https://github.com/markmhendrickson/neotoma">GitHub</a></nav>
+</div></header>
+<div class="dv-layout">
+<nav class="dv-side" aria-label="Documentation"><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/" aria-current="page">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></nav>
+<main id="dv-main" tabindex="-1">
+<details class="dv-mnav"><summary class="dv-mono">Documents</summary><div><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/" aria-current="page">REST API</a></li><li><a href="/pr-2727/docs/integrations/">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></div></details>
+<article class="dv-sheet">
+<header class="dv-head">
+<p class="dv-preview">Pre-release review</p>
+<p class="dv-kicker dv-mono">Docs · Start here</p>
+<h1>REST API</h1>
+<p class="dv-summary">How to call Neotoma's HTTP API: base URL, authentication, the MCP OAuth endpoints, a few utility routes, and where the full route list lives.</p>
+<p class="dv-applies"><span class="dv-mono">Applies to</span>v0.25.0 and main. The full route list is openapi.yaml: 112 paths on main and 109 in v0.25.0 (main adds /corrections/transaction, /entities/{id}/batch_correct, and /patch_array_item).</p>
+<p class="dv-meta"><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/api/rest_api.md">View and edit on GitHub</a> · <code>docs/api/rest_api.md</code> at <code>782d6d1</code></p>
+<details class="dv-toc"><summary class="dv-mono">On this page (11 sections)</summary><ol><li><a href="#scope">Scope</a></li><li><a href="#the-full-route-list">The full route list</a></li><li><a href="#base-url">Base URL</a></li><li><a href="#authentication">Authentication</a><ol><li><a href="#routes-that-answer-without-a-credential">Routes that answer without a credential</a></li></ol></li><li><a href="#mcp-oauth-endpoints">MCP OAuth endpoints</a><ol><li><a href="#discovery-bootstrap-unauthenticated">Discovery bootstrap (unauthenticated)</a></li><li><a href="#initiate-oauth-flow">Initiate OAuth flow</a></li><li><a href="#oauth-callback">OAuth callback</a></li><li><a href="#authorize-mcp-clients">Authorize (MCP clients)</a></li><li><a href="#get-connection-status">Get connection status</a></li><li><a href="#list-mcp-connections">List MCP connections</a></li><li><a href="#revoke-an-mcp-connection">Revoke an MCP connection</a></li></ol></li><li><a href="#files">Files</a><ol><li><a href="#storing-a-file">Storing a file</a></li><li><a href="#get-a-file-url">Get a file URL</a></li></ol></li><li><a href="#quick-check-with-curl">Quick check with curl</a></li><li><a href="#utility-endpoints">Utility endpoints</a><ol><li><a href="#health-check">Health check</a></li><li><a href="#usage-statistics">Usage statistics</a></li><li><a href="#openapi-document">OpenAPI document</a></li></ol></li><li><a href="#error-format">Error format</a></li><li><a href="#rate-limits">Rate limits</a></li><li><a href="#pagination">Pagination</a></li></ol></details>
+</header>
+<div class="dv-body">
+<h2 id="scope">Scope<a href="#scope" class="dv-anchor" aria-label="Link to this section: Scope">#</a></h2>
+<p>This document covers:</p>
+<ul>
+<li>Base URL and authentication</li>
+<li>The MCP OAuth endpoints and discovery documents</li>
+<li>File URLs, health, usage, and the OpenAPI document</li>
+<li>The error format, rate limits, and pagination</li>
+</ul>
+<p>It does not cover:</p>
+<ul>
+<li>Every route and schema (see <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/openapi.yaml"><code>openapi.yaml</code></a>)</li>
+<li>MCP tools (see <a href="/pr-2727/docs/mcp/"><code>docs/developer/mcp_overview.md</code></a> and <code>docs/specs/MCP_SPEC.md</code>)</li>
+<li>WebSocket connections</li>
+<li>Internal service-to-service communication</li>
+</ul>
+<h2 id="the-full-route-list">The full route list<a href="#the-full-route-list" class="dv-anchor" aria-label="Link to this section: The full route list">#</a></h2>
+<p>The REST API covers the same record operations as the MCP tools: storing, correcting, querying, merging, relationships, timeline, schemas, subscriptions, and peer sync. <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/openapi.yaml"><code>openapi.yaml</code></a> is the reference for every route, parameter, and response. A few common ones:</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="The full route list"><table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Operation ID</th>
+<th>MCP tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /store</code></td>
+<td><code>store</code></td>
+<td><code>store</code></td>
+</tr>
+<tr>
+<td><code>POST /correct</code></td>
+<td><code>correct</code></td>
+<td><code>correct</code></td>
+</tr>
+<tr>
+<td><code>POST /entities/query</code></td>
+<td><code>queryEntities</code></td>
+<td><code>retrieve_entities</code></td>
+</tr>
+<tr>
+<td><code>POST /get_entity_snapshot</code></td>
+<td><code>getEntitySnapshot</code></td>
+<td><code>retrieve_entity_snapshot</code></td>
+</tr>
+<tr>
+<td><code>POST /entities/merge</code></td>
+<td><code>mergeEntities</code></td>
+<td><code>merge_entities</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Call any operation by its ID from the CLI with <code>neotoma request --operation &lt;operationId&gt;</code> (see the <a href="/pr-2727/docs/cli/#openapi-request">CLI reference</a>).</p>
+<h2 id="base-url">Base URL<a href="#base-url" class="dv-anchor" aria-label="Link to this section: Base URL">#</a></h2>
+<p>A local install listens on port 3080 for the development API and 3180 for the production API:</p>
+<div class="dv-code"><span class="dv-code-lang">text</span><pre tabindex="0"><code class="language-text">http://localhost:3080
+http://localhost:3180
+</code></pre></div>
+<p>A remote or hosted instance uses its own host:</p>
+<div class="dv-code"><span class="dv-code-lang">text</span><pre tabindex="0"><code class="language-text">https://&lt;your-instance-host&gt;
+</code></pre></div>
+<h2 id="authentication">Authentication<a href="#authentication" class="dv-anchor" aria-label="Link to this section: Authentication">#</a></h2>
+<p>Most routes need a credential, sent as a bearer token:</p>
+<div class="dv-code"><span class="dv-code-lang">http</span><pre tabindex="0"><code class="language-http"><span class="token header"><span class="token header-name keyword">Authorization</span><span class="token punctuation">:</span> <span class="token header-value">Bearer &lt;NEOTOMA_BEARER_TOKEN&gt;</span></span>
+</code></pre></div>
+<ul>
+<li>Set the server's token with the <code>NEOTOMA_BEARER_TOKEN</code> environment variable. Use a strong random value and never commit it.</li>
+<li>When encryption is enabled (<code>NEOTOMA_ENCRYPTION_ENABLED=true</code>), use the key-derived token printed by <code>neotoma auth mcp-token</code>.</li>
+<li>MCP OAuth access tokens and AAuth-signed requests are also accepted.</li>
+</ul>
+<h3 id="routes-that-answer-without-a-credential">Routes that answer without a credential<a href="#routes-that-answer-without-a-credential" class="dv-anchor" aria-label="Link to this section: Routes that answer without a credential">#</a></h3>
+<p>Routes registered in <code>src/actions.ts</code> before the authentication middleware, and the middleware's own exemptions, answer without a credential. The list below is that set, checked by calling each route with no credential on a scratch server built from main and run with <code>NEOTOMA_ENV=production</code>; v0.25.0 registers the same routes in the same order.</p>
+<ul>
+<li>Discovery and server information: <code>GET /</code>, <code>GET /robots.txt</code>, <code>GET /pr-2727/favicon.ico</code>, <code>GET /health</code>, <code>GET /ready</code>, <code>GET /openapi.yaml</code>, <code>GET /openapi_actions.yaml</code>, <code>GET /server-info</code>, <code>GET /mcp-interaction-instructions</code>, <code>GET /.well-known/mcp/server-card.json</code>, <code>GET /.well-known/aauth-resource.json</code>, <code>GET /.well-known/oauth-authorization-server</code>, and <code>GET /.well-known/oauth-protected-resource</code> (also with the <code>/mcp</code> suffix). <code>GET /.well-known/openid-configuration</code> returns 404.</li>
+<li>Pages: the bundled docs at <code>GET /docs</code> and <code>GET /docs/*</code>, and the Inspector page shell at <code>/inspector</code>. The Inspector's data calls still need a credential.</li>
+<li>The MCP OAuth flow: <code>POST /mcp/oauth/initiate</code>, <code>GET /mcp/oauth/callback</code>, <code>GET /mcp/oauth/key-auth</code>, <code>POST /mcp/oauth/key-auth</code> (which checks the key it is given), <code>GET /mcp/oauth/authorize</code>, <code>GET /mcp/oauth/local-login</code>, <code>POST /mcp/oauth/token</code>, <code>POST /mcp/oauth/register</code>, <code>GET /mcp/oauth/status</code>, and <code>GET /mcp/oauth/google/start</code> and <code>/google/callback</code> (404 unless Google sign-in is configured).</li>
+<li>Sandbox forms: <code>GET /sandbox/terms</code>, <code>POST /sandbox/report</code>, and <code>GET /sandbox/report/status</code>.</li>
+<li><code>POST /auth/dev-signin</code>, which always answers 403.</li>
+<li><code>OPTIONS</code> preflight requests.</li>
+</ul>
+<p>Some routes registered before the middleware check a credential themselves and answer 401 without one: <code>/mcp</code>, <code>GET /mcp/oauth/connections</code>, <code>DELETE /mcp/oauth/connections/{connection_id}</code>, and <code>GET /mcp/oauth/authorization-details</code>.</p>
+<p>Every other route goes through the middleware, which also admits a request without a bearer token in these cases:</p>
+<ul>
+<li><strong>Local requests.</strong> On a local install, a request from the same machine with no <code>Authorization</code> header acts as the local user. In production (<code>NEOTOMA_ENV=production</code>) a loopback request counts as local only when <code>NEOTOMA_TRUST_PROD_LOOPBACK=1</code> is set and no <code>X-Forwarded-For</code> entry is an untrusted address, or when the nearest <code>X-Forwarded-For</code> hop is listed in <code>NEOTOMA_TRUSTED_PROXY_IPS</code> (see <code>isLocalRequest</code> in <code>src/actions.ts</code>).</li>
+<li><strong>Sandbox mode.</strong> With <code>NEOTOMA_SANDBOX_MODE</code> set, a request with no bearer token acts as its sandbox session user, or as the shared public sandbox user, and the <code>/sandbox/session</code> routes are registered.</li>
+<li><strong>Guest access tokens.</strong> An entity-scoped guest token is accepted on the guest-capable routes: <code>POST /issues/submit</code>, <code>/issues/status</code>, and <code>/issues/add_message</code>; <code>POST /subscribe</code>, <code>/unsubscribe</code>, <code>/list_subscriptions</code>, and <code>/get_subscription_status</code>; <code>GET /events/stream</code>; and <code>GET /entities/{id}</code> with its <code>/observations</code>, <code>/relationships</code>, and <code>/html</code> subpaths (<code>routeAcceptsGuestPrincipal</code> in <code>src/actions.ts</code>).</li>
+</ul>
+<h2 id="mcp-oauth-endpoints">MCP OAuth endpoints<a href="#mcp-oauth-endpoints" class="dv-anchor" aria-label="Link to this section: MCP OAuth endpoints">#</a></h2>
+<p>OAuth endpoints for MCP client authentication. The public ones need no bearer token.</p>
+<h3 id="discovery-bootstrap-unauthenticated">Discovery bootstrap (unauthenticated)<a href="#discovery-bootstrap-unauthenticated" class="dv-anchor" aria-label="Link to this section: Discovery bootstrap (unauthenticated)">#</a></h3>
+<p>A client with no credentials reaches an authenticated session in four requests. Step 2 returns 200 with no credential, as RFC 9728 §3 requires: the discovery documents tell a caller holding nothing where to authenticate, so gating them would deadlock the handshake. The <code>WWW-Authenticate</code> challenge in step 1 points at the step-2 document.</p>
+<ol>
+<li><code>POST /mcp</code> with no credential returns 401 with <code>WWW-Authenticate: Bearer resource_metadata="&lt;base&gt;/.well-known/oauth-protected-resource"</code>.</li>
+<li><code>GET</code> that URL with no <code>Authorization</code> and no <code>X-Connection-Id</code> returns 200 with <code>resource</code> and a non-empty <code>authorization_servers</code>.</li>
+<li><code>GET /.well-known/oauth-authorization-server</code> returns 200 with the authorization and token endpoints.</li>
+<li>Complete the OAuth flow against those endpoints, then retry <code>/mcp</code> with <code>Authorization: Bearer &lt;token&gt;</code>.</li>
+</ol>
+<p>Check the public documents:</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-sI</span> https://<span class="token operator">&lt;</span>your-instance-host<span class="token operator">&gt;</span>/.well-known/oauth-protected-resource
+<span class="token function">curl</span> <span class="token parameter variable">-sI</span> https://<span class="token operator">&lt;</span>your-instance-host<span class="token operator">&gt;</span>/.well-known/oauth-protected-resource/mcp
+<span class="token function">curl</span> <span class="token parameter variable">-sI</span> https://<span class="token operator">&lt;</span>your-instance-host<span class="token operator">&gt;</span>/.well-known/oauth-authorization-server
+<span class="token function">curl</span> <span class="token parameter variable">-sI</span> https://<span class="token operator">&lt;</span>your-instance-host<span class="token operator">&gt;</span>/.well-known/openid-configuration
+</code></pre></div>
+<p>The first three return 200 and the last returns 404.</p>
+<p><code>/.well-known/oauth-protected-resource/mcp</code> is the RFC 9728 §3.1 resource-suffixed form, served identically. A client whose resource is <code>/mcp</code> probes that path rather than the bare one, and either probe order works.</p>
+<p><code>/.well-known/openid-configuration</code> returns 404: this server does not implement OIDC discovery, and a 404 makes an OIDC-first client fall back to the RFC 8414 document. It is deliberately not a 401, which would claim the endpoint exists, and not a synthetic 200 alias, which would advertise a discovery contract the server does not implement.</p>
+<p>One 401 remains on the protected-resource paths: a request carrying a stale or unrecognized <code>X-Connection-Id</code> gets <code>401 invalid_token</code>, because that caller asserted a credential. Any <code>resource_metadata</code> URL named in that response still returns 200 unauthenticated.</p>
+<h3 id="initiate-oauth-flow">Initiate OAuth flow<a href="#initiate-oauth-flow" class="dv-anchor" aria-label="Link to this section: Initiate OAuth flow">#</a></h3>
+<p><strong>Endpoint:</strong> <code>POST /mcp/oauth/initiate</code> (rate-limited to 5 requests a minute)</p>
+<p><strong>Request:</strong></p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"connection_id"</span><span class="token operator">:</span> <span class="token string">"cursor-2025-01-21-abc123"</span><span class="token punctuation">,</span>
+  <span class="token property">"client_name"</span><span class="token operator">:</span> <span class="token string">"Cursor"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<ul>
+<li><code>connection_id</code>: unique identifier for this connection (required)</li>
+<li><code>client_name</code>: name of the MCP client (optional)</li>
+<li><code>redirect_uri</code>: optional. It must parse as a URL with an <code>http</code>, <code>https</code>, <code>cursor</code>, <code>vscode</code>, or <code>app</code> scheme. When omitted, a local install uses <code>&lt;frontend&gt;/oauth</code>, where <code>&lt;frontend&gt;</code> is <code>NEOTOMA_FRONTEND_URL</code> (or <code>FRONTEND_URL</code>, default <code>http://localhost:5195</code>)</li>
+</ul>
+<p><strong>Response:</strong> <code>200 OK</code></p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"authUrl"</span><span class="token operator">:</span> <span class="token string">"https://&lt;your-instance-host&gt;/mcp/oauth/authorize?..."</span><span class="token punctuation">,</span>
+  <span class="token property">"connectionId"</span><span class="token operator">:</span> <span class="token string">"cursor-2025-01-21-abc123"</span><span class="token punctuation">,</span>
+  <span class="token property">"expiresAt"</span><span class="token operator">:</span> <span class="token string">"2025-01-21T10:10:00Z"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p><strong>Errors:</strong> <code>400</code> when <code>connection_id</code> is missing or invalid; <code>500</code> when the OAuth state cannot be created.</p>
+<h3 id="oauth-callback">OAuth callback<a href="#oauth-callback" class="dv-anchor" aria-label="Link to this section: OAuth callback">#</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /mcp/oauth/callback</code></p>
+<p>Every current build answers this route with <code>400</code> and <code>Local OAuth callback is disabled. Use /mcp/oauth/local-login.</code>, because the storage backend is always local (<code>storageBackend</code> in <code>src/config.ts</code>), in v0.25.0 and on main. MCP clients complete sign-in through <code>/mcp/oauth/authorize</code> and <code>/mcp/oauth/local-login</code> instead.</p>
+<h3 id="authorize-mcp-clients">Authorize (MCP clients)<a href="#authorize-mcp-clients" class="dv-anchor" aria-label="Link to this section: Authorize (MCP clients)">#</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /mcp/oauth/authorize</code> (RFC 8414 authorization endpoint)</p>
+<ul>
+<li><code>redirect_uri</code> and <code>state</code> are required.</li>
+<li>PKCE is required (<code>code_challenge</code> with <code>code_challenge_method=S256</code>), except for OpenAI Custom GPT callbacks on <code>https://chatgpt.com/aip/g-&lt;id&gt;/oauth/callback</code> or <code>https://chat.openai.com/aip/g-&lt;id&gt;/oauth/callback</code>.</li>
+<li>Unless <code>NEOTOMA_REQUIRE_KEY_FOR_OAUTH=false</code>, a browser without a key session is redirected to <code>/mcp/oauth/key-auth</code> first.</li>
+</ul>
+<p>When the request does not come from the same machine (for example through a tunnel), <code>redirect_uri</code> must be one of these, or the route answers <code>400</code> and names the value it compared (<code>isRedirectUriAllowedForTunnel</code> in <code>src/services/mcp_oauth.ts</code>):</p>
+<ul>
+<li>A <code>cursor:</code>, <code>vscode:</code>, or <code>app:</code> URL</li>
+<li><code>http</code> or <code>https</code> on <code>localhost</code>, <code>127.0.0.1</code>, or <code>[::1]</code></li>
+<li><code>https</code> on this instance's own host (from <code>X-Forwarded-Host</code>, or <code>Host</code>)</li>
+<li><code>https</code> on <code>chatgpt.com</code> or <code>chat.openai.com</code></li>
+<li><code>https://claude.ai</code> (or <code>www.claude.ai</code>) with the path <code>/api/mcp/auth_callback</code> or <code>/api/mcp/oauth/callback</code></li>
+<li>An exact URL listed in <code>NEOTOMA_OAUTH_TRUSTED_CALLBACK_URLS</code>. Matching ignores the query, fragment, and a trailing slash; plain <code>http</code> is accepted only for loopback hosts, and an entry with a user name or password never matches. A malformed entry stops the server at startup.</li>
+</ul>
+<p>From the same machine, any <code>redirect_uri</code> that passes the scheme check above is accepted.</p>
+<h3 id="get-connection-status">Get connection status<a href="#get-connection-status" class="dv-anchor" aria-label="Link to this section: Get connection status">#</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /mcp/oauth/status?connection_id=&lt;id&gt;</code></p>
+<p><strong>Response:</strong> <code>200 OK</code></p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"active"</span><span class="token punctuation">,</span>
+  <span class="token property">"connection_id"</span><span class="token operator">:</span> <span class="token string">"cursor-2025-01-21-abc123"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p>Status values:</p>
+<ul>
+<li><code>pending</code>: the flow started and has not completed</li>
+<li><code>active</code>: the connection is ready to use</li>
+<li><code>expired</code>: the connection was revoked or the flow timed out</li>
+</ul>
+<h3 id="list-mcp-connections">List MCP connections<a href="#list-mcp-connections" class="dv-anchor" aria-label="Link to this section: List MCP connections">#</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /mcp/oauth/connections</code> (authenticated)</p>
+<p><strong>Response:</strong> <code>200 OK</code></p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"connections"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"connectionId"</span><span class="token operator">:</span> <span class="token string">"cursor-2025-01-21-abc123"</span><span class="token punctuation">,</span>
+      <span class="token property">"clientName"</span><span class="token operator">:</span> <span class="token string">"Cursor"</span><span class="token punctuation">,</span>
+      <span class="token property">"createdAt"</span><span class="token operator">:</span> <span class="token string">"2025-01-21T10:00:00Z"</span><span class="token punctuation">,</span>
+      <span class="token property">"lastUsedAt"</span><span class="token operator">:</span> <span class="token string">"2025-01-21T11:30:00Z"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<h3 id="revoke-an-mcp-connection">Revoke an MCP connection<a href="#revoke-an-mcp-connection" class="dv-anchor" aria-label="Link to this section: Revoke an MCP connection">#</a></h3>
+<p><strong>Endpoint:</strong> <code>DELETE /mcp/oauth/connections/{connection_id}</code> (authenticated)</p>
+<p><strong>Response:</strong> <code>200 OK</code> with <code>{"success": true}</code>.</p>
+<h2 id="files">Files<a href="#files" class="dv-anchor" aria-label="Link to this section: Files">#</a></h2>
+<h3 id="storing-a-file">Storing a file<a href="#storing-a-file" class="dv-anchor" aria-label="Link to this section: Storing a file">#</a></h3>
+<p>Files are stored through <code>POST /store</code>: send <code>file_content</code> (base64) with <code>mime_type</code>, or <code>file_path</code>, which the server reads from its own filesystem and so works only when the client runs on the same machine. File sources are deduplicated per user by SHA-256 content hash. Neotoma does not extract fields from a stored file; send the extracted entities in <code>entities</code>, with an <code>interpretation</code> block to link them to the file's source. The server caps JSON bodies at 10 MB.</p>
+<h3 id="get-a-file-url">Get a file URL<a href="#get-a-file-url" class="dv-anchor" aria-label="Link to this section: Get a file URL">#</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /get_file_url?file_path=&lt;path&gt;&amp;expires_in=&lt;seconds&gt;</code></p>
+<p>Returns a signed URL for one of the caller's own sources. <code>expires_in</code> defaults to 3600 seconds. A path that belongs to another user gets the same 404 as a path that does not exist.</p>
+<p><strong>Response:</strong> <code>200 OK</code> with <code>{"url": "..."}</code>.</p>
+<h2 id="quick-check-with-curl">Quick check with curl<a href="#quick-check-with-curl" class="dv-anchor" aria-label="Link to this section: Quick check with curl">#</a></h2>
+<p>Read the health endpoint, then make one authenticated read, with the token taken from your environment:</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> http://localhost:3080/health
+<span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-H</span> <span class="token string">"Authorization: Bearer <span class="token variable">$NEOTOMA_BEARER_TOKEN</span>"</span> <span class="token string">"http://localhost:3080/entities?limit=1"</span>
+</code></pre></div>
+<p>Export <code>NEOTOMA_BEARER_TOKEN</code> with the server's token first. On a local development install you can drop the header, because local requests act as the local user. Use port 3180 for a local production API, or <code>https://&lt;your-instance-host&gt;</code> for a remote one.</p>
+<h2 id="utility-endpoints">Utility endpoints<a href="#utility-endpoints" class="dv-anchor" aria-label="Link to this section: Utility endpoints">#</a></h2>
+<h3 id="health-check">Health check<a href="#health-check" class="dv-anchor" aria-label="Link to this section: Health check">#</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /health</code> (no authentication)</p>
+<p><strong>Response:</strong> <code>200 OK</code></p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"ok"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.25.0"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p><code>/health</code> reports that the process is up. <code>GET /ready</code> also queries the database and returns 503 when it is unreachable, erroring, or too slow.</p>
+<h3 id="usage-statistics">Usage statistics<a href="#usage-statistics" class="dv-anchor" aria-label="Link to this section: Usage statistics">#</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /usage</code></p>
+<p>Aggregate usage statistics for the authenticated user, computed from live data on each request. They power the Inspector dashboard tiles.</p>
+<p><strong>Authentication:</strong> a bearer token, an AAuth grant, or an MCP OAuth token. Guest principals get <code>401</code>.</p>
+<p><strong>Query parameter:</strong> <code>user_id</code> (optional). It must match the authenticated user; the local development user on a local install may pass any <code>user_id</code>.</p>
+<div class="dv-code"><span class="dv-code-lang">bash</span><pre tabindex="0"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-H</span> <span class="token string">"Authorization: Bearer <span class="token variable">$NEOTOMA_BEARER_TOKEN</span>"</span> <span class="token punctuation">\</span>
+  http://localhost:3080/usage <span class="token operator">|</span> jq <span class="token builtin class-name">.</span>
+</code></pre></div>
+<p><strong>Response:</strong> <code>200 OK</code></p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"entities_by_type"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"conversation"</span><span class="token operator">:</span> <span class="token number">214</span><span class="token punctuation">,</span>
+    <span class="token property">"task"</span><span class="token operator">:</span> <span class="token number">156</span><span class="token punctuation">,</span>
+    <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token number">88</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"total_entities"</span><span class="token operator">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+  <span class="token property">"observations_by_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"human"</span><span class="token operator">:</span> <span class="token number">310</span><span class="token punctuation">,</span>
+    <span class="token property">"llm_summary"</span><span class="token operator">:</span> <span class="token number">140</span><span class="token punctuation">,</span>
+    <span class="token property">"sensor"</span><span class="token operator">:</span> <span class="token number">50</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"total_observations"</span><span class="token operator">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+  <span class="token property">"entities_created_last_7_days"</span><span class="token operator">:</span> <span class="token number">34</span><span class="token punctuation">,</span>
+  <span class="token property">"entities_created_last_30_days"</span><span class="token operator">:</span> <span class="token number">112</span><span class="token punctuation">,</span>
+  <span class="token property">"entity_types_with_schema"</span><span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+  <span class="token property">"entity_types_total"</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+  <span class="token property">"last_updated"</span><span class="token operator">:</span> <span class="token string">"2026-06-19T09:00:00.000Z"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p>Response fields:</p>
+<ul>
+<li><code>entities_by_type</code>: active entity counts per type, sorted by count descending</li>
+<li><code>total_entities</code>: total active (non-merged) entities</li>
+<li><code>observations_by_source</code>: observation counts per <code>observation_source</code>; rows with none appear as <code>"unclassified"</code></li>
+<li><code>total_observations</code>: total observations</li>
+<li><code>entities_created_last_7_days</code> and <code>entities_created_last_30_days</code>: entities created in those windows</li>
+<li><code>entity_types_with_schema</code>: distinct entity types in the data that have an active registered schema</li>
+<li><code>entity_types_total</code>: distinct entity types across all active entities</li>
+<li><code>last_updated</code>: when these figures were computed (the request time)</li>
+</ul>
+<p>Errors:</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Usage statistics"><table>
+<thead>
+<tr>
+<th>Status</th>
+<th><code>error_code</code></th>
+<th>Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>401</code></td>
+<td><code>AUTH_REQUIRED</code></td>
+<td>Missing or invalid token, or a guest principal</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td><code>FORBIDDEN</code></td>
+<td><code>user_id</code> does not match the authenticated user</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>DB_QUERY_FAILED</code></td>
+<td>Database query failure</td>
+</tr>
+</tbody>
+</table></div>
+<p>OpenAPI operation <code>getUsage</code>; the CLI equivalent is <code>neotoma request --operation getUsage</code>. See <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/subsystems/usage_digest.md#usage-http-api-endpoint"><code>docs/subsystems/usage_digest.md</code></a> for how <code>/usage</code> differs from <code>usage_digest</code> entities.</p>
+<h3 id="openapi-document">OpenAPI document<a href="#openapi-document" class="dv-anchor" aria-label="Link to this section: OpenAPI document">#</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /openapi.yaml</code> (no authentication) returns <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/openapi.yaml"><code>openapi.yaml</code></a>, with its <code>servers</code> list adjusted to the host that served the request.</p>
+<h2 id="error-format">Error format<a href="#error-format" class="dv-anchor" aria-label="Link to this section: Error format">#</a></h2>
+<p>Errors use one envelope:</p>
+<div class="dv-code"><span class="dv-code-lang">json</span><pre tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"error_code"</span><span class="token operator">:</span> <span class="token string">"VALIDATION_MISSING_FIELD"</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"connection_id is required"</span><span class="token punctuation">,</span>
+  <span class="token property">"timestamp"</span><span class="token operator">:</span> <span class="token string">"2024-01-01T12:00:00Z"</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p><code>details</code> (an object) and <code>trace_id</code> appear when the handler supplies them. Status codes in use include <code>400</code> (bad request), <code>401</code> (missing or invalid credential), <code>403</code> (forbidden), <code>404</code> (not found), <code>409</code> (conflict), <code>413</code> (payload too large), <code>429</code> (rate limited), <code>500</code> (server error), and <code>503</code> (not ready). See <code>docs/reference/error_codes.md</code> for the error codes.</p>
+<h2 id="rate-limits">Rate limits<a href="#rate-limits" class="dv-anchor" aria-label="Link to this section: Rate limits">#</a></h2>
+<ul>
+<li>Writes through <code>POST /store</code> and <code>POST /patch_array_item</code> (main only) are limited per authenticated user, or per IP address without one, to <code>NEOTOMA_WRITE_RATE_LIMIT_PER_MIN</code> requests a minute (default 120).</li>
+<li>The MCP OAuth endpoints have their own per-minute limits; <code>POST /mcp/oauth/initiate</code> allows 5.</li>
+<li>Sandbox deployments apply a tighter write limit (<code>NEOTOMA_SANDBOX_WRITE_RATE_LIMIT_PER_MIN</code>, default 30).</li>
+</ul>
+<p>A limited request gets <code>429</code>.</p>
+<h2 id="pagination">Pagination<a href="#pagination" class="dv-anchor" aria-label="Link to this section: Pagination">#</a></h2>
+<p>List and query routes take <code>limit</code> and <code>offset</code>. <code>GET /entities</code> also accepts an opaque <code>cursor</code> from a previous response's <code>next_cursor</code>, which is the preferred way to page through entities; <code>offset</code> there is deprecated and bounded. Each operation's parameters are in <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/openapi.yaml"><code>openapi.yaml</code></a>.</p>
+<p class="dv-note">The file ends with an “Agent Instructions” section written for coding agents. It is left out here; read it <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/api/rest_api.md#agent-instructions">on GitHub</a>.</p>
+</div>
+<nav class="dv-pager" aria-label="Previous and next document"><a class="prev" href="/pr-2727/docs/mcp/" rel="prev"><span class="dv-mono">Previous</span>MCP overview</a><a class="next" href="/pr-2727/docs/integrations/" rel="next"><span class="dv-mono">Next</span>Integrations matrix</a></nav>
+</article>
+</main>
+</div>
+<footer class="dv-foot">
+<p>Rendered from <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/api/rest_api.md">docs/api/rest_api.md</a> at commit <code>782d6d1</code>. The file on GitHub is the source; edits there appear here at the next site deploy.</p>
+<p><a href="/pr-2727/">neotoma.io</a> · <a href="/pr-2727/privacy">Privacy</a> · <a href="/pr-2727/terms">Terms of use</a></p>
+</footer>
+</body>
+</html>

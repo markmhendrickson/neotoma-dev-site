@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integrations matrix | Neotoma docs</title>
+<meta name="description" content="Neotoma is cross-platform by design. This page is the single canonical index of every host, harness, and framework Neotoma integrates with, and the…">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://neotoma.io/docs/integrations/">
+<link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/markmhendrickson/neotoma/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/matrix.md" title="Markdown source at 782d6d1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Neotoma">
+<meta property="og:title" content="Integrations matrix | Neotoma docs">
+<meta property="og:description" content="Neotoma is cross-platform by design. This page is the single canonical index of every host, harness, and framework Neotoma integrates with, and the…">
+<meta property="og:url" content="https://neotoma.io/docs/integrations/">
+<meta property="og:image" content="https://neotoma.io/pr-2727/neotoma-og-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="docs-viewer-source" content="docs/integrations/matrix.md">
+<meta name="docs-viewer-commit" content="782d6d1124712c30ecc0dc26fab3c0c847a340ad">
+<link rel="icon" href="/pr-2727/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/pr-2727/favicon.ico" sizes="any">
+<style>
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans Docs";src:url("/pr-2727/brand/october/instrument-sans-semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Instrument Serif Docs";src:url("/pr-2727/brand/october/instrument-serif.ttf") format("truetype");font-weight:400;font-display:swap}
+:root{color-scheme:light;
+--paper:#faf8f3;--sheet:#faf8f3;--ink:#172b39;--rust:#a14624;--muted:#52616a;--line:#d6d0c4;--band:#f1ece2;
+--doc:#faf8f3;--text:#172b39;--link:#a14624;--code-bg:#f1ece2;--code-line:#d6d0c4;
+--t-comment:#52616a;--t-keyword:#a14624;--t-string:#3f6259;--t-number:#79520c;--t-function:#22587a;--t-var:#6a3d99;--t-punct:#52616a;
+--serif:"Instrument Serif Docs",Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;--sans:"Instrument Sans Docs",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+--paper:#1d272c;--sheet:#1d272c;--ink:#eeeae0;--rust:#e5a17c;--muted:#b7c4ca;--line:#4b5050;--band:#303333;
+--doc:#1d272c;--text:#eeeae0;--link:#e5a17c;--code-bg:#303333;--code-line:#4b5050;
+--t-comment:#b7c4ca;--t-keyword:#e5a17c;--t-string:#abd1b9;--t-number:#e8c07d;--t-function:#8fc4e2;--t-var:#cdb0f2;--t-punct:#e0ddd5}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.dv-skip{position:absolute;left:12px;top:-60px;background:var(--paper);border:1px solid var(--ink);padding:8px 12px;z-index:10}
+.dv-skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.dv-mono{font:600 12px/1.4 var(--sans);letter-spacing:.09em;text-transform:uppercase}
+.dv-masthead{border-bottom:1px solid var(--line);background:var(--paper)}
+.dv-masthead-inner{max-width:1400px;margin:0 auto;padding:18px clamp(18px,5vw,80px);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+.dv-brand{display:inline-flex;gap:12px;align-items:center;min-height:44px;text-decoration:none}
+.dv-brand img{display:block;width:132px;height:28px}
+.dv-brand .dv-logo-dark{display:none}
+@media (prefers-color-scheme:dark){.dv-brand .dv-logo-light{display:none}.dv-brand .dv-logo-dark{display:block}}
+.dv-brand span{color:var(--rust)}
+.dv-masthead nav{display:flex;gap:8px 20px;flex-wrap:wrap}
+.dv-masthead nav a{display:inline-flex;align-items:center;min-height:32px;padding:4px 0;font:600 0.875rem/1.4 var(--sans);text-decoration:none}
+.dv-masthead nav a:hover,.dv-masthead nav a:focus-visible{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-layout{max-width:1400px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(18px,5vw,80px) 64px;display:grid;grid-template-columns:14rem minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:start}
+.dv-side{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:2px 0}
+.dv-side h2,.dv-mnav h2{margin:16px 0 6px;color:var(--rust)}
+.dv-side h2:first-child{margin-top:0}
+.dv-side ul,.dv-mnav ul{list-style:none;margin:0;padding:0}
+.dv-side li a,.dv-mnav li a{display:block;min-height:32px;padding:6px 0;text-decoration:none;font-size:.9375rem;line-height:1.35;border-left:2px solid transparent}
+.dv-side li a:hover,.dv-mnav li a:hover{text-decoration:underline}
+.dv-side li a[aria-current=page],.dv-mnav li a[aria-current=page]{border-left-color:var(--rust);padding-left:10px;font-weight:600}
+.dv-mnav{display:none;border-bottom:1px solid var(--line);margin-bottom:28px}
+.dv-mnav summary{cursor:pointer;padding:12px 0;list-style-position:inside}
+.dv-mnav div{padding:0 0 12px}
+.dv-sheet{position:relative;min-width:0;background:var(--doc)}
+.dv-head{padding:0 0 30px;border-bottom:1px solid var(--line)}
+.dv-kicker{margin:0 0 10px;color:var(--rust)}
+.dv-head h1{font:400 clamp(2.8rem,5vw,4.9rem)/1.04 var(--serif);letter-spacing:-.03em;margin:0 0 16px}
+.dv-summary{font:400 clamp(1.1rem,1.55vw,1.35rem)/1.48 var(--sans);margin:0 0 16px;max-width:48rem}
+.dv-applies{margin:0 0 12px;font-size:.9375rem}
+.dv-applies .dv-mono{color:var(--rust);margin-right:8px}
+.dv-meta{margin:0;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-meta a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);font-weight:600}
+.dv-meta code{font:inherit}
+.dv-preview{margin:0 0 18px;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem}
+.dv-toc{margin:16px 0 0}
+.dv-toc summary{cursor:pointer;color:var(--muted)}
+.dv-toc ol{margin:8px 0 0;padding-left:22px;columns:2 16rem;font-size:.9375rem}
+.dv-toc ol ol{columns:auto;margin:2px 0 4px;padding-left:18px;font-size:.875rem}
+.dv-toc li{margin:2px 0;break-inside:avoid}
+.dv-toc a{display:inline-block;min-height:32px;line-height:32px}
+.dv-note{margin:2rem 0 0;padding:10px 12px;border-left:3px solid var(--rust);background:var(--band);font-size:.9375rem;color:var(--muted)}
+.dv-body{padding:36px 0 42px;color:var(--text);font:17px/1.65 var(--sans)}
+.dv-body>*{max-width:72ch}
+.dv-body>.dv-table,.dv-body>.dv-code{max-width:100%}
+.dv-body p,.dv-body li{overflow-wrap:anywhere}
+.dv-body td,.dv-body th{overflow-wrap:break-word}
+.dv-table code{white-space:nowrap}
+.dv-body a{color:var(--link);text-decoration-thickness:1px}
+.dv-body a:hover{color:var(--ink);text-decoration-color:var(--rust);text-decoration-thickness:2px}
+.dv-body h2,.dv-body h3,.dv-body h4,.dv-body h5,.dv-body h6{font-family:var(--serif);font-weight:400;color:var(--text);line-height:1.12;scroll-margin-top:24px}
+.dv-body h2{font-size:clamp(2rem,3.2vw,3rem);margin:3.2rem 0 1rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.dv-body h3{font-size:1.65rem;margin:2.2rem 0 .75rem}
+.dv-body h4,.dv-body h5,.dv-body h6{font:600 1rem/1.35 var(--sans);margin:1.7rem 0 .5rem}
+.dv-anchor{margin-left:.4em;color:var(--muted)!important;text-decoration:none;font-weight:400}
+.dv-anchor:hover,.dv-anchor:focus-visible{color:var(--link)!important}
+.dv-body code{font:.88em/1.5 var(--mono);background:var(--code-bg);border:1px solid var(--code-line);border-radius:3px;padding:.05em .3em}
+.dv-code{position:relative;margin:1.2rem 0}
+.dv-code-lang{position:absolute;right:10px;top:8px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dv-body pre{margin:0;overflow:auto;background:var(--code-bg);border:1px solid var(--code-line);border-radius:4px;padding:30px 16px 16px}
+.dv-body pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.55;white-space:pre}
+.dv-body blockquote{margin:1.5rem 0;padding:.2rem 1rem;border-left:3px solid var(--rust);color:var(--text)}
+.dv-body hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+.dv-body img{max-width:100%;height:auto}
+.dv-table{overflow-x:auto;margin:1.2rem 0;border:1px solid var(--code-line)}
+.dv-table table{border-collapse:collapse;font-size:.9375rem;line-height:1.5;min-width:100%}
+.dv-table th,.dv-table td{border:1px solid var(--code-line);padding:8px 10px;vertical-align:top;text-align:left;min-width:7rem}
+.dv-table th{background:var(--code-bg);font-weight:600}
+.dv-align-center{text-align:center!important}.dv-align-right{text-align:right!important}
+.token.comment,.token.prolog,.token.doctype,.token.cdata{color:var(--t-comment);font-style:italic}
+.token.keyword,.token.boolean,.token.important,.token.atrule,.token.builtin,.token.tag{color:var(--t-keyword)}
+.token.string,.token.char,.token.attr-value,.token.inserted,.token.url{color:var(--t-string)}
+.token.number,.token.constant,.token.symbol{color:var(--t-number)}
+.token.function,.token.class-name,.token.property,.token.attr-name{color:var(--t-function)}
+.token.variable,.token.parameter,.token.regex{color:var(--t-var)}
+.token.punctuation,.token.operator{color:var(--t-punct)}
+.token.deleted{color:var(--t-keyword)}
+.dv-pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:28px 0 0;border-top:1px solid var(--line);background:var(--sheet)}
+.dv-pager a{display:block;padding:8px 0;text-decoration:none}
+.dv-pager a:hover{text-decoration:underline;text-decoration-color:var(--rust)}
+.dv-pager .dv-mono{display:block;color:var(--rust);margin-bottom:2px}
+.dv-pager .next{text-align:right;grid-column:2}
+.dv-foot{max-width:1400px;margin:0 auto;padding:0 clamp(18px,5vw,80px) 48px;font:.8125rem/1.6 var(--sans);color:var(--muted)}
+.dv-foot a{display:inline-block;min-height:32px;line-height:32px;color:var(--ink);text-decoration:none}
+.dv-foot a:hover,.dv-foot a:focus-visible{text-decoration:underline}
+@media (max-width:900px){
+.dv-layout{grid-template-columns:minmax(0,1fr);padding-top:28px;gap:0}
+.dv-side{display:none}
+.dv-mnav{display:block}
+.dv-head{padding:0 0 24px}
+.dv-body{padding:28px 0 32px;font-size:16px}
+.dv-pager{padding:20px 0 0;grid-template-columns:1fr}
+.dv-pager .next{grid-column:1}
+}
+</style>
+</head>
+<body>
+<a class="dv-skip" href="#dv-main">Skip to the document</a>
+<header class="dv-masthead"><div class="dv-masthead-inner">
+<a class="dv-brand" href="/pr-2727/" aria-label="Neotoma home"><img class="dv-logo-light" src="/pr-2727/brand/n2-nav-light.svg" alt="Neotoma" width="132" height="28"><img class="dv-logo-dark" src="/pr-2727/brand/n2-nav-dark.svg" alt="Neotoma" width="132" height="28"><span class="dv-mono">Docs</span></a>
+<nav aria-label="Site"><a href="/pr-2727/">Home</a><a href="/pr-2727/install">Install</a><a href="https://github.com/markmhendrickson/neotoma">GitHub</a></nav>
+</div></header>
+<div class="dv-layout">
+<nav class="dv-side" aria-label="Documentation"><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/" aria-current="page">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></nav>
+<main id="dv-main" tabindex="-1">
+<details class="dv-mnav"><summary class="dv-mono">Documents</summary><div><h2 class="dv-mono">Start here</h2><ul><li><a href="/pr-2727/docs/">Documentation</a></li><li><a href="/pr-2727/docs/readme/">README</a></li><li><a href="/pr-2727/docs/cli/">CLI reference</a></li><li><a href="/pr-2727/docs/mcp/">MCP overview</a></li><li><a href="/pr-2727/docs/rest-api/">REST API</a></li><li><a href="/pr-2727/docs/integrations/" aria-current="page">Integrations matrix</a></li></ul><h2 class="dv-mono">How the record works</h2><ul><li><a href="/pr-2727/docs/architecture/">Architecture</a></li><li><a href="/pr-2727/docs/vocabulary/">Vocabulary</a></li></ul></div></details>
+<article class="dv-sheet">
+<header class="dv-head">
+<p class="dv-preview">Pre-release review</p>
+<p class="dv-kicker dv-mono">Docs · Start here</p>
+<h1>Integrations matrix</h1>
+<p class="dv-summary">Neotoma is cross-platform by design. This page is the single canonical index of every host, harness, and framework Neotoma integrates with, and the status of each integration.</p>
+<p class="dv-applies"><span class="dv-mono">Applies to</span>v0.25.0 and main.</p>
+<p class="dv-meta"><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/matrix.md">View and edit on GitHub</a> · <code>docs/integrations/matrix.md</code> at <code>782d6d1</code></p>
+<details class="dv-toc"><summary class="dv-mono">On this page (7 sections)</summary><ol><li><a href="#legend">Legend</a></li><li><a href="#supported-mcp">Supported (MCP)</a></li><li><a href="#supported-hooks">Supported (hooks)</a></li><li><a href="#client-libraries">Client libraries</a></li><li><a href="#not-yet-supported-roadmap">Not yet supported (roadmap)</a></li><li><a href="#how-to-add-a-new-host">How to add a new host</a></li><li><a href="#related">Related</a></li></ol></details>
+</header>
+<div class="dv-body">
+<p>The supported <code>neotoma setup --tool</code> values are listed by <code>neotoma setup --help</code>; the CLI implementation controls what each setup path writes. The broader table also includes manual integrations.</p>
+<h2 id="legend">Legend<a href="#legend" class="dv-anchor" aria-label="Link to this section: Legend">#</a></h2>
+<ul>
+<li><strong>Stable</strong> — supported in production; covered by setup docs and (where applicable) <code>neotoma setup --tool &lt;name&gt;</code>.</li>
+<li><strong>Preview</strong> — works end-to-end but the install path is manual or partially documented.</li>
+<li><strong>Experimental</strong> — early integration; expect rough edges.</li>
+<li><strong>Not yet supported</strong> — see the roadmap section below.</li>
+</ul>
+<h2 id="supported-mcp">Supported (MCP)<a href="#supported-mcp" class="dv-anchor" aria-label="Link to this section: Supported (MCP)">#</a></h2>
+<p>MCP is the primary integration protocol. Every host below speaks MCP either over local stdio, remote HTTP, or both.</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Supported (MCP)"><table>
+<thead>
+<tr>
+<th>Host</th>
+<th>Modes</th>
+<th>Install</th>
+<th>Setup guide</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cursor</td>
+<td>stdio, remote HTTP</td>
+<td><code>neotoma setup --tool cursor --yes</code></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_cursor_setup.md">mcp_cursor_setup.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>stdio, remote HTTP</td>
+<td><code>neotoma setup --tool claude-code --yes</code> or <code>npm run sync:mcp</code></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_claude_code_setup.md">mcp_claude_code_setup.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Claude Desktop</td>
+<td>local, remote MCP, desktop connector</td>
+<td><code>neotoma setup --tool claude-desktop --install-scope user --yes</code> (existing Desktop config)</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_claude_code_setup.md">Claude Desktop setup</a>, <a href="/pr-2727/docs/mcp/">MCP overview</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>ChatGPT</td>
+<td>MCP App (connector), Custom GPT Actions (OpenAPI)</td>
+<td>Manual HTTPS + OAuth</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/chatgpt_apps_setup.md">chatgpt_apps_setup.md</a>, <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/chatgpt_actions_setup.md">chatgpt_actions_setup.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Codex CLI</td>
+<td>stdio, remote HTTP (OAuth)</td>
+<td><code>neotoma setup --tool codex --yes</code> for local stdio; <code>codex mcp add</code> for remote HTTP</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_codex_remote_setup.md">Codex remote setup</a>, <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/agent_cli_configuration.md">local config</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Native plugin (<code>kind: memory</code>) + MCP</td>
+<td><code>neotoma setup --tool openclaw --yes</code></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_openclaw_setup.md">mcp_openclaw_setup.md</a>, <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/openclaw.md">openclaw.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>IronClaw</td>
+<td>MCP</td>
+<td><code>ironclaw mcp add</code> (no <code>neotoma setup --tool ironclaw</code>)</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_ironclaw_setup.md">mcp_ironclaw_setup.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Smithery</td>
+<td>External URL registry</td>
+<td>Manual registration</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/smithery_external_url.md">smithery_external_url.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Windsurf</td>
+<td>MCP</td>
+<td>Manual MCP config (<code>neotoma setup --help</code> does not list Windsurf)</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_windsurf_setup.md">mcp_windsurf_setup.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Continue</td>
+<td>MCP</td>
+<td>Manual MCP config (<code>neotoma setup --help</code> does not list Continue)</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_continue_setup.md">mcp_continue_setup.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>VS Code (Copilot Chat)</td>
+<td>MCP</td>
+<td>Manual MCP config (<code>neotoma setup --help</code> does not list VS Code)</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_vscode_setup.md">mcp_vscode_setup.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Letta</td>
+<td>MCP (streamable HTTP, SSE, stdio)</td>
+<td>Manual SDK setup</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/developer/mcp_letta_setup.md">mcp_letta_setup.md</a></td>
+<td>Stable</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="supported-hooks">Supported (hooks)<a href="#supported-hooks" class="dv-anchor" aria-label="Link to this section: Supported (hooks)">#</a></h2>
+<p>Hooks can capture turns, inject retrieval, and handle compaction when installed and the local service is running. MCP supplies agent-driven structured reads and writes.</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Supported (hooks)"><table>
+<thead>
+<tr>
+<th>Harness</th>
+<th>Package</th>
+<th>Guide</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/tree/782d6d1124712c30ecc0dc26fab3c0c847a340ad/packages/claude-code-plugin/"><code>packages/claude-code-plugin</code></a></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/hooks/claude_code.md">hooks/claude_code.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/tree/782d6d1124712c30ecc0dc26fab3c0c847a340ad/packages/cursor-hooks/"><code>packages/cursor-hooks</code></a></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/hooks/cursor.md">hooks/cursor.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/tree/782d6d1124712c30ecc0dc26fab3c0c847a340ad/packages/opencode-plugin/"><code>packages/opencode-plugin</code></a></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/hooks/opencode.md">hooks/opencode.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Codex CLI</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/tree/782d6d1124712c30ecc0dc26fab3c0c847a340ad/packages/codex-hooks/"><code>packages/codex-hooks</code></a></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/hooks/codex_cli.md">hooks/codex_cli.md</a></td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>Claude Agent SDK</td>
+<td><a href="https://github.com/markmhendrickson/neotoma/tree/782d6d1124712c30ecc0dc26fab3c0c847a340ad/packages/claude-agent-sdk-adapter/"><code>packages/claude-agent-sdk-adapter</code></a></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/hooks/claude_agent_sdk.md">hooks/claude_agent_sdk.md</a></td>
+<td>Stable</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="client-libraries">Client libraries<a href="#client-libraries" class="dv-anchor" aria-label="Link to this section: Client libraries">#</a></h2>
+<p>For applications that embed Neotoma directly (no host/harness in the loop):</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Client libraries"><table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Package</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TypeScript</td>
+<td><code>@neotoma/client</code></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/tree/782d6d1124712c30ecc0dc26fab3c0c847a340ad/packages/client/"><code>packages/client</code></a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td><code>neotoma-client</code></td>
+<td><a href="https://github.com/markmhendrickson/neotoma/tree/782d6d1124712c30ecc0dc26fab3c0c847a340ad/packages/client-python/"><code>packages/client-python</code></a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="not-yet-supported-roadmap">Not yet supported (roadmap)<a href="#not-yet-supported-roadmap" class="dv-anchor" aria-label="Link to this section: Not yet supported (roadmap)">#</a></h2>
+<p>The hosts and frameworks below are commonly requested or named by competing memory products. They are not yet supported. The "What it would take" column is descriptive — actual prioritization depends on engineering capacity.</p>
+<div class="dv-table" tabindex="0" role="region" aria-label="Not yet supported (roadmap)"><table>
+<thead>
+<tr>
+<th>Host / framework</th>
+<th>Why it matters</th>
+<th>What it would take</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LangGraph</td>
+<td>Common agent-graph orchestration framework</td>
+<td>Either an MCP-compatible memory node, or a Python adapter on top of <code>packages/client-python</code>. Likely a small wrapper plus an example notebook.</td>
+</tr>
+<tr>
+<td>CrewAI</td>
+<td>Multi-agent orchestration</td>
+<td>A Python adapter that exposes Neotoma <code>store</code> / <code>retrieve_*</code> actions as CrewAI tools. Same shape as the OpenClaw native plugin.</td>
+</tr>
+<tr>
+<td>Hermes</td>
+<td>Named by competing memory products</td>
+<td>Confirm the specific framework being referenced (the name is overloaded) before scoping.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Want one of these prioritized?</strong> Open an issue at <a href="https://github.com/Lemonbrand/neotoma-feedback">github.com/Lemonbrand/neotoma-feedback</a> describing your use case.</p>
+<h2 id="how-to-add-a-new-host">How to add a new host<a href="#how-to-add-a-new-host" class="dv-anchor" aria-label="Link to this section: How to add a new host">#</a></h2>
+<p>A new host integration usually needs three things:</p>
+<ol>
+<li><strong>A setup path.</strong> For MCP hosts that use stdio or remote HTTP, this is typically an entry in <code>src/cli/setup.ts</code> (<code>harnessMap</code>) plus a <code>docs/developer/mcp_&lt;host&gt;_setup.md</code> guide. For hosts that use lifecycle hooks, this is a new package under <code>packages/</code> (mirroring <code>packages/cursor-hooks</code> or <code>packages/opencode-plugin</code>).</li>
+<li><strong>A public setup page.</strong> Add <code>docs/site/pages/en/neotoma-with-&lt;host&gt;.mdx</code> with a sidecar <code>.meta.json</code> matching the format used by existing <code>neotoma-with-*</code> pages.</li>
+<li><strong>A row in this matrix.</strong> Update both this file and <code>docs/site/pages/en/integrations.mdx</code>.</li>
+</ol>
+<p>Use <code>neotoma setup --help</code> to check supported <code>--tool</code> targets and keep this matrix synchronized with the CLI implementation.</p>
+<h2 id="related">Related<a href="#related" class="dv-anchor" aria-label="Link to this section: Related">#</a></h2>
+<ul>
+<li><a href="/pr-2727/docs/mcp/">MCP overview</a> — transport and setup references</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/specs/MCP_SPEC.md">MCP specification</a> — protocol details</li>
+<li><a href="/pr-2727/docs/cli/">CLI reference</a> — <code>neotoma setup</code>, <code>neotoma mcp config</code>, <code>neotoma cli config</code></li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/hooks/README.md">Hooks index</a> — hooks contract and per-harness guides</li>
+</ul>
+
+</div>
+<nav class="dv-pager" aria-label="Previous and next document"><a class="prev" href="/pr-2727/docs/rest-api/" rel="prev"><span class="dv-mono">Previous</span>REST API</a><a class="next" href="/pr-2727/docs/architecture/" rel="next"><span class="dv-mono">Next</span>Architecture</a></nav>
+</article>
+</main>
+</div>
+<footer class="dv-foot">
+<p>Rendered from <a href="https://github.com/markmhendrickson/neotoma/blob/782d6d1124712c30ecc0dc26fab3c0c847a340ad/docs/integrations/matrix.md">docs/integrations/matrix.md</a> at commit <code>782d6d1</code>. The file on GitHub is the source; edits there appear here at the next site deploy.</p>
+<p><a href="/pr-2727/">neotoma.io</a> · <a href="/pr-2727/privacy">Privacy</a> · <a href="/pr-2727/terms">Terms of use</a></p>
+</footer>
+</body>
+</html>
