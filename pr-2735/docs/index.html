@@ -7,7 +7,7 @@
 <meta name="description" content="Neotoma is the system of record for AI agents: a record, not recall. These docs describe what the current build does. Pages under foundation/ state the…">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://neotoma.io/docs/">
-<link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/markmhendrickson/neotoma/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/README.md" title="Markdown source at bbe7301">
+<link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/markmhendrickson/neotoma/e78e69a107f4106af4f7930f368d86d2379564a0/docs/README.md" title="Markdown source at e78e69a">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Neotoma">
 <meta property="og:title" content="Documentation | Neotoma docs">
@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://neotoma.io/pr-2735/neotoma-og-1200x630.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="docs-viewer-source" content="docs/README.md">
-<meta name="docs-viewer-commit" content="bbe7301aeabb7304da9e7a5d014ee648c000487f">
+<meta name="docs-viewer-commit" content="e78e69a107f4106af4f7930f368d86d2379564a0">
 <link rel="icon" href="/pr-2735/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/pr-2735/favicon.ico" sizes="any">
 <style>
@@ -145,32 +145,32 @@ a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{
 <h1>Documentation</h1>
 <p class="dv-summary">Neotoma is the system of record for AI agents: a record, not recall. These docs describe what the current build does. Pages under foundation/ state the design, so read them with the build in mind; where the two differ, the code and the README are the reference.</p>
 <p class="dv-applies"><span class="dv-mono">Applies to</span>v0.26.0.</p>
-<p class="dv-meta"><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/README.md">View and edit on GitHub</a> · <code>docs/README.md</code> at <code>bbe7301</code></p>
+<p class="dv-meta"><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/README.md">View and edit on GitHub</a> · <code>docs/README.md</code> at <code>e78e69a</code></p>
 <details class="dv-toc"><summary class="dv-mono">On this page (5 sections)</summary><ol><li><a href="#start-here">Start here</a></li><li><a href="#how-the-record-works">How the record works</a></li><li><a href="#foundation">Foundation</a></li><li><a href="#folder-map">Folder map</a></li><li><a href="#limits-worth-knowing-before-you-rely-on-the-record">Limits worth knowing before you rely on the record</a></li></ol></details>
 </header>
 <div class="dv-body">
-<p>A running Neotoma server also serves these files at its own <code>/docs</code> route. To install and try Neotoma, start with the <a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/README.md">README</a>.</p>
+<p>A running Neotoma server also serves these files at its own <code>/docs</code> route. To install and try Neotoma, start with the <a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/README.md">README</a>.</p>
 <h2 id="start-here">Start here<a href="#start-here" class="dv-anchor" aria-label="Link to this section: Start here">#</a></h2>
 <ul>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/developer/getting_started.md">Developer getting started</a>: local development setup with SQLite and the local filesystem.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/developer/cli_reference.md">CLI reference</a>: every <code>neotoma</code> command.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/developer/mcp_overview.md">MCP overview</a>: connect an agent host over MCP, with a guide per host.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/api/rest_api.md">REST API</a> and the <a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/openapi.yaml">OpenAPI spec</a>: largely the same capabilities over HTTP, as a separate implementation from the MCP server.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/integrations/matrix.md">Integrations matrix</a>: every documented host and how it connects. The README table covers the common hosts; the matrix also lists hosts that are configured by hand.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/developer/getting_started.md">Developer getting started</a>: local development setup with SQLite and the local filesystem.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/developer/cli_reference.md">CLI reference</a>: every <code>neotoma</code> command.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/developer/mcp_overview.md">MCP overview</a>: connect an agent host over MCP, with a guide per host.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/api/rest_api.md">REST API</a> and the <a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/openapi.yaml">OpenAPI spec</a>: largely the same capabilities over HTTP, as a separate implementation from the MCP server.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/integrations/matrix.md">Integrations matrix</a>: every documented host and how it connects. The README table covers the common hosts; the matrix also lists hosts that are configured by hand.</li>
 </ul>
 <h2 id="how-the-record-works">How the record works<a href="#how-the-record-works" class="dv-anchor" aria-label="Link to this section: How the record works">#</a></h2>
 <ul>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/architecture/architecture.md">Architecture</a>: sources, observations, entities, snapshots, and relationships.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/subsystems/reducer.md">Reducer</a>: how the current value of each field is computed from observations.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/subsystems/observation_architecture.md">Observation architecture</a>: how observations are stored and linked to sources.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/architecture/determinism.md">Determinism</a>: what is derived from inputs, and how.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/developer/atomic_corrections.md">Atomic corrections</a>: apply a bounded set of corrections in one transaction (added in v0.26.0).</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/architecture/architecture.md">Architecture</a>: sources, observations, entities, snapshots, and relationships.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/subsystems/reducer.md">Reducer</a>: how the current value of each field is computed from observations.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/subsystems/observation_architecture.md">Observation architecture</a>: how observations are stored and linked to sources.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/architecture/determinism.md">Determinism</a>: what is derived from inputs, and how.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/developer/atomic_corrections.md">Atomic corrections</a>: apply a bounded set of corrections in one transaction (added in v0.26.0).</li>
 </ul>
 <h2 id="foundation">Foundation<a href="#foundation" class="dv-anchor" aria-label="Link to this section: Foundation">#</a></h2>
 <ul>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/foundation/core_identity.md">Core identity</a>: what Neotoma is and is not.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/foundation/product_positioning.md">Product positioning</a>: the category and how it is described.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/foundation/problem_statement.md">Problem statement</a> and <a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/foundation/philosophy.md">philosophy</a>.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/foundation/core_identity.md">Core identity</a>: what Neotoma is and is not.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/foundation/product_positioning.md">Product positioning</a>: the category and how it is described.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/foundation/problem_statement.md">Problem statement</a> and <a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/foundation/philosophy.md">philosophy</a>.</li>
 </ul>
 <h2 id="folder-map">Folder map<a href="#folder-map" class="dv-anchor" aria-label="Link to this section: Folder map">#</a></h2>
 <div class="dv-table" tabindex="0" role="region" aria-label="Folder map"><table>
@@ -219,7 +219,7 @@ a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{
 <h2 id="limits-worth-knowing-before-you-rely-on-the-record">Limits worth knowing before you rely on the record<a href="#limits-worth-knowing-before-you-rely-on-the-record" class="dv-anchor" aria-label="Link to this section: Limits worth knowing before you rely on the record">#</a></h2>
 <ul>
 <li>Provenance shows the evidence trail for a value, not that an agent read its source correctly.</li>
-<li><a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/known_limitations.md">Known limitations</a> lists the specific ones, grouped as writes and corrections, reads and export, identity and attribution, surfaces and logs, and install and setup, each with what you will observe, any workaround, and its tracking issue.</li>
+<li><a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/known_limitations.md">Known limitations</a> lists the specific ones, grouped as writes and corrections, reads and export, identity and attribution, surfaces and logs, and install and setup, each with what you will observe, any workaround, and its tracking issue.</li>
 </ul>
 
 </div>
@@ -228,7 +228,7 @@ a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{
 </main>
 </div>
 <footer class="dv-foot">
-<p>Rendered from <a href="https://github.com/markmhendrickson/neotoma/blob/bbe7301aeabb7304da9e7a5d014ee648c000487f/docs/README.md">docs/README.md</a> at commit <code>bbe7301</code>. The file on GitHub is the source; edits there appear here at the next site deploy.</p>
+<p>Rendered from <a href="https://github.com/markmhendrickson/neotoma/blob/e78e69a107f4106af4f7930f368d86d2379564a0/docs/README.md">docs/README.md</a> at commit <code>e78e69a</code>. The file on GitHub is the source; edits there appear here at the next site deploy.</p>
 <p><a href="/">neotoma.io</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms of use</a></p>
 </footer>
 </body>
