@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://neotoma.io/install/system-changes/">
 <link rel="alternate" hreflang="en" href="https://neotoma.io/install/system-changes/">
 <link rel="alternate" hreflang="es" href="https://neotoma.io/es/install/system-changes/">
-<link rel="alternate" type="text/markdown" href="/pr-2775/source/install/system-changes.md" title="Markdown source at 82d7420">
+<link rel="alternate" type="text/markdown" href="/pr-2775/source/install/system-changes.md" title="Markdown source at 6c523b7">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Neotoma">
 <meta property="og:title" content="What changes on your system | Neotoma">
@@ -30,8 +30,8 @@
 <meta name="twitter:image:alt" content="Neotoma, the system of record for AI agents. A paper archive of retained records connects with a person, task, conversation, agent and date record.">
 <meta name="docs-viewer-source" content="docs/topics/install/system-changes.md">
 
-<meta name="docs-viewer-commit" content="82d7420bf9c3bb8b332d1a12e67bb11378c784db">
-<meta name="docs-viewer-applies-to" content="Applies to published v0.27.0. The claims were checked against v0.26.0 (b6ae615) on October 27th, 2026; setup did not change in v0.27.0. Check the version and host path you actually use. A remote client connecting to an already operated instance does not need the Neotoma CLI installed on the client machine.">
+<meta name="docs-viewer-commit" content="6c523b79db6ad59cdaa5c5c9e814e8cc8666d41d">
+
 <link rel="icon" href="/pr-2775/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/pr-2775/favicon.ico" sizes="any">
 <style>/*
@@ -3289,10 +3289,11 @@ a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{
 
 <h1>What changes on your system</h1>
 <p class="dv-summary">Installation, initialization, and host connection can affect different machines and configuration files.</p>
-<p class="dv-meta">Source: <code>docs/topics/install/system-changes.md</code> · <a href="/pr-2775/source/install/system-changes.md">Read Markdown</a> · <code>82d7420</code></p>
+<p class="dv-meta">Source: <code>docs/topics/install/system-changes.md</code> · <a href="/pr-2775/source/install/system-changes.md">Read Markdown</a> · <code>6c523b7</code></p>
 
 </header>
 <div class="dv-body">
+<p>This inventory describes the current package source. Base setup effects were checked against v0.26.0 (<code>b6ae615</code>) on October 27th, 2026 and did not change in published v0.27.0. The current source skill count includes unreleased additions; published v0.27.0 contains 12 installable skills. Check the version and host path you actually use. A remote client connecting to an already operated instance does not need the Neotoma CLI installed on the client machine.</p>
 <h2 id="choose-the-effect-you-intend">Choose the effect you intend</h2>
 <p>Installing the npm package adds a global CLI binary on the machine where you run it. <code>neotoma init</code> creates local configuration and development and production database profiles. A host setup, native plugin, or SDK adapter may then change that host's configuration or capture later events. Those are separate choices: merely connecting an authenticated remote client does not initialize a local Neotoma record.</p>
 <p>Before running a command, choose the <a href="/pr-2775/install/">connection guide</a> for your host. It distinguishes local stdio, authenticated remote MCP, native plugin, manual configuration, SDK adapter, and registry paths. Review the command and its permissions before running it; a completed setup command does not prove the host can read the intended instance or that optional capture works.</p>
@@ -3364,7 +3365,7 @@ a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{
 <td>Not listed among what reset removes.</td>
 </tr>
 <tr>
-<td>Twelve Claude Code skills, when <code>~/.claude</code> exists</td>
+<td>Thirteen Claude Code skills, when <code>~/.claude</code> exists</td>
 <td><code>~/.claude/skills/</code></td>
 <td>User</td>
 <td>Not listed among what reset removes.</td>
