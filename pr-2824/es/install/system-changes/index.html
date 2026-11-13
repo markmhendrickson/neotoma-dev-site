@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://neotoma.io/es/install/system-changes/">
 <link rel="alternate" hreflang="en" href="https://neotoma.io/install/system-changes/">
 <link rel="alternate" hreflang="es" href="https://neotoma.io/es/install/system-changes/">
-<link rel="alternate" type="text/markdown" href="/pr-2824/source/es/install/system-changes.md" title="Markdown source at 8652fa0">
+<link rel="alternate" type="text/markdown" href="/pr-2824/source/es/install/system-changes.md" title="Markdown source at d9d85a5">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Neotoma">
 <meta property="og:title" content="Qué cambia en tu sistema | Neotoma">
@@ -30,7 +30,7 @@
 <meta name="twitter:image:alt" content="Neotoma, sistema de registro para agentes de IA. Un archivo de registros conservados se conecta con una persona, una tarea, una conversación, un agente y un registro de fecha.">
 <meta name="docs-viewer-source" content="docs/topics/es/install/system-changes.md">
 <meta name="docs-viewer-original-source" content="docs/topics/install/system-changes.md">
-<meta name="docs-viewer-commit" content="8652fa028b32b1e2ae9eb331470dce91753e215c">
+<meta name="docs-viewer-commit" content="d9d85a589cb9a05691e9e5ceb786512b45783d96">
 <meta name="docs-viewer-applies-to" content="Se aplica a la versión publicada v0.27.0. Las afirmaciones se comprobaron en v0.26.0 (b6ae615) el 27 de octubre de 2026; la instalación y la configuración no cambiaron en v0.27.0. Comprueba la versión y la vía de entorno que vas a usar. Un cliente remoto que se conecta a una instancia ya operada no necesita que la CLI de Neotoma esté instalada en la máquina cliente.">
 <link rel="icon" href="/pr-2824/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/pr-2824/favicon.ico" sizes="any">
@@ -2780,6 +2780,23 @@
 .dark .plan-home > .plan-ground-band {
   background: var(--band);
 }
+/* The paper-art plates are cream and the light reading band is nearly the same tone
+   (about 1.01:1), so the figures dissolved into the section. Frame each plate with an
+   edge that holds at least 3:1 against both the band and the plate. Outline, not border,
+   so the figure's size and the page layout do not move. The dark band already separates
+   the plates (about 10:1), so it needs no frame. */
+.plan-home > .plan-ground-band {
+  --plan-figure-edge: #4c5a5f;
+}
+.plan-home > .plan-ground-band .plan-step-art .paper-scene,
+.plan-home > .plan-ground-band .plan-example-content .paper-scene {
+  outline: 2px solid var(--plan-figure-edge);
+  outline-offset: 0;
+}
+.dark .plan-home > .plan-ground-band .plan-step-art .paper-scene,
+.dark .plan-home > .plan-ground-band .plan-example-content .paper-scene {
+  outline: 0;
+}
 .plan-home > .plan-interface-sheet {
   border-bottom: 1px solid var(--line);
 }
@@ -3289,7 +3306,7 @@ a:focus-visible,pre:focus-visible,.dv-table:focus-visible,summary:focus-visible{
 
 <h1>Qué cambia en tu sistema</h1>
 <p class="dv-summary">La instalación, la inicialización y la conexión de un entorno pueden afectar a máquinas y archivos de configuración distintos.</p>
-<p class="dv-meta">Fuente de esta traducción: <code>docs/topics/es/install/system-changes.md</code> · <a href="/pr-2824/source/es/install/system-changes.md">Leer Markdown</a> · Original en inglés: <code>docs/topics/install/system-changes.md</code> · <a href="/pr-2824/source/install/system-changes.md">Leer original</a> · <code>8652fa0</code></p>
+<p class="dv-meta">Fuente de esta traducción: <code>docs/topics/es/install/system-changes.md</code> · <a href="/pr-2824/source/es/install/system-changes.md">Leer Markdown</a> · Original en inglés: <code>docs/topics/install/system-changes.md</code> · <a href="/pr-2824/source/install/system-changes.md">Leer original</a> · <code>d9d85a5</code></p>
 
 </header>
 <div class="dv-body">
